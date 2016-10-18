@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CyberoamClient</string>
+    <string name="enrollment">Enrollment</string>
+    <string name="password">Password</string>
 </resources>
