@@ -11,14 +11,14 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background"
-        android:scaleType="center"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/background"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.7"
-        android:background="#0277BD"/>
+        android:background="@color/light_blue_800"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,8 +113,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColor="@android:color/white"
-            android:text="logout"/>
+            android:text="logout"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 
