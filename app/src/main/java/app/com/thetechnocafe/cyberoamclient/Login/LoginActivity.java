@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import app.com.thetechnocafe.cyberoamclient.R;
 
-public class LoginActivity extends AppCompatActivity implements ILoginView {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
