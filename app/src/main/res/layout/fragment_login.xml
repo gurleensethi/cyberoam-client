@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:fontFamily="sans-serif-light"
-            android:text="A new experience to login into the internet"
+            android:text="@string/tagline"
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
             android:textStyle="italic"/>
@@ -80,16 +80,24 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <ImageButton
+        <ImageView
+            android:id="@+id/loginButton"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:background="@android:color/transparent"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/circle"
             android:clickable="true"
-            android:elevation="60dp"
+            android:elevation="6dp"
             android:foreground="@drawable/ripple"
             android:scaleType="centerCrop"
-            android:src="@drawable/login"
-            app:elevation="60dp"/>
+            android:src="@drawable/login"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tagline"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"/>
 
     </LinearLayout>
 

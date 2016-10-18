@@ -3,4 +3,5 @@
     <string name="enrollment">Enrollment</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="tagline">A new experience to log into cyberoam</string>
 </resources>
