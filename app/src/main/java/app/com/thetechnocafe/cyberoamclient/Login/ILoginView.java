@@ -6,4 +6,6 @@ package app.com.thetechnocafe.cyberoamclient.Login;
 
 interface ILoginView {
     void isLoginSuccessful(boolean success, String responseToDisplay);
+
+    void setUpOnClickListeners();
 }
