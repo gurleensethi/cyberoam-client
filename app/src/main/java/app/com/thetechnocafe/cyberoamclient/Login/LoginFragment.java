@@ -1,8 +1,10 @@
 package app.com.thetechnocafe.cyberoamclient.Login;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,9 +71,10 @@ public class LoginFragment extends Fragment implements ILoginView {
      */
     @Override
     public void isLoginSuccessful(boolean success, int errorCode) {
+        Log.d("LoginFragment", success + " login fragment " + errorCode);
         //Check if login is successful
         if (success) {
-            //TODO:Handle login here
+            mErrorTextView.setText(getString(R.string.login_success));
         } else {
             switch (errorCode) {
                 case ERROR_USERNAME_EMPTY: {
@@ -82,7 +85,27 @@ public class LoginFragment extends Fragment implements ILoginView {
                     mErrorTextView.setText(getString(R.string.password_error));
                     break;
                 }
+                case ERROR_USERNAME_PASSWORD: {
+                    mErrorTextView.setText(getString(R.string.wrong_password_username));
+                    break;
+                }
+                case ERROR_VOLLEY_ERROR: {
+                    mErrorTextView.setText("Error in volley");
+                    break;
+                }
+                case ERROR_SERVER_ACCOUNT_LOCKED: {
+                    mErrorTextView.setText(getString(R.string.account_locked));
+                    break;
+                }
+                case ERROR_MAXIMUM_LOGIN_LIMIT: {
+                    mErrorTextView.setText(getString(R.string.maximum_login_limit));
+                }
             }
         }
+    }
+
+    @Override
+    public Context getContext() {
+        return getActivity().getApplicationContext();
     }
 }

@@ -1,5 +1,9 @@
 package app.com.thetechnocafe.cyberoamclient.Login;
 
+import android.util.Log;
+
+import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
+
 /**
  * Created by gurleensethi on 18/10/16.
  */
@@ -7,7 +11,13 @@ package app.com.thetechnocafe.cyberoamclient.Login;
 public class LoginPresenter implements ILoginPresenter {
 
     private ILoginView mainView;
-
+    private NetworkUtils mNetworkUtils = new NetworkUtils() {
+        @Override
+        public void onResultReceived(boolean success, int errorCode) {
+            Log.d("LoginPresenter", success + " " + errorCode);
+            mainView.isLoginSuccessful(success, errorCode);
+        }
+    };
 
     /**
      * Constructor
@@ -29,6 +39,8 @@ public class LoginPresenter implements ILoginPresenter {
             mainView.isLoginSuccessful(false, ILoginView.ERROR_USERNAME_EMPTY);
         } else if (password.equals("")) {
             mainView.isLoginSuccessful(false, ILoginView.ERROR_PASSWORD_EMPTY);
+        } else {
+            mNetworkUtils.login(mainView.getContext(), username, password);
         }
     }
 }
