@@ -92,6 +92,13 @@
             android:scaleType="centerCrop"
             android:src="@drawable/login"/>
 
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"/>
+
         <TextView
             android:id="@+id/errorTextView"
             android:layout_width="wrap_content"
@@ -100,6 +107,14 @@
             android:text=""
             android:textColor="@android:color/white"
             android:textSize="16sp"/>
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/white"
+            android:text="logout"/>
 
     </LinearLayout>
 

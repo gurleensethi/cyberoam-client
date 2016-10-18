@@ -13,4 +13,5 @@
     <string name="locked_error">Login failed. Your AD Server account is locked</string>
     <string name="login_success">You have successfully logged into JIIT Internet Server</string>
     <string name="account_locked">Login failed. Your AD Server account is locked</string>
+    <string name="loggin_in">Logging you in...</string>
 </resources>

@@ -8,11 +8,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import app.com.thetechnocafe.cyberoamclient.R;
+import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -32,6 +37,11 @@ public class LoginFragment extends Fragment implements ILoginView {
     ImageView mLoginButton;
     @BindView(R.id.errorTextView)
     TextView mErrorTextView;
+    @BindView(R.id.loadingProgressBar)
+    ProgressBar mLoadingProgressBar;
+
+    @BindView(R.id.logoutButton)
+    Button mLogoutButton;
 
     public static LoginFragment getInstance() {
         LoginFragment fragment = new LoginFragment();
@@ -61,7 +71,35 @@ public class LoginFragment extends Fragment implements ILoginView {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Enable progress bar and disable login button
+                mLoadingProgressBar.setVisibility(View.VISIBLE);
+                mLoginButton.setVisibility(View.GONE);
+                mEnrollmentEditText.setEnabled(false);
+                mPasswordEditText.setEnabled(false);
+
+                //Change Error text
+                mErrorTextView.setText(getString(R.string.loggin_in));
+
+                //Send login request to presenter
                 mLoginPresenter.login(mEnrollmentEditText.getText().toString(), mPasswordEditText.getText().toString());
+            }
+        });
+
+        //TODO:Remove this code from final production
+        //Temporary logout button
+        mLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new NetworkUtils() {
+                    @Override
+                    public void onResultReceived(boolean success, int errorCode) {
+                        if (success) {
+                            Toast.makeText(getContext(), "Successfully logged out", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Error logging out", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }.logout(getContext(), mEnrollmentEditText.getText().toString(), mPasswordEditText.getText().toString());
             }
         });
     }
@@ -77,31 +115,37 @@ public class LoginFragment extends Fragment implements ILoginView {
             mErrorTextView.setText(getString(R.string.login_success));
         } else {
             switch (errorCode) {
-                case ERROR_USERNAME_EMPTY: {
+                case ValueUtils.ERROR_USERNAME_EMPTY: {
                     mErrorTextView.setText(getString(R.string.username_error));
                     break;
                 }
-                case ERROR_PASSWORD_EMPTY: {
+                case ValueUtils.ERROR_PASSWORD_EMPTY: {
                     mErrorTextView.setText(getString(R.string.password_error));
                     break;
                 }
-                case ERROR_USERNAME_PASSWORD: {
+                case ValueUtils.ERROR_USERNAME_PASSWORD: {
                     mErrorTextView.setText(getString(R.string.wrong_password_username));
                     break;
                 }
-                case ERROR_VOLLEY_ERROR: {
+                case ValueUtils.ERROR_VOLLEY_ERROR: {
                     mErrorTextView.setText("Error in volley");
                     break;
                 }
-                case ERROR_SERVER_ACCOUNT_LOCKED: {
+                case ValueUtils.ERROR_SERVER_ACCOUNT_LOCKED: {
                     mErrorTextView.setText(getString(R.string.account_locked));
                     break;
                 }
-                case ERROR_MAXIMUM_LOGIN_LIMIT: {
+                case ValueUtils.ERROR_MAXIMUM_LOGIN_LIMIT: {
                     mErrorTextView.setText(getString(R.string.maximum_login_limit));
                 }
             }
         }
+
+        //Set the progress bar gone and login button visible and enable edit texts
+        mLoadingProgressBar.setVisibility(View.GONE);
+        mLoginButton.setVisibility(View.VISIBLE);
+        mEnrollmentEditText.setEnabled(true);
+        mPasswordEditText.setEnabled(true);
     }
 
     @Override

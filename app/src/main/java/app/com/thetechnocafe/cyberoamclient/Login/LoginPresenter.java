@@ -3,6 +3,7 @@ package app.com.thetechnocafe.cyberoamclient.Login;
 import android.util.Log;
 
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 
 /**
  * Created by gurleensethi on 18/10/16.
@@ -36,9 +37,9 @@ public class LoginPresenter implements ILoginPresenter {
     public void login(String username, String password) {
         //Check if fields are not empty
         if (username.equals("")) {
-            mainView.isLoginSuccessful(false, ILoginView.ERROR_USERNAME_EMPTY);
+            mainView.isLoginSuccessful(false, ValueUtils.ERROR_USERNAME_EMPTY);
         } else if (password.equals("")) {
-            mainView.isLoginSuccessful(false, ILoginView.ERROR_PASSWORD_EMPTY);
+            mainView.isLoginSuccessful(false, ValueUtils.ERROR_PASSWORD_EMPTY);
         } else {
             mNetworkUtils.login(mainView.getContext(), username, password);
         }
