@@ -24,6 +24,11 @@ public class LoginPresenter implements ILoginPresenter {
      */
     @Override
     public void login(String username, String password) {
-
+        //Check if fields are not empty
+        if (username.equals("")) {
+            mainView.isLoginSuccessful(false, ILoginView.ERROR_USERNAME_EMPTY);
+        } else if (password.equals("")) {
+            mainView.isLoginSuccessful(false, ILoginView.ERROR_PASSWORD_EMPTY);
+        }
     }
 }

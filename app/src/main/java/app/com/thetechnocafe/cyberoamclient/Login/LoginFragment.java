@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
@@ -27,6 +28,8 @@ public class LoginFragment extends Fragment implements ILoginView {
     EditText mPasswordEditText;
     @BindView(R.id.loginButton)
     ImageView mLoginButton;
+    @BindView(R.id.errorTextView)
+    TextView mErrorTextView;
 
     public static LoginFragment getInstance() {
         LoginFragment fragment = new LoginFragment();
@@ -52,14 +55,34 @@ public class LoginFragment extends Fragment implements ILoginView {
      */
     @Override
     public void setUpOnClickListeners() {
-
+        //Call login in presenter
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mLoginPresenter.login(mEnrollmentEditText.getText().toString(), mPasswordEditText.getText().toString());
+            }
+        });
     }
 
     /**
      * Handle the login response from presenter
      */
     @Override
-    public void isLoginSuccessful(boolean success, String responseToDisplay) {
-
+    public void isLoginSuccessful(boolean success, int errorCode) {
+        //Check if login is successful
+        if (success) {
+            //TODO:Handle login here
+        } else {
+            switch (errorCode) {
+                case ERROR_USERNAME_EMPTY: {
+                    mErrorTextView.setText(getString(R.string.username_error));
+                    break;
+                }
+                case ERROR_PASSWORD_EMPTY: {
+                    mErrorTextView.setText(getString(R.string.password_error));
+                    break;
+                }
+            }
+        }
     }
 }

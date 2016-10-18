@@ -4,4 +4,12 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="tagline">A new experience to log into cyberoam</string>
+    <string name="username_error">Enrollment field cannot be empty</string>
+    <string name="password_error">Password field cannot be empty</string>
+    <string name="data_exceed">Data Transfer exceed</string>
+    <string name="maximum_login_limit">Maximum login limit</string>
+    <string name="periodic_time_over">Periodic time over</string>
+    <string name="wrong_password_username">The system could not log you on. Make sure your password is correct or Check Caps Lock Status</string>
+    <string name="locked_error">Login failed. Your AD Server account is locked</string>
+    <string name="login_success">You have successfully logged into JIIT Internet Server</string>
 </resources>
