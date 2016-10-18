@@ -15,6 +15,8 @@ import app.com.thetechnocafe.cyberoamclient.R;
 
 public class LoginFragment extends Fragment implements ILoginView {
 
+    private LoginPresenter mLoginPresenter;
+
 
     public static LoginFragment getInstance() {
         LoginFragment fragment = new LoginFragment();
@@ -27,5 +29,14 @@ public class LoginFragment extends Fragment implements ILoginView {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         return view;
+    }
+
+
+    /**
+     * Handle the login response from presenter
+     * */
+    @Override
+    public void isLoginSuccessful(boolean success, String responseToDisplay) {
+
     }
 }

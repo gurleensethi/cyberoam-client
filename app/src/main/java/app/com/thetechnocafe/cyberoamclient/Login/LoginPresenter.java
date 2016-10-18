@@ -5,4 +5,24 @@ package app.com.thetechnocafe.cyberoamclient.Login;
  */
 
 public class LoginPresenter implements ILoginPresenter {
+
+    private ILoginView mainView;
+
+
+    /**
+     * Constructor
+     * Requires a class that implements ILoginView
+     * */
+    public LoginPresenter(ILoginView view) {
+
+    }
+
+
+    /**
+     * View calls this function to login
+     * */
+    @Override
+    public void login(String username, String password) {
+
+    }
 }

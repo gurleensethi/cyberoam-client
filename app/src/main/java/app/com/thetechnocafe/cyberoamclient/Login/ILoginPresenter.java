@@ -5,4 +5,5 @@ package app.com.thetechnocafe.cyberoamclient.Login;
  */
 
 interface ILoginPresenter {
+    void login(String username, String password);
 }
