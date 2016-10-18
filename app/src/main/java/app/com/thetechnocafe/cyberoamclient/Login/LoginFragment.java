@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import app.com.thetechnocafe.cyberoamclient.R;
+
 /**
  * Created by gurleensethi on 18/10/16.
  */
@@ -14,7 +16,7 @@ import android.view.ViewGroup;
 public class LoginFragment extends Fragment implements ILoginView {
 
 
-    public LoginFragment getInstance() {
+    public static LoginFragment getInstance() {
         LoginFragment fragment = new LoginFragment();
         return fragment;
     }
@@ -22,6 +24,8 @@ public class LoginFragment extends Fragment implements ILoginView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        return view;
     }
 }
