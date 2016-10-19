@@ -6,4 +6,8 @@ package app.com.thetechnocafe.cyberoamclient.Login;
 
 public interface ILoginPresenter {
     void login(String username, String password);
+
+    void setUpAlarmManager();
+
+    void setLoginState(boolean isLoggedIn);
 }

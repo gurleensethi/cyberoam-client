@@ -6,13 +6,15 @@ package app.com.thetechnocafe.cyberoamclient.Utils;
 
 public class ValueUtils {
     public static final String BASE_LOGIN_URL = "http://172.16.68.6:8090/login.xml";
+    public static final String BASE_CHECK_URL = "http://172.16.68.6:8090/live";
+    public static final String BASE_LOGOUT_URL = "http://172.16.68.6:8090/logout.xml";
     public static final String MODE = "mode";
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
     public static final String MODE_LOGIN = "191";
+    public static final String MODE_CHECK = "192";
     public static final String MODE_LOGOUT = "193";
     public static final String A = "a";
-    public static final String BASE_LOGOUT_URL = "http://172.16.68.6:8090/logout.xml";
 
     public static final int LOGIN_SUCCESS = 100;
     public static final int ERROR_USERNAME_EMPTY = 101;
@@ -22,5 +24,11 @@ public class ValueUtils {
     public static final int ERROR_SERVER_ACCOUNT_LOCKED = 105;
     public static final int LOGOUT_SUCCESS = 106;
     public static final int ERROR_LOGOUT = 107;
+    public static final int ERROR_LOGIN_AGAIN = 108;
+    public static final int ALREADY_LOGGED_IN = 109;
     public static final int ERROR_VOLLEY_ERROR = 110;
+
+    public static final String STATE_LOGGED_IN = "loggedIn";
+    public static final String STATE_LOGGED_OUT = "loggedOut";
+    public static final long FIXED_INTERVAL = 120000;
 }

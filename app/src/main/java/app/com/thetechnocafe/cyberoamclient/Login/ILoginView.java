@@ -12,4 +12,6 @@ public interface ILoginView {
     void setUpOnClickListeners();
 
     Context getContext();
+
+    void setSavedUsernameAndPassword();
 }

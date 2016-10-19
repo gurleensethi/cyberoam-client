@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +28,7 @@ import butterknife.ButterKnife;
 
 public class LoginFragment extends Fragment implements ILoginView {
 
+    private static final String TAG = "LoginFragment";
     private LoginPresenter mLoginPresenter;
 
     @BindView(R.id.enrollmentEditText)
@@ -71,11 +73,9 @@ public class LoginFragment extends Fragment implements ILoginView {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "Login Button Clicked");
                 //Enable progress bar and disable login button
-                mLoadingProgressBar.setVisibility(View.VISIBLE);
-                mLoginButton.setVisibility(View.GONE);
-                mEnrollmentEditText.setEnabled(false);
-                mPasswordEditText.setEnabled(false);
+                toggleEditTextStates(false, false);
 
                 //Change Error text
                 mErrorTextView.setText(getString(R.string.loggin_in));
@@ -90,6 +90,8 @@ public class LoginFragment extends Fragment implements ILoginView {
         mLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferenceUtils.changeLoginState(getContext(), ValueUtils.STATE_LOGGED_OUT);
+                toggleEditTextStates(true, false);
                 new NetworkUtils() {
                     @Override
                     public void onResultReceived(boolean success, int errorCode) {
@@ -113,6 +115,9 @@ public class LoginFragment extends Fragment implements ILoginView {
         //Check if login is successful
         if (success) {
             mErrorTextView.setText(getString(R.string.login_success));
+
+            //Set up alarm manager for repeated checks for login
+            mLoginPresenter.setUpAlarmManager();
         } else {
             switch (errorCode) {
                 case ValueUtils.ERROR_USERNAME_EMPTY: {
@@ -141,15 +146,49 @@ public class LoginFragment extends Fragment implements ILoginView {
             }
         }
 
+        //Change the login state in shared preferences
+        mLoginPresenter.setLoginState(success);
+
         //Set the progress bar gone and login button visible and enable edit texts
-        mLoadingProgressBar.setVisibility(View.GONE);
-        mLoginButton.setVisibility(View.VISIBLE);
-        mEnrollmentEditText.setEnabled(true);
-        mPasswordEditText.setEnabled(true);
+        toggleEditTextStates(true, success);
     }
 
     @Override
     public Context getContext() {
         return getActivity().getApplicationContext();
+    }
+
+    /**
+     * Disable Both edit texts and login, button on login button pressed
+     * Enable them back on result received, disable progress bar
+     */
+    private void toggleEditTextStates(boolean toggle, boolean isLoggedIn) {
+        if (toggle) {
+            mLoadingProgressBar.setVisibility(View.GONE);
+            mLoginButton.setVisibility(View.VISIBLE);
+            mEnrollmentEditText.setEnabled(true);
+            mPasswordEditText.setEnabled(true);
+        } else {
+            mLoadingProgressBar.setVisibility(View.VISIBLE);
+            mLoginButton.setVisibility(View.GONE);
+            mEnrollmentEditText.setEnabled(false);
+            mPasswordEditText.setEnabled(false);
+        }
+
+        if (isLoggedIn) {
+            mLoadingProgressBar.setVisibility(View.GONE);
+            mLoginButton.setEnabled(false);
+            mLoginButton.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * Called by the presenter
+     * Get the saved username password in shared preferences
+     */
+    @Override
+    public void setSavedUsernameAndPassword() {
+        mEnrollmentEditText.setText(SharedPreferenceUtils.getUsername(getContext()));
+        mPasswordEditText.setText(SharedPreferenceUtils.getPassword(getContext()));
     }
 }

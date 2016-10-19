@@ -2,6 +2,7 @@ package app.com.thetechnocafe.cyberoamclient.Utils;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -10,6 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by gurleensethi on 18/10/16.
@@ -64,11 +66,46 @@ public abstract class NetworkUtils {
      * Create login body from username and password and current time
      */
     private String getLoginRequestBody(String username, String password) {
-        return ValueUtils.MODE + "=" +
-                ValueUtils.MODE_LOGIN + "&" +
+        return ValueUtils.MODE + "=" + ValueUtils.MODE_LOGIN + "&" +
                 ValueUtils.USERNAME + "=" + username + "&" +
                 ValueUtils.PASSWORD + "=" + password + "&" +
                 ValueUtils.A + "=" + new Date().getTime();
+    }
+
+    /**
+     * Check for login status,
+     * whether logged in or not
+     */
+    public void checkLoginStatus(Context context, final String username, String password) {
+        Toast.makeText(context, "Checking login", Toast.LENGTH_SHORT).show();
+        //Create new string request to check status
+        StringRequest checkRequest = new StringRequest(Request.Method.GET, getLoginCheckUrl(username, password), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //Check if already logged in
+                if (response.contains("login_again")) {
+                    //Login again
+                    onResultReceived(false, ValueUtils.ERROR_LOGIN_AGAIN);
+                } else {
+                    onResultReceived(true, ValueUtils.ALREADY_LOGGED_IN);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                onResultReceived(false, ValueUtils.ERROR_VOLLEY_ERROR);
+            }
+        });
+
+        //Add request to Volley queue
+        VolleyRequestQueue.getInstance(context).getRequestQueue().add(checkRequest);
+    }
+
+    private String getLoginCheckUrl(String username, String password) {
+        return ValueUtils.BASE_CHECK_URL + "?" +
+                ValueUtils.MODE + "=" + ValueUtils.MODE_CHECK + "&" +
+                ValueUtils.USERNAME + "=" + username + "&" +
+                ValueUtils.A + "=" + new GregorianCalendar().getTimeInMillis();
     }
 
     /**
@@ -107,8 +144,7 @@ public abstract class NetworkUtils {
      * Create logout body from username and current time
      */
     private String getLogoutRequestBody(String username) {
-        return ValueUtils.MODE + "=" +
-                ValueUtils.MODE_LOGOUT + "&" +
+        return ValueUtils.MODE + "=" + ValueUtils.MODE_LOGOUT + "&" +
                 ValueUtils.USERNAME + "=" + username + "&" +
                 ValueUtils.A + "=" + new Date().getTime();
     }
