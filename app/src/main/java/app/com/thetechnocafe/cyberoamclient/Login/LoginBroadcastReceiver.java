@@ -74,7 +74,7 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
     }
 
     /**
-     * Set up another alarm for checking again
+     * Set up another alarm for check
      */
     private void setUpAlarm(Context context) {
         //Get alarm manager service

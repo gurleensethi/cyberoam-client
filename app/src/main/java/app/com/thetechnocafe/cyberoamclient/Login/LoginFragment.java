@@ -179,6 +179,8 @@ public class LoginFragment extends Fragment implements ILoginView {
             mLoadingProgressBar.setVisibility(View.GONE);
             mLoginButton.setEnabled(false);
             mLoginButton.setVisibility(View.GONE);
+        } else {
+            mLoginButton.setEnabled(true);
         }
     }
 
@@ -187,8 +189,11 @@ public class LoginFragment extends Fragment implements ILoginView {
      * Get the saved username password in shared preferences
      */
     @Override
-    public void setSavedUsernameAndPassword() {
+    public void setUpSavedState() {
         mEnrollmentEditText.setText(SharedPreferenceUtils.getUsername(getContext()));
         mPasswordEditText.setText(SharedPreferenceUtils.getPassword(getContext()));
+        if (SharedPreferenceUtils.getLoginState(getContext()).equals(ValueUtils.STATE_LOGGED_IN)) {
+            toggleEditTextStates(false, true);
+        }
     }
 }
