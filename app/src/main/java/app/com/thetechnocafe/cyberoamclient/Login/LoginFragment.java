@@ -1,6 +1,9 @@
 package app.com.thetechnocafe.cyberoamclient.Login;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,6 +25,8 @@ import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static app.com.thetechnocafe.cyberoamclient.Login.LoginPresenter.BROADCAST_REQUEST_CODE;
+
 /**
  * Created by gurleensethi on 18/10/16.
  */
@@ -29,7 +34,7 @@ import butterknife.ButterKnife;
 public class LoginFragment extends Fragment implements ILoginView {
 
     private static final String TAG = "LoginFragment";
-    private LoginPresenter mLoginPresenter;
+    private ILoginPresenter mLoginPresenter;
 
     @BindView(R.id.enrollmentEditText)
     EditText mEnrollmentEditText;
@@ -90,6 +95,7 @@ public class LoginFragment extends Fragment implements ILoginView {
         mLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cancelAlarm();
                 SharedPreferenceUtils.changeLoginState(getContext(), ValueUtils.STATE_LOGGED_OUT);
                 toggleEditTextStates(true, false);
                 new NetworkUtils() {
@@ -195,5 +201,18 @@ public class LoginFragment extends Fragment implements ILoginView {
         if (SharedPreferenceUtils.getLoginState(getContext()).equals(ValueUtils.STATE_LOGGED_IN)) {
             toggleEditTextStates(false, true);
         }
+    }
+
+    //TODO:Remove this code from final production
+    public void cancelAlarm() {
+        //Get alarm manager service
+        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+
+        //Create a pending intent for broadcast receiver
+        Intent intent = new Intent(getContext(), LoginBroadcastReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), BROADCAST_REQUEST_CODE, intent, 0);
+
+        //Cancel alarms
+        alarmManager.cancel(pendingIntent);
     }
 }
