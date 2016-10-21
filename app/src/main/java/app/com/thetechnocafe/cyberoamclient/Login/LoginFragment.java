@@ -139,7 +139,7 @@ public class LoginFragment extends Fragment implements ILoginView {
                     break;
                 }
                 case ValueUtils.ERROR_VOLLEY_ERROR: {
-                    mErrorTextView.setText("Error in volley");
+                    mErrorTextView.setText("Cannot reach cyberoam");
                     break;
                 }
                 case ValueUtils.ERROR_SERVER_ACCOUNT_LOCKED: {
