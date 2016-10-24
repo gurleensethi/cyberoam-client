@@ -7,3 +7,4 @@ Android client for cyberoam.
 * Design Support
 
 #####Minimum SDK : 16
+#####Architecture used : MVP
