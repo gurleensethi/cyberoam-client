@@ -7,5 +7,22 @@
               android:clickable="true"
               android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="@color/colorPrimaryDark"
+        android:paddingTop="24dp"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/navigation_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+    </android.support.v7.widget.RecyclerView>
+
 
 </LinearLayout>

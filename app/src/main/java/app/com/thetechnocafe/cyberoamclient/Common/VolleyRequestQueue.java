@@ -1,4 +1,4 @@
-package app.com.thetechnocafe.cyberoamclient.Utils;
+package app.com.thetechnocafe.cyberoamclient.Common;
 
 import android.content.Context;
 

@@ -34,7 +34,7 @@ public class LoginPresenter implements ILoginPresenter {
      */
     public LoginPresenter(ILoginView view) {
         mainView = view;
-        view.setUpOnClickListeners();
+        mainView.setUpOnClickListeners();
         mainView.setUpSavedState();
     }
 

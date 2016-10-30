@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -19,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
     ImageButton mNavigationDrawerButton;
     @BindView(R.id.mainDrawerLayout)
     DrawerLayout mDrawerLayout;
+    @BindView(R.id.navigation_recycler_view)
+    RecyclerView mNavigationRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,5 +55,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //Set up the recycler view for navigation options
+        mNavigationRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mNavigationRecyclerView.setAdapter(new Adapters().new NavigationRecyclerAdapter(this));
+
     }
 }

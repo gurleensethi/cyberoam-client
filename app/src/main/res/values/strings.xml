@@ -14,4 +14,8 @@
     <string name="login_success">You have successfully logged into JIIT Internet Server</string>
     <string name="account_locked">Login failed. Your AD Server account is locked</string>
     <string name="loggin_in">Logging you in...</string>
+    <string name="total_data_used">Total data used</string>
+    <string-array name="navigation_options">
+        <item>Saved Accounts</item>
+    </string-array>
 </resources>
