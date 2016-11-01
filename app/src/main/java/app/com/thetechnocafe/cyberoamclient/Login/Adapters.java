@@ -44,11 +44,16 @@ public class Adapters {
                 mOptionsText.setText(navigationItems[position]);
 
                 //Set corresponding image
-                switch (position) {
-                    case 0: {
+                switch (navigationItems[position]) {
+                    case "Saved Accounts": {
                         mOptionsImage.setImageResource(R.drawable.ic_account_balance_wallet_black_24dp);
                         break;
                     }
+                    case "Settings": {
+                        mOptionsImage.setImageResource(R.drawable.ic_settings_black_24dp);
+                        break;
+                    }
+
                 }
             }
         }
