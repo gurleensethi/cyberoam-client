@@ -1,6 +1,7 @@
 package app.com.thetechnocafe.cyberoamclient.Login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import app.com.thetechnocafe.cyberoamclient.R;
+import app.com.thetechnocafe.cyberoamclient.SavedAccounts.SavedAccountsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -27,7 +29,7 @@ public class Adapters {
         }
 
         //Inner view holder
-        class NavigationViewHolder extends RecyclerView.ViewHolder {
+        class NavigationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             @BindView(R.id.option_name_text_view)
             TextView mOptionsText;
             @BindView(R.id.options_image_view)
@@ -37,6 +39,7 @@ public class Adapters {
                 super(view);
                 //Bind with butterknife
                 ButterKnife.bind(this, view);
+                view.setOnClickListener(this);
             }
 
             public void bindData(int position) {
@@ -54,6 +57,17 @@ public class Adapters {
                         break;
                     }
 
+                }
+            }
+
+            @Override
+            public void onClick(View v) {
+                switch (mOptionsText.getText().toString()) {
+                    case "Saved Accounts": {
+                        Intent intent = new Intent(mContext, SavedAccountsActivity.class);
+                        mContext.startActivity(intent);
+                        break;
+                    }
                 }
             }
         }

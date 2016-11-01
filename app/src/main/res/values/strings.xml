@@ -15,6 +15,7 @@
     <string name="account_locked">Login failed. Your AD Server account is locked</string>
     <string name="loggin_in">Logging you in...</string>
     <string name="total_data_used">Total data used</string>
+    <string name="saved_accounts">Saved Accounts</string>
     <string-array name="navigation_options">
         <item>Saved Accounts</item>
         <item>Settings</item>

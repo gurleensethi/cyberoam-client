@@ -16,6 +16,8 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
+    private ISavedAccountsPresenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,8 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
 
         //Butterknife bind
         ButterKnife.bind(this);
+
+        mPresenter = new SavedAccountsPresenter(this);
     }
 
     @Override
@@ -30,6 +34,11 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
         //Set up toolbar
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.saved_accounts));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
+
+        //Change back arrow and title color in toolbar
+
     }
 
     @Override

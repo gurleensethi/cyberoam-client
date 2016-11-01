@@ -22,7 +22,6 @@
         android:fontFamily="monospace"
         android:text="Testing"
         android:textAllCaps="true"
-        android:textColor="@android:color/black"
         android:textSize="16sp"/>
 
 </LinearLayout>
