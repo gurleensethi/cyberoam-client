@@ -17,5 +17,6 @@
     <string name="total_data_used">Total data used</string>
     <string-array name="navigation_options">
         <item>Saved Accounts</item>
+        <item>Settings</item>
     </string-array>
 </resources>
