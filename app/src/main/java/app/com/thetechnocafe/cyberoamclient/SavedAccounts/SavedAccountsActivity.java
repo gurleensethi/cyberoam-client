@@ -27,7 +27,9 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
 
     @Override
     public void setUpView() {
-
+        //Set up toolbar
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
