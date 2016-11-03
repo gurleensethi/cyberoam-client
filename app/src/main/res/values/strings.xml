@@ -20,4 +20,7 @@
         <item>Saved Accounts</item>
         <item>Settings</item>
     </string-array>
+    <string name="new_account">Add new account</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
 </resources>

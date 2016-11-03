@@ -45,10 +45,10 @@
         app:layout_anchor="@id/accounts_recycler_view"
         app:layout_anchorGravity="top|right"
         android:layout_margin="24dp"
-        android:backgroundTint="@color/yellow_a700"
-        android:tint="@android:color/white"
+        android:tint="@color/colorPrimaryDark"
         android:src="@android:drawable/ic_input_add"
         app:fabSize="normal"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:id="@+id/new_account_fab"/>
 
 </android.support.design.widget.CoordinatorLayout>
