@@ -6,7 +6,8 @@
     android:id="@+id/activity_saved_accounts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.com.thetechnocafe.cyberoamclient.SavedAccounts.SavedAccountsActivity">
+    tools:context="app.com.thetechnocafe.cyberoamclient.SavedAccounts.SavedAccountsActivity"
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -33,7 +34,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/accounts_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
 
         </android.support.v7.widget.RecyclerView>
 
