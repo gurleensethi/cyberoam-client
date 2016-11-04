@@ -3,6 +3,7 @@ package app.com.thetechnocafe.cyberoamclient.Dialogs;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,27 @@ public class NewAccountDialogFragment extends DialogFragment {
     @BindView(R.id.password_edit_text)
     EditText mPasswordEditText;
 
+    private static final String TAG = "DialogFragmnet";
+    private IDialogCommunicator mCallback;
+
     public static NewAccountDialogFragment getInstance() {
         return new NewAccountDialogFragment();
+    }
+
+    //Interface for communication with dialog
+    public interface IDialogCommunicator {
+        public void onDialogSaveClicked(String username, String password);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        try {
+            mCallback = (IDialogCommunicator) getActivity();
+        } catch (ClassCastException e) {
+            Log.e(TAG, "Error while casting Activity");
+        }
     }
 
     @Nullable
@@ -53,6 +73,27 @@ public class NewAccountDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 //Cancel the dialog
+                getDialog().dismiss();
+            }
+        });
+
+        mSaveTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Check if enrollment or password if not empty
+                if (mEnrollmentEditText.getText().toString().equals("")) {
+                    mEnrollmentEditText.requestFocus();
+                    return;
+                }
+                if (mPasswordEditText.getText().toString().equals("")) {
+                    mPasswordEditText.requestFocus();
+                    return;
+                }
+
+                //Pass data to activity
+                mCallback.onDialogSaveClicked(mEnrollmentEditText.getText().toString(), mPasswordEditText.getText().toString());
+
+                //Dismiss the dialog
                 getDialog().dismiss();
             }
         });

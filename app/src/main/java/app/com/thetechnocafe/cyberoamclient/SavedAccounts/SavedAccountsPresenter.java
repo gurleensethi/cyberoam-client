@@ -1,5 +1,7 @@
 package app.com.thetechnocafe.cyberoamclient.SavedAccounts;
 
+import android.widget.Toast;
+
 import java.util.List;
 
 import app.com.thetechnocafe.cyberoamclient.Common.AccountsDatabase;
@@ -49,6 +51,9 @@ public class SavedAccountsPresenter implements ISavedAccountsPresenter {
 
     @Override
     public boolean addNewAccount(String username, String password) {
+        mAccountsDatabase.insertAccount(username, password);
+        mView.setUpOrRefreshRecyclerView(mAccountsDatabase.getAllAccounst());
+        Toast.makeText(mView.getContext(), mAccountsDatabase.getAllAccounst().size() + "", Toast.LENGTH_SHORT).show();
         return false;
     }
 }

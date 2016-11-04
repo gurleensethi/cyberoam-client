@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -17,7 +18,7 @@ import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SavedAccountsActivity extends AppCompatActivity implements ISavedAccountsView {
+public class SavedAccountsActivity extends AppCompatActivity implements ISavedAccountsView, NewAccountDialogFragment.IDialogCommunicator {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -27,7 +28,6 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     RecyclerView mSavedAccountsRecyclerView;
 
     private Adapters.SavedAccountsRecyclerAdapter mSavedAccountsRecyclerAdapter;
-
     private ISavedAccountsPresenter mPresenter;
     private static final String NEW_ACCOUNT_DIALOG_TAG = "newaccountdialog";
 
@@ -84,6 +84,7 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
         if (mSavedAccountsRecyclerAdapter == null) {
             mSavedAccountsRecyclerAdapter = new Adapters().new SavedAccountsRecyclerAdapter(getApplicationContext(), list);
             mSavedAccountsRecyclerView.setAdapter(mSavedAccountsRecyclerAdapter);
+            mSavedAccountsRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         } else {
             //If there is change in data, set the new list and
             // notify recycler view about data change
@@ -95,5 +96,10 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     @Override
     public Context getContext() {
         return getApplicationContext();
+    }
+
+    @Override
+    public void onDialogSaveClicked(String username, String password) {
+        mPresenter.addNewAccount(username, password);
     }
 }
