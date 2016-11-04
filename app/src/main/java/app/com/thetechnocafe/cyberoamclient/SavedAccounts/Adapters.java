@@ -79,5 +79,10 @@ public class Adapters {
         public int getItemCount() {
             return mAccountsModelList.size();
         }
+
+        //Set new list whenever data is changed
+        public void updateList(List<AccountsModel> list) {
+            mAccountsModelList = list;
+        }
     }
 }

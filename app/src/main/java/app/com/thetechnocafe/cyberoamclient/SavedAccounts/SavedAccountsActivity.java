@@ -1,8 +1,10 @@
 package app.com.thetechnocafe.cyberoamclient.SavedAccounts;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,10 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     Toolbar mToolbar;
     @BindView(R.id.new_account_fab)
     FloatingActionButton mNewAccountFAB;
+    @BindView(R.id.accounts_recycler_view)
+    RecyclerView mSavedAccountsRecyclerView;
+
+    private Adapters.SavedAccountsRecyclerAdapter mSavedAccountsRecyclerAdapter;
 
     private ISavedAccountsPresenter mPresenter;
     private static final String NEW_ACCOUNT_DIALOG_TAG = "newaccountdialog";
@@ -71,5 +77,23 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void setUpOrRefreshRecyclerView(List<AccountsModel> list) {
+        if (mSavedAccountsRecyclerAdapter == null) {
+            mSavedAccountsRecyclerAdapter = new Adapters().new SavedAccountsRecyclerAdapter(getApplicationContext(), list);
+            mSavedAccountsRecyclerView.setAdapter(mSavedAccountsRecyclerAdapter);
+        } else {
+            //If there is change in data, set the new list and
+            // notify recycler view about data change
+            mSavedAccountsRecyclerAdapter.updateList(list);
+            mSavedAccountsRecyclerAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public Context getContext() {
+        return getApplicationContext();
     }
 }

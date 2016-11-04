@@ -2,6 +2,7 @@ package app.com.thetechnocafe.cyberoamclient.SavedAccounts;
 
 import java.util.List;
 
+import app.com.thetechnocafe.cyberoamclient.Common.AccountsDatabase;
 import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
 
 /**
@@ -11,6 +12,7 @@ import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
 public class SavedAccountsPresenter implements ISavedAccountsPresenter {
 
     private ISavedAccountsView mView;
+    private AccountsDatabase mAccountsDatabase;
 
     /**
      * Constructor
@@ -18,7 +20,12 @@ public class SavedAccountsPresenter implements ISavedAccountsPresenter {
      */
     public SavedAccountsPresenter(ISavedAccountsView view) {
         mView = view;
-        view.setUpView();
+
+        mAccountsDatabase = new AccountsDatabase(view.getContext());
+
+        //Call the initial setup methods on View layer
+        mView.setUpView();
+        mView.setUpOrRefreshRecyclerView(mAccountsDatabase.getAllAccounst());
     }
 
     @Override
