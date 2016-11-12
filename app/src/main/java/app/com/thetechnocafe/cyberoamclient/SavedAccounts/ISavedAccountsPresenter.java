@@ -18,4 +18,7 @@ public interface ISavedAccountsPresenter {
 
     public void getAccountDetails(String username);
 
+    public void deleteAccount(String username);
+
+    public void onViewReady();
 }

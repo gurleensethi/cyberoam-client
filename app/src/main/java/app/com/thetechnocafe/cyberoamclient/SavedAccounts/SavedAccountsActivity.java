@@ -40,6 +40,7 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
         ButterKnife.bind(this);
 
         mPresenter = new SavedAccountsPresenter(this);
+        mPresenter.onViewReady();
     }
 
     @Override
@@ -82,7 +83,7 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     @Override
     public void setUpOrRefreshRecyclerView(List<AccountsModel> list) {
         if (mSavedAccountsRecyclerAdapter == null) {
-            mSavedAccountsRecyclerAdapter = new Adapters().new SavedAccountsRecyclerAdapter(getApplicationContext(), list);
+            mSavedAccountsRecyclerAdapter = new Adapters().new SavedAccountsRecyclerAdapter(getApplicationContext(), list, mPresenter);
             mSavedAccountsRecyclerView.setAdapter(mSavedAccountsRecyclerAdapter);
             mSavedAccountsRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         } else {

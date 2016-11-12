@@ -24,10 +24,12 @@ public class Adapters {
     public class SavedAccountsRecyclerAdapter extends RecyclerView.Adapter<SavedAccountsRecyclerAdapter.SavedAccountsViewHolder> {
         private List<AccountsModel> mAccountsModelList;
         private Context mContext;
+        private ISavedAccountsPresenter mPresenter;
 
-        public SavedAccountsRecyclerAdapter(Context context, List<AccountsModel> accountsModelList) {
+        public SavedAccountsRecyclerAdapter(Context context, List<AccountsModel> accountsModelList, ISavedAccountsPresenter presenter) {
             mContext = context;
             mAccountsModelList = accountsModelList;
+            mPresenter = presenter;
         }
 
         class SavedAccountsViewHolder extends RecyclerView.ViewHolder {
@@ -37,11 +39,13 @@ public class Adapters {
             View mStatusIndicatorView;
             @BindView(R.id.edit_account_image_button)
             ImageButton mEditAccountImageButton;
+            @BindView(R.id.delete_account_image_button)
+            ImageButton mDeleteAccountImageButton;
 
             public SavedAccountsViewHolder(View view) {
                 super(view);
 
-                //Bind butterknife
+                //Bind butter knife
                 ButterKnife.bind(this, view);
 
                 setOnClickListeners();
@@ -59,6 +63,13 @@ public class Adapters {
                     public void onClick(View v) {
                         //TODO:Add functionality here
                         Toast.makeText(mContext, "Add editing functionality here", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                mDeleteAccountImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mPresenter.deleteAccount(mEnrollmentTextView.getText().toString());
                     }
                 });
             }

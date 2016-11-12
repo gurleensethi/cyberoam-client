@@ -1,11 +1,15 @@
 package app.com.thetechnocafe.cyberoamclient.Common;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by gurleensethi on 01/11/16.
  */
 
-public class AccountsModel {
+public class AccountsModel extends RealmObject {
     private String mPassword;
+    @PrimaryKey
     private String mUsername;
 
     public String getPassword() {
