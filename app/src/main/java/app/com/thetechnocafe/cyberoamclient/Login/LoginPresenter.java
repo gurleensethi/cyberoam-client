@@ -7,6 +7,10 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.util.Log;
 
+import java.util.List;
+
+import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
+import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
@@ -35,7 +39,10 @@ public class LoginPresenter implements ILoginPresenter {
     public LoginPresenter(ILoginView view) {
         mainView = view;
         mainView.setUpOnClickListeners();
-        mainView.setUpSavedState();
+        mainView.setUpSavedState(
+                SharedPreferenceUtils.getUsername(mainView.getContext()),
+                SharedPreferenceUtils.getPassword(mainView.getContext())
+        );
     }
 
 
@@ -89,5 +96,26 @@ public class LoginPresenter implements ILoginPresenter {
         } else {
             SharedPreferenceUtils.changeLoginState(mainView.getContext(), ValueUtils.STATE_LOGGED_OUT);
         }
+    }
+
+    /**
+     * Get Accounts from Realm Database
+     */
+    @Override
+    public List<AccountsModel> getSavedAccounts() {
+        return RealmDatabase.getInstance(mainView.getContext()).getAllAccounts();
+    }
+
+    @Override
+    public void changeSharedUsernameAndPassword(String username) {
+        //Get corresponding password from Realm
+        String password = RealmDatabase.getInstance(mainView.getContext()).getPassword(username);
+
+        SharedPreferenceUtils.setUsernameAndPassword(mainView.getContext(), username, password);
+
+        mainView.setUpSavedState(
+                SharedPreferenceUtils.getUsername(mainView.getContext()),
+                SharedPreferenceUtils.getPassword(mainView.getContext())
+        );
     }
 }

@@ -87,4 +87,21 @@ public class RealmDatabase {
 
         return mList;
     }
+
+    /**
+     * Get passwrod for a corresponding username
+     */
+    public String getPassword(String username) {
+        String password = "";
+
+        //Run realm transactions
+        mRealm.beginTransaction();
+        AccountsModel model = mRealm.where(AccountsModel.class).equalTo(ValueUtils.REALM_ACCOUNTS_USERNAME, username).findFirst();
+        if (model != null) {
+            password = model.getPassword();
+        }
+        mRealm.commitTransaction();
+
+        return password;
+    }
 }

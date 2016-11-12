@@ -1,5 +1,6 @@
 package app.com.thetechnocafe.cyberoamclient.Login;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -98,13 +99,20 @@ public class Adapters {
     public class DialogSavedAccountsRecyclerAdapter extends RecyclerView.Adapter<DialogSavedAccountsRecyclerAdapter.DialogSavedAccountsViewHolder> {
         private Context mContext;
         private List<AccountsModel> mList;
+        private ILoginPresenter mILoginPresenter;
+        private DialogFragment mDialogFragment;
 
-        public DialogSavedAccountsRecyclerAdapter(Context context) {
-            context = mContext;
+        public DialogSavedAccountsRecyclerAdapter(Context context, ILoginPresenter presenter, DialogFragment fragment) {
+            mContext = context;
+            mList = presenter.getSavedAccounts();
+            mILoginPresenter = presenter;
+            mDialogFragment = fragment;
         }
 
         //Inner ViewHolder class
         class DialogSavedAccountsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+            @BindView(R.id.account_username_text_view)
+            TextView mAccountUsernameTextView;
 
             public DialogSavedAccountsViewHolder(View view) {
                 super(view);
@@ -116,28 +124,30 @@ public class Adapters {
             }
 
             public void bindData(int position) {
-
+                mAccountUsernameTextView.setText(mList.get(position).getUsername());
             }
 
             @Override
             public void onClick(View v) {
-
+                mILoginPresenter.changeSharedUsernameAndPassword(mAccountUsernameTextView.getText().toString());
+                mDialogFragment.dismiss();
             }
         }
 
         @Override
         public DialogSavedAccountsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return null;
+            View view = LayoutInflater.from(mContext).inflate(R.layout.item_dialog_saved_accounts, parent, false);
+            return new DialogSavedAccountsViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(DialogSavedAccountsViewHolder holder, int position) {
-
+            holder.bindData(position);
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return mList.size();
         }
     }
 }

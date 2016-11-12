@@ -33,7 +33,7 @@ import static app.com.thetechnocafe.cyberoamclient.Login.LoginPresenter.BROADCAS
  * Created by gurleensethi on 18/10/16.
  */
 
-public class LoginFragment extends Fragment implements ILoginView, SavedAccountsSelectDialogFragment.ISavedAccountsDialogCommunicator {
+public class LoginFragment extends Fragment implements ILoginView {
 
     private static final String TAG = "LoginFragment";
     private ILoginPresenter mLoginPresenter;
@@ -97,7 +97,7 @@ public class LoginFragment extends Fragment implements ILoginView, SavedAccounts
         mSavedAccountsImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SavedAccountsSelectDialogFragment dialogFragment = SavedAccountsSelectDialogFragment.getInstace();
+                SavedAccountsSelectDialogFragment dialogFragment = SavedAccountsSelectDialogFragment.getInstance(mLoginPresenter);
                 dialogFragment.show(getActivity().getFragmentManager(), SAVED_ACCOUNTS_DIALOG_TAG);
             }
         });
@@ -212,9 +212,9 @@ public class LoginFragment extends Fragment implements ILoginView, SavedAccounts
      * Get the saved username password in shared preferences
      */
     @Override
-    public void setUpSavedState() {
-        mEnrollmentEditText.setText(SharedPreferenceUtils.getUsername(getContext()));
-        mPasswordEditText.setText(SharedPreferenceUtils.getPassword(getContext()));
+    public void setUpSavedState(String username, String password) {
+        mEnrollmentEditText.setText(username);
+        mPasswordEditText.setText(password);
         if (SharedPreferenceUtils.getLoginState(getContext()).equals(ValueUtils.STATE_LOGGED_IN)) {
             toggleEditTextStates(false, true);
         }
@@ -231,10 +231,5 @@ public class LoginFragment extends Fragment implements ILoginView, SavedAccounts
 
         //Cancel alarms
         alarmManager.cancel(pendingIntent);
-    }
-
-    @Override
-    public void onAccountSelected(String username) {
-
     }
 }

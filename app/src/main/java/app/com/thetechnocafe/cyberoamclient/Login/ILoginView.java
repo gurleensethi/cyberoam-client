@@ -13,5 +13,5 @@ public interface ILoginView {
 
     Context getContext();
 
-    void setUpSavedState();
+    void setUpSavedState(String username, String password);
 }
