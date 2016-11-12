@@ -27,6 +27,7 @@ public class ValueUtils {
     public static final int ERROR_LOGIN_AGAIN = 108;
     public static final int ALREADY_LOGGED_IN = 109;
     public static final int ERROR_VOLLEY_ERROR = 110;
+    public static final int ERROR_NOT_ALLOWED = 111;
 
     public static final String STATE_LOGGED_IN = "loggedIn";
     public static final String STATE_LOGGED_OUT = "loggedOut";

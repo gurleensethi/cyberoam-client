@@ -139,7 +139,7 @@ public class LoginFragment extends Fragment implements ILoginView {
                     break;
                 }
                 case ValueUtils.ERROR_VOLLEY_ERROR: {
-                    mErrorTextView.setText("Cannot reach cyberoam");
+                    mErrorTextView.setText(getString(R.string.cyberoam_unreachable));
                     break;
                 }
                 case ValueUtils.ERROR_SERVER_ACCOUNT_LOCKED: {
@@ -148,6 +148,11 @@ public class LoginFragment extends Fragment implements ILoginView {
                 }
                 case ValueUtils.ERROR_MAXIMUM_LOGIN_LIMIT: {
                     mErrorTextView.setText(getString(R.string.maximum_login_limit));
+                    break;
+                }
+                case ValueUtils.ERROR_NOT_ALLOWED: {
+                    mErrorTextView.setText(getString(R.string.not_allowed_to_login));
+                    break;
                 }
             }
         }

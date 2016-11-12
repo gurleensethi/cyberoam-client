@@ -44,6 +44,8 @@ public abstract class NetworkUtils {
                     onResultReceived(false, ValueUtils.ERROR_MAXIMUM_LOGIN_LIMIT);
                 } else if (response.contains("Your AD Server account is locked")) {
                     onResultReceived(false, ValueUtils.ERROR_SERVER_ACCOUNT_LOCKED);
+                } else if (response.contains("You are not allowed to login")) {
+                    onResultReceived(false, ValueUtils.ERROR_NOT_ALLOWED);
                 }
             }
         }, new Response.ErrorListener() {
