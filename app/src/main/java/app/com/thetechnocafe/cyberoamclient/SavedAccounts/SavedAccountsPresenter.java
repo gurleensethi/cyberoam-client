@@ -27,7 +27,7 @@ public class SavedAccountsPresenter implements ISavedAccountsPresenter {
     public void onViewReady() {
         //Call the initial setup methods on View layer
         mView.setUpView();
-        mView.setUpOrRefreshRecyclerView(RealmDatabase.getInstance(mView.getContext()).getAllAccounts());
+        mView.setUpOrRefreshRecyclerView(getSavedAccounts());
     }
 
     @Override
@@ -38,7 +38,7 @@ public class SavedAccountsPresenter implements ISavedAccountsPresenter {
     @Override
     public void deleteAccount(String username) {
         RealmDatabase.getInstance(mView.getContext()).deleteAccount(username);
-        mView.setUpOrRefreshRecyclerView(RealmDatabase.getInstance(mView.getContext()).getAllAccounts());
+        mView.setUpOrRefreshRecyclerView(getSavedAccounts());
     }
 
     public ISavedAccountsView getView() {
@@ -47,7 +47,7 @@ public class SavedAccountsPresenter implements ISavedAccountsPresenter {
 
     @Override
     public List<AccountsModel> getSavedAccounts() {
-        return null;
+        return RealmDatabase.getInstance(mView.getContext()).getAllAccounts();
     }
 
     @Override
@@ -58,7 +58,7 @@ public class SavedAccountsPresenter implements ISavedAccountsPresenter {
     @Override
     public boolean addNewAccount(String username, String password) {
         RealmDatabase.getInstance(mView.getContext()).insertAccount(username, password);
-        mView.setUpOrRefreshRecyclerView(RealmDatabase.getInstance(mView.getContext()).getAllAccounts());
+        mView.setUpOrRefreshRecyclerView(getSavedAccounts());
         Toast.makeText(mView.getContext(), RealmDatabase.getInstance(mView.getContext()).getAllAccounts().size() + "", Toast.LENGTH_SHORT).show();
         return false;
     }
