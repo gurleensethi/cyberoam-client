@@ -5,6 +5,11 @@ Android client for cyberoam.
 * Volley
 * ButterKnife
 * Design Support
+* Realm
 
 #####Minimum SDK : 16
-#####Architecture used : MVP
+#####Code Architecture : MVP
+
+####Feature list :
+* Save multiple accounts
+* No need to run app in background (login process is handled by BroadCast Receivers and Alarm Manager)
