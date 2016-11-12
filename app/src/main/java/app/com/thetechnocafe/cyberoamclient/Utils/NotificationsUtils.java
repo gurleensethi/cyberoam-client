@@ -14,10 +14,10 @@ import app.com.thetechnocafe.cyberoamclient.R;
  */
 
 public class NotificationsUtils {
-    private static final int SIMPLE_TEXT_NOTIFICATION_ID = 0;
+    public static final int SIMPLE_TEXT_NOTIFICATION_ID = 0;
     private static final int NOTIFICATION_PENDING_INTENT_REQUEST_CODE = 1;
 
-    private static void sendSimpleTextNotification(Context context, String titleMessage, String textMessage) {
+    public static void sendSimpleTextNotification(Context context, String titleMessage, String textMessage) {
         //Create Notification Builder
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 

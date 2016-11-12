@@ -26,4 +26,5 @@
     <string name="not_allowed_to_login">You are not allowed to login at this time</string>
     <string name="cyberoam_unreachable">Cannot reach cyberoam</string>
     <string name="version">Version 0.1.0 (Beta)</string>
+    <string name="check_wifi">Please check if you are connected to a WiFi with cyberoam</string>
 </resources>

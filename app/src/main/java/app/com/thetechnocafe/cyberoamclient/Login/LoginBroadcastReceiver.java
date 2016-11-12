@@ -9,7 +9,9 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Toast;
 
+import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.NotificationsUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 
@@ -51,7 +53,11 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                         Log.d(TAG, "Logging in again");
                     } else if (errorCode == ValueUtils.ERROR_VOLLEY_ERROR) {
                         Toast.makeText(context, "Cannot reach cyberoam", Toast.LENGTH_SHORT).show();
-                        //TODO: Show notification here
+                        //Send notification
+                        NotificationsUtils.sendSimpleTextNotification(context,
+                                context.getString(R.string.cyberoam_unreachable),
+                                context.getString(R.string.check_wifi));
+
                         //Change login state to LOGGED OUT
                         SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
                     }
