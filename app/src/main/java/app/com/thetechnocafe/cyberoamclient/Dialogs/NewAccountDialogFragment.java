@@ -37,7 +37,7 @@ public class NewAccountDialogFragment extends DialogFragment {
 
     //Interface for communication with dialog
     public interface IDialogCommunicator {
-        public void onDialogSaveClicked(String username, String password);
+        void onDialogSaveClicked(String username, String password);
     }
 
     @Override

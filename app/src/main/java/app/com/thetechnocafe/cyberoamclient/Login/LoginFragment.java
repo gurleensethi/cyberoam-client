@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import app.com.thetechnocafe.cyberoamclient.Dialogs.SavedAccountsSelectDialogFragment;
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
@@ -32,10 +33,11 @@ import static app.com.thetechnocafe.cyberoamclient.Login.LoginPresenter.BROADCAS
  * Created by gurleensethi on 18/10/16.
  */
 
-public class LoginFragment extends Fragment implements ILoginView {
+public class LoginFragment extends Fragment implements ILoginView, SavedAccountsSelectDialogFragment.ISavedAccountsDialogCommunicator {
 
     private static final String TAG = "LoginFragment";
     private ILoginPresenter mLoginPresenter;
+    private static final String SAVED_ACCOUNTS_DIALOG_TAG = "saved_accounts_dialog";
 
     @BindView(R.id.enrollmentEditText)
     EditText mEnrollmentEditText;
@@ -89,6 +91,14 @@ public class LoginFragment extends Fragment implements ILoginView {
 
                 //Send login request to presenter
                 mLoginPresenter.login(mEnrollmentEditText.getText().toString(), mPasswordEditText.getText().toString());
+            }
+        });
+
+        mSavedAccountsImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SavedAccountsSelectDialogFragment dialogFragment = SavedAccountsSelectDialogFragment.getInstace();
+                dialogFragment.show(getActivity().getFragmentManager(), SAVED_ACCOUNTS_DIALOG_TAG);
             }
         });
 
@@ -221,5 +231,10 @@ public class LoginFragment extends Fragment implements ILoginView {
 
         //Cancel alarms
         alarmManager.cancel(pendingIntent);
+    }
+
+    @Override
+    public void onAccountSelected(String username) {
+
     }
 }
