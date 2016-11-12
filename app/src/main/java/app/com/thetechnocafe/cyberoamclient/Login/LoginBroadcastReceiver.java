@@ -28,7 +28,7 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
 
-        Log.d("BroadcastLogin", "Request received");
+        Log.d(TAG, "Request received");
 
         //Get username and password from shared preferences
         savedPassword = SharedPreferenceUtils.getPassword(context);
@@ -49,6 +49,11 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                     if (errorCode == ValueUtils.ERROR_LOGIN_AGAIN && SharedPreferenceUtils.getLoginState(context).equals(ValueUtils.STATE_LOGGED_IN)) {
                         loginAgain(context, savedUsername, savedPassword);
                         Log.d(TAG, "Logging in again");
+                    } else if (errorCode == ValueUtils.ERROR_VOLLEY_ERROR) {
+                        Toast.makeText(context, "Cannot reach cyberoam", Toast.LENGTH_SHORT).show();
+                        //TODO: Show notification here
+                        //Change login state to LOGGED OUT
+                        SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
                     }
                 }
             }
@@ -57,14 +62,18 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
 
     /**
      * If logged out by cyberoam then login again
-     * Notify the current state through notification is login not successful
+     * Notify the current state through notification if login not successful
      */
     private void loginAgain(final Context context, String username, String password) {
         new NetworkUtils() {
             @Override
             public void onResultReceived(boolean success, int errorCode) {
-                if (success) {
-                    Toast.makeText(context, "Logged In again", Toast.LENGTH_SHORT).show();
+                if (success && errorCode == ValueUtils.LOGIN_SUCCESS) {
+                    Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show();
+                    SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_IN);
+
+                    //Set further alarm
+                    setUpAlarm(context);
                 } else {
                     //TODO:Handle all the errors by sending notification
                     Toast.makeText(context, "Error Logging in", Toast.LENGTH_SHORT).show();

@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 
 public class SharedPreferenceUtils {
     private static final String SHARED_PREFERENCES_FILE = "sharedpreferencefile";
-    private static final String SHAREDPREFERENCES_LOGGED_IN_STATE = "loggedin";
+    private static final String SHARED_PREFERENCES_LOGGED_IN_STATE = "loggedin";
 
     //Change the login state
     public static void changeLoginState(Context context, String state) {
@@ -18,7 +18,7 @@ public class SharedPreferenceUtils {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         //Change the state
-        editor.putString(SHAREDPREFERENCES_LOGGED_IN_STATE, state);
+        editor.putString(SHARED_PREFERENCES_LOGGED_IN_STATE, state);
         editor.commit();
     }
 
@@ -26,7 +26,7 @@ public class SharedPreferenceUtils {
     public static String getLoginState(Context context) {
         //Get shared preferences and return state
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(SHAREDPREFERENCES_LOGGED_IN_STATE, ValueUtils.STATE_LOGGED_OUT);
+        return sharedPreferences.getString(SHARED_PREFERENCES_LOGGED_IN_STATE, ValueUtils.STATE_LOGGED_OUT);
     }
 
     //Change the username and password
