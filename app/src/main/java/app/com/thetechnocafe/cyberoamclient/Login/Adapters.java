@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
+import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.SavedAccounts.SavedAccountsActivity;
 import butterknife.BindView;
@@ -37,7 +40,7 @@ public class Adapters {
 
             public NavigationViewHolder(View view) {
                 super(view);
-                //Bind with butterknife
+                //Bind with butter knife
                 ButterKnife.bind(this, view);
                 view.setOnClickListener(this);
             }
@@ -86,6 +89,55 @@ public class Adapters {
         @Override
         public int getItemCount() {
             return navigationItems.length;
+        }
+    }
+
+    /**
+     * Recycler ViewHolder and Adapter for saved accounts in SavedAccountsDialog
+     */
+    public class DialogSavedAccountsRecyclerAdapter extends RecyclerView.Adapter<DialogSavedAccountsRecyclerAdapter.DialogSavedAccountsViewHolder> {
+        private Context mContext;
+        private List<AccountsModel> mList;
+
+        public DialogSavedAccountsRecyclerAdapter(Context context) {
+            context = mContext;
+        }
+
+        //Inner ViewHolder class
+        class DialogSavedAccountsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+            public DialogSavedAccountsViewHolder(View view) {
+                super(view);
+
+                view.setOnClickListener(this);
+
+                //Butter knife bind
+                ButterKnife.bind(this, view);
+            }
+
+            public void bindData(int position) {
+
+            }
+
+            @Override
+            public void onClick(View v) {
+
+            }
+        }
+
+        @Override
+        public DialogSavedAccountsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return null;
+        }
+
+        @Override
+        public void onBindViewHolder(DialogSavedAccountsViewHolder holder, int position) {
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return 0;
         }
     }
 }

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -46,9 +47,10 @@ public class LoginFragment extends Fragment implements ILoginView {
     TextView mErrorTextView;
     @BindView(R.id.loadingProgressBar)
     ProgressBar mLoadingProgressBar;
-
     @BindView(R.id.logoutButton)
     Button mLogoutButton;
+    @BindView(R.id.saved_accounts_select_image_button)
+    ImageButton mSavedAccountsImageButton;
 
     public static LoginFragment getInstance() {
         LoginFragment fragment = new LoginFragment();
