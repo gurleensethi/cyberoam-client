@@ -25,4 +25,5 @@
     <string name="add">Add</string>
     <string name="not_allowed_to_login">You are not allowed to login at this time</string>
     <string name="cyberoam_unreachable">Cannot reach cyberoam</string>
+    <string name="version">Version 0.1.0 (Beta)</string>
 </resources>
