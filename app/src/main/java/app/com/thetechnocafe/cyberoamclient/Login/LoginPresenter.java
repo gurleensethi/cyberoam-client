@@ -46,6 +46,10 @@ public class LoginPresenter implements ILoginPresenter {
 
         //If app is running for first time
         if (SharedPreferenceUtils.isFirstRun(mainView.getContext())) {
+            //Add the default ip address and port
+            SharedPreferenceUtils.setBaseIPAddress(mainView.getContext(), ValueUtils.BASE_IP_ADDRESS);
+            SharedPreferenceUtils.setBasePort(mainView.getContext(), ValueUtils.BASE_PORT);
+
             mainView.completeFirstRunSetup();
         }
     }

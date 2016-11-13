@@ -30,7 +30,7 @@ public abstract class NetworkUtils {
      */
     public void login(Context context, final String username, final String password) {
         //Create new String request
-        StringRequest loginRequest = new StringRequest(Request.Method.POST, ValueUtils.BASE_LOGIN_URL, new Response.Listener<String>() {
+        StringRequest loginRequest = new StringRequest(Request.Method.POST, SharedPreferenceUtils.getCompleteUrlAddress(context, ValueUtils.BASE_LOGIN_URL), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, response);
@@ -83,7 +83,7 @@ public abstract class NetworkUtils {
     public void checkLoginStatus(Context context, final String username, String password) {
         Toast.makeText(context, "Checking login", Toast.LENGTH_SHORT).show();
         //Create new string request to check status
-        StringRequest checkRequest = new StringRequest(Request.Method.GET, getLoginCheckUrl(username, password), new Response.Listener<String>() {
+        StringRequest checkRequest = new StringRequest(Request.Method.GET, getLoginCheckUrl(context, username, password), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Check if already logged in
@@ -105,8 +105,8 @@ public abstract class NetworkUtils {
         VolleyRequestQueue.getInstance(context).getRequestQueue().add(checkRequest);
     }
 
-    private String getLoginCheckUrl(String username, String password) {
-        return ValueUtils.BASE_CHECK_URL + "?" +
+    private String getLoginCheckUrl(Context context, String username, String password) {
+        return SharedPreferenceUtils.getCompleteUrlAddress(context, ValueUtils.BASE_CHECK_URL) + "?" +
                 ValueUtils.MODE + "=" + ValueUtils.MODE_CHECK + "&" +
                 ValueUtils.USERNAME + "=" + username + "&" +
                 ValueUtils.A + "=" + new GregorianCalendar().getTimeInMillis();
@@ -118,7 +118,7 @@ public abstract class NetworkUtils {
      */
     public void logout(Context context, final String username, String password) {
         //Create new string request to logout
-        StringRequest logoutRequest = new StringRequest(Request.Method.POST, ValueUtils.BASE_LOGOUT_URL, new Response.Listener<String>() {
+        StringRequest logoutRequest = new StringRequest(Request.Method.POST, SharedPreferenceUtils.getCompleteUrlAddress(context, ValueUtils.BASE_LOGOUT_URL), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Check for response

@@ -5,9 +5,12 @@ package app.com.thetechnocafe.cyberoamclient.Utils;
  */
 
 public class ValueUtils {
-    public static final String BASE_LOGIN_URL = "http://172.16.68.6:8090/login.xml";
-    public static final String BASE_CHECK_URL = "http://172.16.68.6:8090/live";
-    public static final String BASE_LOGOUT_URL = "http://172.16.68.6:8090/logout.xml";
+    public static final String BASE_IP_ADDRESS = "172.16.68.6";
+    public static final String BASE_PORT = "8090";
+    public static final String BASE_HTTP = "http://";
+    public static final String BASE_LOGIN_URL = "/login.xml";
+    public static final String BASE_CHECK_URL = "/live";
+    public static final String BASE_LOGOUT_URL = "/logout.xml";
     public static final String MODE = "mode";
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
