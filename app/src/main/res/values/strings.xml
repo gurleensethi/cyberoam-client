@@ -19,6 +19,7 @@
     <string-array name="navigation_options">
         <item>Saved Accounts</item>
         <item>Settings</item>
+        <item>About</item>
     </string-array>
     <string name="new_account">Add New Account</string>
     <string name="cancel">Cancel</string>
