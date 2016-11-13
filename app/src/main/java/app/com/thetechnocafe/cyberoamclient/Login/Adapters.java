@@ -15,6 +15,7 @@ import java.util.List;
 import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.SavedAccounts.SavedAccountsActivity;
+import app.com.thetechnocafe.cyberoamclient.Settings.SettingsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -72,6 +73,11 @@ public class Adapters {
                 switch (mOptionsText.getText().toString()) {
                     case "Saved Accounts": {
                         Intent intent = new Intent(mContext, SavedAccountsActivity.class);
+                        mContext.startActivity(intent);
+                        break;
+                    }
+                    case "Settings": {
+                        Intent intent = new Intent(mContext, SettingsActivity.class);
                         mContext.startActivity(intent);
                         break;
                     }
