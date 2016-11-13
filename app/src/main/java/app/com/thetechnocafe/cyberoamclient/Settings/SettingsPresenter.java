@@ -13,6 +13,6 @@ public class SettingsPresenter implements ISettingsPresenter{
 
     @Override
     public void onViewReady() {
-
+        mView.setUpView();
     }
 }

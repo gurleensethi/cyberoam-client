@@ -17,6 +17,7 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
         setContentView(R.layout.activity_settings);
 
         mPresenter = new SettingsPresenter(this);
+        mPresenter.onViewReady();
     }
 
     @Override
