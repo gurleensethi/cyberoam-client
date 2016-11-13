@@ -36,4 +36,6 @@ public class ValueUtils {
     //Keys for Realm
     public static final String REALM_ACCOUNTS_USERNAME = "mUsername";
     public static final String REALM_ACCOUNTS_PASSWORD = "mPassword";
+
+    public static final String FIRST_RUN = "first_run";
 }

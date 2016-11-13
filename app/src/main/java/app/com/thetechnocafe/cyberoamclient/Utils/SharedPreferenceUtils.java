@@ -54,4 +54,21 @@ public class SharedPreferenceUtils {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
         return sharedPreferences.getString(ValueUtils.PASSWORD, "");
     }
+
+    //Get First Run
+    public static boolean isFirstRun(Context context) {
+        //Get shared preferences and return boolean
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+        if (sharedPreferences.getBoolean(ValueUtils.FIRST_RUN, true)) {
+            //Change the first run status
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(ValueUtils.FIRST_RUN, false);
+            editor.commit();
+
+            return true;
+        }
+
+        return false;
+    }
 }
