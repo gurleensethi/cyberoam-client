@@ -92,7 +92,7 @@ public class SharedPreferenceUtils {
 
         //Get editor
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(SHARED_PREFERENCES_BASE_IP_ADDRESS, port);
+        editor.putString(SHARED_PREFERENCES_PORT, port);
         editor.commit();
     }
 
