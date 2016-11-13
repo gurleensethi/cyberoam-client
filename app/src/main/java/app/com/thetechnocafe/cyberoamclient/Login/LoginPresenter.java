@@ -43,6 +43,7 @@ public class LoginPresenter implements ILoginPresenter {
                 SharedPreferenceUtils.getUsername(mainView.getContext()),
                 SharedPreferenceUtils.getPassword(mainView.getContext())
         );
+        mainView.completeFirstRunSetup();
     }
 
 

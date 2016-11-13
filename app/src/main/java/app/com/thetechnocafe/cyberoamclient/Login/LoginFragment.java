@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import app.com.thetechnocafe.cyberoamclient.Dialogs.SavedAccountsSelectDialogFragment;
+import app.com.thetechnocafe.cyberoamclient.Dialogs.SimpleMessageDialogFragment;
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
@@ -38,6 +39,7 @@ public class LoginFragment extends Fragment implements ILoginView {
     private static final String TAG = "LoginFragment";
     private ILoginPresenter mLoginPresenter;
     private static final String SAVED_ACCOUNTS_DIALOG_TAG = "saved_accounts_dialog";
+    private static final String SIMPLE_DIALOG_TAG = "simple_dialog";
 
     @BindView(R.id.enrollmentEditText)
     EditText mEnrollmentEditText;
@@ -231,5 +233,14 @@ public class LoginFragment extends Fragment implements ILoginView {
 
         //Cancel alarms
         alarmManager.cancel(pendingIntent);
+    }
+
+    /**
+     * Show a dialog on first run (Beta alert)
+     */
+    @Override
+    public void completeFirstRunSetup() {
+        SimpleMessageDialogFragment fragment = SimpleMessageDialogFragment.getInstance(R.drawable.ic_warning, null, getString(R.string.beta_message));
+        fragment.show(getActivity().getFragmentManager(), SIMPLE_DIALOG_TAG);
     }
 }
