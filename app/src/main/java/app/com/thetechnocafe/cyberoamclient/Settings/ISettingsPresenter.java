@@ -5,4 +5,5 @@ package app.com.thetechnocafe.cyberoamclient.Settings;
  */
 
 public interface ISettingsPresenter {
+    void onViewReady();
 }

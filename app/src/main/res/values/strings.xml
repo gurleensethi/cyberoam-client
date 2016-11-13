@@ -31,4 +31,5 @@
     <string name="select_account">Select Account</string>
     <string name="alert">Alert!</string>
     <string name="beta_message">You are using a beta version of this app. The app is still under development. If you encounter any bugs or crashes it is highly appreciated to notify the developer for the same.</string>
+    <string name="settings">Settings</string>
 </resources>
