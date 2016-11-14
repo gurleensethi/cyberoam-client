@@ -222,7 +222,7 @@ public class LoginFragment extends Fragment implements ILoginView {
         mEnrollmentEditText.setText(username);
         mPasswordEditText.setText(password);
         if (SharedPreferenceUtils.getLoginState(getContext()).equals(ValueUtils.STATE_LOGGED_IN)) {
-            toggleViewStates(false, true);
+            toggleViewStates(true, false);
         }
     }
 
