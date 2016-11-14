@@ -1,4 +1,4 @@
-package app.com.thetechnocafe.cyberoamclient.Account;
+package app.com.thetechnocafe.cyberoamclient.About;
 
 import android.content.Context;
 import android.content.Intent;
