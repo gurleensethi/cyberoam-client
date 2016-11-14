@@ -102,7 +102,9 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                         }
                     }
 
+                    //Send notification
                     NotificationsUtils.sendSimpleTextNotification(context, errorMessage, context.getString(R.string.you_have_been_logged_out));
+
                     //Change logged in state
                     SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
                 }
