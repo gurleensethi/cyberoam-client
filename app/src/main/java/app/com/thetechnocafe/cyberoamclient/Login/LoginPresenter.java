@@ -44,11 +44,12 @@ public class LoginPresenter implements ILoginPresenter {
                 SharedPreferenceUtils.getPassword(mainView.getContext())
         );
 
-        //If app is running for first time
+        //Configure the settings when app runs for the first time
         if (SharedPreferenceUtils.isFirstRun(mainView.getContext())) {
             //Add the default ip address and port
             SharedPreferenceUtils.setBaseIPAddress(mainView.getContext(), ValueUtils.BASE_IP_ADDRESS);
             SharedPreferenceUtils.setBasePort(mainView.getContext(), ValueUtils.BASE_PORT);
+            SharedPreferenceUtils.setNotifications(mainView.getContext(), true);
 
             mainView.completeFirstRunSetup();
         }
