@@ -20,5 +20,5 @@ public interface ISavedAccountsView {
 
     public Context getContext();
 
-    public void onValidationComplete();
+    public void onValidationComplete(boolean isSuccessful);
 }

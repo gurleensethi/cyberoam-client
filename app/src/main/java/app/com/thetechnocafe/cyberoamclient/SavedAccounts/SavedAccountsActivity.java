@@ -1,6 +1,5 @@
 package app.com.thetechnocafe.cyberoamclient.SavedAccounts;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
+import app.com.thetechnocafe.cyberoamclient.Dialogs.CustomProgressDialog;
 import app.com.thetechnocafe.cyberoamclient.Dialogs.NewAccountDialogFragment;
 import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
@@ -36,7 +36,8 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     private Adapters.SavedAccountsRecyclerAdapter mSavedAccountsRecyclerAdapter;
     private ISavedAccountsPresenter mPresenter;
     private static final String NEW_ACCOUNT_DIALOG_TAG = "newaccountdialog";
-    private ProgressDialog mProgressDialog;
+    private static final String PROGRESS_DIALOG_TAG = "progress_dialog_tag";
+    private CustomProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,9 +120,14 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     }
 
     @Override
-    public void onValidationComplete() {
+    public void onValidationComplete(boolean isSuccessful) {
         //Dismiss the progress dialog
         mProgressDialog.dismiss();
+
+        //Notify that cyberoam was unreachable
+        if (!isSuccessful) {
+
+        }
     }
 
     @Override
@@ -141,11 +147,9 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     //Configure the progress dialog and its properties
     private void setUpProgressDialog(String message) {
         //Show progress dialog
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        mProgressDialog.setMessage(message);
+        mProgressDialog = CustomProgressDialog.getInstance(message, R.color.md_green_400);
 
         //Show the progress dialog
-        mProgressDialog.show();
+        mProgressDialog.show(getFragmentManager(), PROGRESS_DIALOG_TAG);
     }
 }

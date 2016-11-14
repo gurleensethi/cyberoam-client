@@ -38,7 +38,7 @@ public class SavedAccountsPresenter implements ISavedAccountsPresenter {
 
                 //Notify View on validation complete
                 mView.setUpOrRefreshRecyclerView(getSavedAccounts());
-                mView.onValidationComplete();
+                mView.onValidationComplete(isSuccessful);
             }
         }.validateAccounts(mView.getContext());
     }
