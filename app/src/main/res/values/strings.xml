@@ -36,4 +36,6 @@
     <string name="general">General</string>
     <string name="port">Port</string>
     <string name="you_have_been_logged_out">You been logged out of cyberoam</string>
+    <string name="about_text">Cyberoam Client is an unofficial Android client for cyberoam. Not only just it provides the basic functionality of login/logout,
+    but features like save multiple accounts, session data tracking, activity log, automatic account validation check and much more.  </string>
 </resources>
