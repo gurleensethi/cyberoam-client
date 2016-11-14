@@ -26,7 +26,7 @@
     </style>
 
     <style name="SwitchColor" parent="AppTheme">
-        <item name="android:colorControlActivated">@color/md_red_400</item>
+        <item name="android:colorControlActivated">@color/md_green_400</item>
     </style>
 
 </resources>
