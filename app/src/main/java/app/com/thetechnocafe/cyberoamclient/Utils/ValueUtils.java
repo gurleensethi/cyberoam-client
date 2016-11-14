@@ -36,6 +36,9 @@ public class ValueUtils {
     public static final String STATE_LOGGED_OUT = "loggedOut";
     public static final long FIXED_INTERVAL = 120000;
 
+    //Volley specific values
+    public static final String VOLLEY_ACCOUNT_VALIDITY_TAG = "volley_account_validity_tag";
+
     //Keys for Realm (Don't change these values)
     public static final long REALM_DATABASE_VERSION = 1;
 

@@ -112,7 +112,7 @@ public class LoginFragment extends Fragment implements ILoginView {
                 cancelAlarm();
                 SharedPreferenceUtils.changeLoginState(getContext(), ValueUtils.STATE_LOGGED_OUT);
                 toggleViewStates(false, false);
-                new NetworkUtils() {
+                new NetworkUtils(null) {
                     @Override
                     public void onResultReceived(boolean success, int errorCode) {
                         if (success) {

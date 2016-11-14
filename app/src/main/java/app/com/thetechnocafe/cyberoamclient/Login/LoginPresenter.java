@@ -24,7 +24,7 @@ public class LoginPresenter implements ILoginPresenter {
     public static final int BROADCAST_REQUEST_CODE = 1;
 
     private ILoginView mainView;
-    private NetworkUtils mNetworkUtils = new NetworkUtils() {
+    private NetworkUtils mNetworkUtils = new NetworkUtils(null) {
         @Override
         public void onResultReceived(boolean success, int errorCode) {
             Log.d("LoginPresenter", success + " " + errorCode);

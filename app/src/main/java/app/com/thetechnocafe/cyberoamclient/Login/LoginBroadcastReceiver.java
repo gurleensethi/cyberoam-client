@@ -36,7 +36,7 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
         savedUsername = SharedPreferenceUtils.getUsername(context);
 
         //Request to check if already logged in
-        new NetworkUtils() {
+        new NetworkUtils(null) {
             @Override
             public void onResultReceived(boolean success, int errorCode) {
                 if (success) {
@@ -69,7 +69,7 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
      * Notify the current state through notification if login not successful
      */
     private void loginAgain(final Context context, String username, String password) {
-        new NetworkUtils() {
+        new NetworkUtils(null) {
             @Override
             public void onResultReceived(boolean success, int errorCode) {
                 if (success && errorCode == ValueUtils.LOGIN_SUCCESS) {

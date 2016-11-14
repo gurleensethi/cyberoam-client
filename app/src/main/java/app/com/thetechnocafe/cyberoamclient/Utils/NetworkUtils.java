@@ -1,6 +1,7 @@
 package app.com.thetechnocafe.cyberoamclient.Utils;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -20,6 +21,11 @@ import app.com.thetechnocafe.cyberoamclient.Common.VolleyRequestQueue;
 
 public abstract class NetworkUtils {
     private static final String TAG = "NetworkUtils";
+    private static String VOLLEY_TAG;
+
+    public NetworkUtils(@Nullable String tag) {
+        VOLLEY_TAG = tag;
+    }
 
     public abstract void onResultReceived(boolean success, int errorCode);
 
@@ -60,6 +66,11 @@ public abstract class NetworkUtils {
             }
         };
 
+        //Add tag to volley request
+        if (VOLLEY_TAG != null) {
+            loginRequest.setTag(VOLLEY_TAG);
+        }
+
         //Add request to queue
         VolleyRequestQueue.getInstance(context).getRequestQueue().add(loginRequest);
     }
@@ -98,6 +109,11 @@ public abstract class NetworkUtils {
                 onResultReceived(false, ValueUtils.ERROR_VOLLEY_ERROR);
             }
         });
+
+        //Add tag to volley request
+        if (VOLLEY_TAG != null) {
+            checkRequest.setTag(VOLLEY_TAG);
+        }
 
         //Add request to Volley queue
         VolleyRequestQueue.getInstance(context).getRequestQueue().add(checkRequest);
@@ -138,6 +154,11 @@ public abstract class NetworkUtils {
             }
         };
 
+        //Add tag to volley request
+        if (VOLLEY_TAG != null) {
+            logoutRequest.setTag(VOLLEY_TAG);
+        }
+
         //Add request to queue
         VolleyRequestQueue.getInstance(context).getRequestQueue().add(logoutRequest);
     }
@@ -150,4 +171,5 @@ public abstract class NetworkUtils {
                 ValueUtils.USERNAME + "=" + username + "&" +
                 ValueUtils.A + "=" + new Date().getTime();
     }
+
 }
