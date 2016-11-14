@@ -2,8 +2,10 @@ package app.com.thetechnocafe.cyberoamclient.Common;
 
 import android.content.Context;
 
+import app.com.thetechnocafe.cyberoamclient.Utils.RealmMigrationUtil;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import io.realm.exceptions.RealmPrimaryKeyConstraintException;
 
@@ -20,7 +22,14 @@ public class RealmDatabase {
     private RealmDatabase(Context context) {
         //Set up realm
         Realm.init(context);
-        mRealm = Realm.getDefaultInstance();
+
+        //Create new configuration file
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .schemaVersion(ValueUtils.REALM_DATABASE_VERSION)
+                .migration(new RealmMigrationUtil())
+                .build();
+
+        mRealm = Realm.getInstance(config);
     }
 
     public static RealmDatabase getInstance(Context context) {

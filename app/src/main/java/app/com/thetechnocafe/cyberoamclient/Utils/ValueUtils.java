@@ -37,6 +37,8 @@ public class ValueUtils {
     public static final long FIXED_INTERVAL = 120000;
 
     //Keys for Realm (Don't change these values)
+    public static final long REALM_DATABASE_VERSION = 1;
+
     public static final String REALM_ACCOUNTS_CLASS = "AccountsModel";
     public static final String REALM_ACCOUNTS_USERNAME = "mUsername";
     public static final String REALM_ACCOUNTS_PASSWORD = "mPassword";
