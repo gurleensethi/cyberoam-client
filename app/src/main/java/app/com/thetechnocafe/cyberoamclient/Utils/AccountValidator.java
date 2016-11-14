@@ -51,6 +51,7 @@ public abstract class AccountValidator {
                             //Check if last
                             if (position + 1 == list.size()) {
                                 onValidationComplete(true);
+                                loginIfWasLoggedIn(context);
                             }
                             break;
                         }
@@ -69,11 +70,28 @@ public abstract class AccountValidator {
                             //Check if last
                             if (position + 1 == list.size()) {
                                 onValidationComplete(true);
+                                loginIfWasLoggedIn(context);
                             }
                         }
                     }
                 }
             }.login(context, username, password);
+        }
+    }
+
+    /**
+     * If the user had already logged in with a account and
+     * the account exits in the saved accounts, log in it again because
+     * it got logged out while checking account validity
+     */
+    private void loginIfWasLoggedIn(Context context) {
+        if (SharedPreferenceUtils.getLoginState(context) == ValueUtils.STATE_LOGGED_IN) {
+            new NetworkUtils(null) {
+                @Override
+                public void onResultReceived(boolean success, int errorCode) {
+
+                }
+            }.login(context, SharedPreferenceUtils.getUsername(context), SharedPreferenceUtils.getPassword(context));
         }
     }
 }
