@@ -20,6 +20,11 @@ public abstract class AccountValidator {
         //Get the list of Accounts
         final List<AccountsModel> list = RealmDatabase.getInstance(context).getAllAccounts();
 
+        //Check if list is empty
+        if (list.size() == 0) {
+            onValidationComplete(false);
+        }
+
         //Iterate over the list for validation
         for (int count = 0; count < list.size(); count++) {
             //Retrieve particular username and passwords

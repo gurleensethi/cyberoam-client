@@ -1,7 +1,5 @@
 package app.com.thetechnocafe.cyberoamclient.SavedAccounts;
 
-import android.widget.Toast;
-
 import java.util.List;
 
 import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
@@ -37,12 +35,10 @@ public class SavedAccountsPresenter implements ISavedAccountsPresenter {
         new AccountValidator() {
             @Override
             public void onValidationComplete(boolean isSuccessful) {
-                if (isSuccessful) {
-                    //Notify View on validation complete
-                    mView.onValidationComplete();
-                    mView.setUpOrRefreshRecyclerView(getSavedAccounts());
-                }
-                Toast.makeText(mView.getContext(), "Status : " + isSuccessful, Toast.LENGTH_SHORT).show();
+
+                //Notify View on validation complete
+                mView.setUpOrRefreshRecyclerView(getSavedAccounts());
+                mView.onValidationComplete();
             }
         }.validateAccounts(mView.getContext());
     }
