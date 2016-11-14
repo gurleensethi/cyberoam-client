@@ -51,10 +51,10 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                         loginAgain(context, savedUsername, savedPassword);
                         Log.d(TAG, "Logging in again");
                     } else if (errorCode == ValueUtils.ERROR_VOLLEY_ERROR) {
-                        //Send notification
-                        NotificationsUtils.sendSimpleTextNotification(context,
-                                context.getString(R.string.cyberoam_unreachable),
-                                context.getString(R.string.check_wifi));
+                        //Check if notifications are enable and send notification
+                        if (SharedPreferenceUtils.getNotifications(context)) {
+                            NotificationsUtils.sendSimpleTextNotification(context, context.getString(R.string.cyberoam_unreachable), context.getString(R.string.check_wifi));
+                        }
 
                         //Change login state to LOGGED OUT
                         SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
@@ -99,8 +99,10 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                         }
                     }
 
-                    //Send notification
-                    NotificationsUtils.sendSimpleTextNotification(context, errorMessage, context.getString(R.string.you_have_been_logged_out));
+                    //Check if notifications are enable and send notification
+                    if (SharedPreferenceUtils.getNotifications(context)) {
+                        NotificationsUtils.sendSimpleTextNotification(context, errorMessage, context.getString(R.string.you_have_been_logged_out));
+                    }
 
                     //Change logged in state
                     SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
