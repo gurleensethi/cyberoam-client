@@ -17,10 +17,24 @@ public class SettingsPresenter implements ISettingsPresenter {
     public void onViewReady() {
         mView.setUpView();
 
-        //Provide IP Address and Port
+        updateSettingsInView();
+    }
+
+    @Override
+    public void changeNotificationsState(boolean state) {
+        //Change state in shared preferences
+        SharedPreferenceUtils.setNotifications(mView.getContext(), state);
+
+        //Update settings
+        updateSettingsInView();
+    }
+
+    //Provide View with updated settings
+    private void updateSettingsInView() {
         mView.setUpSettingsState(
                 SharedPreferenceUtils.getBaseIPAddress(mView.getContext()),
-                SharedPreferenceUtils.getBasePort(mView.getContext())
+                SharedPreferenceUtils.getBasePort(mView.getContext()),
+                SharedPreferenceUtils.getNotifications(mView.getContext())
         );
     }
 }

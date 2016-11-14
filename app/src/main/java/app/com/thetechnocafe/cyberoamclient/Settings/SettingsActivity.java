@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -29,6 +30,12 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
         //Bind butter knife
         ButterKnife.bind(this);
 
+        mPresenter = new SettingsPresenter(this);
+        mPresenter.onViewReady();
+    }
+
+    @Override
+    public void setUpView() {
         //Set up toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -36,19 +43,24 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
 
-        mPresenter = new SettingsPresenter(this);
-        mPresenter.onViewReady();
+        setUpOnClickListeners();
     }
 
     @Override
-    public void setUpView() {
-
-    }
-
-    @Override
-    public void setUpSettingsState(String ipAddress, String port) {
+    public void setUpSettingsState(String ipAddress, String port, boolean notificationsEnabled) {
         mIPAddressTextView.setText(ipAddress);
         mPortTextView.setText(port);
+        mNotificationsSwitch.setChecked(notificationsEnabled);
+    }
+
+    //Set up onclickListeners
+    private void setUpOnClickListeners() {
+        mNotificationsSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mPresenter.changeNotificationsState(isChecked);
+            }
+        });
     }
 
     @Override
