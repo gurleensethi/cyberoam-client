@@ -41,7 +41,7 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_accounts);
 
-        //Butterknife bind
+        //Butter knife bind
         ButterKnife.bind(this);
 
         mPresenter = new SavedAccountsPresenter(this);
@@ -81,6 +81,9 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
                 finish();
                 return true;
             }
+            case R.id.menu_check_accounts_validity: {
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -116,7 +119,7 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Get menu inflator and inflate menu
+        //Get menu inflater and inflate menu
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_saved_accounts, menu);
 

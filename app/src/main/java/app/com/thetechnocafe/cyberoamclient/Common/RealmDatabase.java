@@ -114,4 +114,17 @@ public class RealmDatabase {
 
         return password;
     }
+
+    /**
+     * Change account validation boolean
+     */
+    public void changeValidation(final String username, final boolean isValid) {
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                AccountsModel model = mRealm.where(AccountsModel.class).equalTo(ValueUtils.REALM_ACCOUNTS_USERNAME, username).findFirst();
+                model.setAccountValid(isValid);
+            }
+        });
+    }
 }
