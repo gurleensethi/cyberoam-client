@@ -12,4 +12,13 @@ Android client for cyberoam.
 
 ####Feature list :
 * Save multiple accounts
+* Notificaions on un successful login retry's
 * No need to run app in background (login process is handled by BroadCast Receivers and Alarm Manager)
+
+
+####V 0.1.0(Beta):
+* Login/Logout in Cyberoam
+* Notifications for errors
+* Save and use multiple accounts
+
+
