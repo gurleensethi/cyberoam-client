@@ -27,7 +27,7 @@
     <string name="not_allowed_to_login">You are not allowed to login at this time</string>
     <string name="cyberoam_unreachable">Cannot reach cyberoam</string>
     <string name="version">Version 0.1.0 (Beta)</string>
-    <string name="check_wifi">Please check if you are connected to a WiFi</string>
+    <string name="check_wifi">Please check if you are connected to a WiFi network</string>
     <string name="select_account">Select Account</string>
     <string name="alert">Alert!</string>
     <string name="beta_message">You are using a beta version of this app. The app is still under development. If you encounter any bugs or crashes it is highly appreciated to notify the developer for the same.</string>

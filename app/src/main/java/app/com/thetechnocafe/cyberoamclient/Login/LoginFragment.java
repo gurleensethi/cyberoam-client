@@ -86,7 +86,7 @@ public class LoginFragment extends Fragment implements ILoginView {
             public void onClick(View v) {
                 Log.d(TAG, "Login Button Clicked");
                 //Enable progress bar and disable login button
-                toggleEditTextStates(false, false);
+                toggleViewStates(false, true);
 
                 //Change Error text
                 mErrorTextView.setText(getString(R.string.loggin_in));
@@ -111,7 +111,7 @@ public class LoginFragment extends Fragment implements ILoginView {
             public void onClick(View v) {
                 cancelAlarm();
                 SharedPreferenceUtils.changeLoginState(getContext(), ValueUtils.STATE_LOGGED_OUT);
-                toggleEditTextStates(true, false);
+                toggleViewStates(false, false);
                 new NetworkUtils() {
                     @Override
                     public void onResultReceived(boolean success, int errorCode) {
@@ -177,7 +177,7 @@ public class LoginFragment extends Fragment implements ILoginView {
         mLoginPresenter.setLoginState(success);
 
         //Set the progress bar gone and login button visible and enable edit texts
-        toggleEditTextStates(true, success);
+        toggleViewStates(success, false);
     }
 
     @Override
@@ -189,25 +189,27 @@ public class LoginFragment extends Fragment implements ILoginView {
      * Disable Both edit texts and login, button on login button pressed
      * Enable them back on result received, disable progress bar
      */
-    private void toggleEditTextStates(boolean toggle, boolean isLoggedIn) {
-        if (toggle) {
-            mLoadingProgressBar.setVisibility(View.GONE);
-            mLoginButton.setVisibility(View.VISIBLE);
-            mEnrollmentEditText.setEnabled(true);
-            mPasswordEditText.setEnabled(true);
-        } else {
-            mLoadingProgressBar.setVisibility(View.VISIBLE);
-            mLoginButton.setVisibility(View.GONE);
+    private void toggleViewStates(boolean isLoggedIn, boolean isLoggingIn) {
+        if (isLoggedIn) {
             mEnrollmentEditText.setEnabled(false);
             mPasswordEditText.setEnabled(false);
-        }
-
-        if (isLoggedIn) {
             mLoadingProgressBar.setVisibility(View.GONE);
-            mLoginButton.setEnabled(false);
             mLoginButton.setVisibility(View.GONE);
+            mSavedAccountsImageButton.setEnabled(false);
         } else {
-            mLoginButton.setEnabled(true);
+            if (isLoggingIn) {
+                mEnrollmentEditText.setEnabled(false);
+                mPasswordEditText.setEnabled(false);
+                mLoadingProgressBar.setVisibility(View.VISIBLE);
+                mLoginButton.setVisibility(View.GONE);
+                mSavedAccountsImageButton.setEnabled(false);
+            } else {
+                mEnrollmentEditText.setEnabled(true);
+                mPasswordEditText.setEnabled(true);
+                mLoadingProgressBar.setVisibility(View.GONE);
+                mLoginButton.setVisibility(View.VISIBLE);
+                mSavedAccountsImageButton.setEnabled(true);
+            }
         }
     }
 
@@ -220,7 +222,7 @@ public class LoginFragment extends Fragment implements ILoginView {
         mEnrollmentEditText.setText(username);
         mPasswordEditText.setText(password);
         if (SharedPreferenceUtils.getLoginState(getContext()).equals(ValueUtils.STATE_LOGGED_IN)) {
-            toggleEditTextStates(false, true);
+            toggleViewStates(false, true);
         }
     }
 
