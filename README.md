@@ -24,7 +24,7 @@ Android client for cyberoam.
 ####V 0.2.0(Beta):
 * Enable/Disable notifications settings
 * View states in Login Activty
-* Fixed timer settings
 * Removed Toasts
 
-
+####V 0.3.0(Beta):
+* Fixed timer settings
