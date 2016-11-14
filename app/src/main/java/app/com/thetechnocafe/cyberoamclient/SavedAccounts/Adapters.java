@@ -55,6 +55,11 @@ public class Adapters {
             public void bindData(int position) {
                 //Get item from list and bind data
                 mEnrollmentTextView.setText(mAccountsModelList.get(position).getUsername());
+
+                //Change the account status
+                if (!mAccountsModelList.get(position).isAccountValid()) {
+                    mStatusIndicatorView.setBackground(mContext.getResources().getDrawable(R.drawable.circle_red));
+                }
             }
 
             private void setOnClickListeners() {

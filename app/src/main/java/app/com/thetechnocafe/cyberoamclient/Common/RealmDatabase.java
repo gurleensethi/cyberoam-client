@@ -53,6 +53,7 @@ public class RealmDatabase {
                     AccountsModel accountsModel = new AccountsModel();
                     accountsModel.setUsername(username);
                     accountsModel.setPassword(password);
+                    accountsModel.setAccountValid(true);
 
                     //Insert into realm
                     realm.insert(accountsModel);
