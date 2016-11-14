@@ -111,6 +111,8 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
         //Hide the text view if accounts exists
         if (list.size() > 0) {
             mNoSavedAccountsTextView.setVisibility(View.GONE);
+        } else {
+            mNoSavedAccountsTextView.setVisibility(View.VISIBLE);
         }
     }
 

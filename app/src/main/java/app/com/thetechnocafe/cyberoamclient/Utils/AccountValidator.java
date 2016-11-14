@@ -84,12 +84,15 @@ public abstract class AccountValidator {
      * the account exits in the saved accounts, log in it again because
      * it got logged out while checking account validity
      */
-    private void loginIfWasLoggedIn(Context context) {
+    private void loginIfWasLoggedIn(final Context context) {
         if (SharedPreferenceUtils.getLoginState(context) == ValueUtils.STATE_LOGGED_IN) {
             new NetworkUtils(null) {
                 @Override
                 public void onResultReceived(boolean success, int errorCode) {
-
+                    //If unable to log in, change state to logged out
+                    if (errorCode != ValueUtils.LOGIN_SUCCESS) {
+                        SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
+                    }
                 }
             }.login(context, SharedPreferenceUtils.getUsername(context), SharedPreferenceUtils.getPassword(context));
         }
