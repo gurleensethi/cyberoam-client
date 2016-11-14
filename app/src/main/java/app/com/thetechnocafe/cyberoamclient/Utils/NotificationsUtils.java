@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 
 import app.com.thetechnocafe.cyberoamclient.Login.LoginActivity;
@@ -21,10 +22,14 @@ public class NotificationsUtils {
         //Create Notification Builder
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
+        //Create notification style
+        NotificationCompat.Style style = new NotificationCompat.BigPictureStyle();
+
         //Set icon, message and title
         builder.setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(titleMessage)
                 .setContentText(textMessage)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher))
                 .setAutoCancel(true);
 
         //Create pending intent from intent and set it to builder
