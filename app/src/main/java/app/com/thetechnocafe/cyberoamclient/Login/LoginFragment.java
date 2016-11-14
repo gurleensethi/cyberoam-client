@@ -142,10 +142,12 @@ public class LoginFragment extends Fragment implements ILoginView {
             switch (errorCode) {
                 case ValueUtils.ERROR_USERNAME_EMPTY: {
                     mErrorTextView.setText(getString(R.string.username_error));
+                    mEnrollmentEditText.requestFocus();
                     break;
                 }
                 case ValueUtils.ERROR_PASSWORD_EMPTY: {
                     mErrorTextView.setText(getString(R.string.password_error));
+                    mPasswordEditText.requestFocus();
                     break;
                 }
                 case ValueUtils.ERROR_USERNAME_PASSWORD: {
