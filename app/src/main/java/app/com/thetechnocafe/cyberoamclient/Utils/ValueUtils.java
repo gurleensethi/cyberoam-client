@@ -36,9 +36,11 @@ public class ValueUtils {
     public static final String STATE_LOGGED_OUT = "loggedOut";
     public static final long FIXED_INTERVAL = 120000;
 
-    //Keys for Realm
+    //Keys for Realm (Don't change these values)
+    public static final String REALM_ACCOUNTS_CLASS = "AccountsModel";
     public static final String REALM_ACCOUNTS_USERNAME = "mUsername";
     public static final String REALM_ACCOUNTS_PASSWORD = "mPassword";
+    public static final String REALM_ACCOUNTS_VALID = "isAccountValid";
 
     public static final String FIRST_RUN = "first_run";
 }

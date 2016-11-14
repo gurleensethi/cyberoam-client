@@ -11,6 +11,7 @@ public class AccountsModel extends RealmObject {
     private String mPassword;
     @PrimaryKey
     private String mUsername;
+    private boolean isAccountValid;
 
     public String getPassword() {
         return mPassword;
@@ -26,5 +27,13 @@ public class AccountsModel extends RealmObject {
 
     public void setUsername(String username) {
         mUsername = username;
+    }
+
+    public boolean isAccountValid() {
+        return isAccountValid;
+    }
+
+    public void setAccountValid(boolean valid) {
+        isAccountValid = valid;
     }
 }
