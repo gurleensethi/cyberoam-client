@@ -15,7 +15,7 @@ import app.com.thetechnocafe.cyberoamclient.R;
  */
 
 public class NotificationsUtils {
-    public static final int SIMPLE_TEXT_NOTIFICATION_ID = 0;
+    private static final int SIMPLE_TEXT_NOTIFICATION_ID = 0;
     private static final int NOTIFICATION_PENDING_INTENT_REQUEST_CODE = 1;
 
     public static void sendSimpleTextNotification(Context context, String titleMessage, String textMessage) {

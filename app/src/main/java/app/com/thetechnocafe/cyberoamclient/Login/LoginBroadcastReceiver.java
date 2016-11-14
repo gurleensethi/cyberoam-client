@@ -81,8 +81,30 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                     //Set further alarm
                     setUpAlarm(context);
                 } else {
-                    //TODO:Handle all the errors by sending notification
-                    Toast.makeText(context, "Error Logging in", Toast.LENGTH_SHORT).show();
+                    //Detect error and notify user
+                    String errorMessage = "";
+                    switch (errorCode) {
+                        case ValueUtils.ERROR_MAXIMUM_LOGIN_LIMIT: {
+                            errorMessage = context.getString(R.string.maximum_login_limit);
+                            break;
+                        }
+                        case ValueUtils.ERROR_NOT_ALLOWED: {
+                            errorMessage = context.getString(R.string.not_allowed_to_login);
+                            break;
+                        }
+                        case ValueUtils.ERROR_SERVER_ACCOUNT_LOCKED: {
+                            errorMessage = context.getString(R.string.account_locked);
+                            break;
+                        }
+                        case ValueUtils.ERROR_USERNAME_PASSWORD: {
+                            errorMessage = context.getString(R.string.wrong_password_username);
+                            break;
+                        }
+                    }
+
+                    NotificationsUtils.sendSimpleTextNotification(context, errorMessage, context.getString(R.string.you_have_been_logged_out));
+                    //Change logged in state
+                    SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
                 }
             }
         }.login(context, username, password);
