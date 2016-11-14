@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     FloatingActionButton mNewAccountFAB;
     @BindView(R.id.accounts_recycler_view)
     RecyclerView mSavedAccountsRecyclerView;
+    @BindView(R.id.no_saved_accounts_text_view)
+    TextView mNoSavedAccountsTextView;
 
     private Adapters.SavedAccountsRecyclerAdapter mSavedAccountsRecyclerAdapter;
     private ISavedAccountsPresenter mPresenter;
@@ -91,6 +94,11 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
             // notify recycler view about data change
             mSavedAccountsRecyclerAdapter.updateList(list);
             mSavedAccountsRecyclerAdapter.notifyDataSetChanged();
+        }
+
+        //Hide the text view if accounts exists
+        if (list.size() > 0) {
+            mNoSavedAccountsTextView.setVisibility(View.GONE);
         }
     }
 

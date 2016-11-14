@@ -40,4 +40,5 @@
     but features like save multiple accounts, session data tracking, activity log, automatic account validation check and much more.</string>
     <string name="thetechnocafe">TheTechnoCafe</string>
     <string name="about">About</string>
+    <string name="no_saved_accounts">You don\'t have any saved accounts</string>
 </resources>

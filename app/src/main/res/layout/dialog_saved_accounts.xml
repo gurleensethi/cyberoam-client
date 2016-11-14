@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:gravity="center_horizontal"
               android:orientation="vertical">
 
     <TextView
@@ -12,6 +13,14 @@
         android:text="@string/select_account"
         android:textColor="@android:color/white"
         android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/no_saved_accounts_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_saved_accounts"
+        android:textSize="16sp"
+        android:layout_margin="16dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/dialog_saved_accounts_recycler_view"

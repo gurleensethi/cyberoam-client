@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import app.com.thetechnocafe.cyberoamclient.Login.Adapters;
 import app.com.thetechnocafe.cyberoamclient.Login.ILoginPresenter;
@@ -22,6 +23,9 @@ import butterknife.ButterKnife;
 public class SavedAccountsSelectDialogFragment extends DialogFragment {
     @BindView(R.id.dialog_saved_accounts_recycler_view)
     RecyclerView mSavedAccountsDialogRecyclerView;
+    @BindView(R.id.no_saved_accounts_text_view)
+    TextView mNoSavedAccountsTextView;
+
     private Adapters.DialogSavedAccountsRecyclerAdapter mDialogSavedAccountsRecyclerAdapter;
     private static ILoginPresenter mILoginPresenter;
 
@@ -53,6 +57,11 @@ public class SavedAccountsSelectDialogFragment extends DialogFragment {
         mDialogSavedAccountsRecyclerAdapter = new Adapters().new DialogSavedAccountsRecyclerAdapter(getActivity(), mILoginPresenter, this);
         mSavedAccountsDialogRecyclerView.setAdapter(mDialogSavedAccountsRecyclerAdapter);
         mSavedAccountsDialogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        //Hide the TextView if accounts exits
+        if (mDialogSavedAccountsRecyclerAdapter.getItemCount() > 0) {
+            mNoSavedAccountsTextView.setVisibility(View.GONE);
+        }
     }
 
     @Override
