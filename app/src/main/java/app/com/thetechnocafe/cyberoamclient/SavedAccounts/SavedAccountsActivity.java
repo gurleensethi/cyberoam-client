@@ -2,7 +2,9 @@ package app.com.thetechnocafe.cyberoamclient.SavedAccounts;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +34,8 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     RecyclerView mSavedAccountsRecyclerView;
     @BindView(R.id.no_saved_accounts_text_view)
     TextView mNoSavedAccountsTextView;
+    @BindView(R.id.activity_saved_accounts)
+    CoordinatorLayout mCoordinatorLayout;
 
     private Adapters.SavedAccountsRecyclerAdapter mSavedAccountsRecyclerAdapter;
     private ISavedAccountsPresenter mPresenter;
@@ -128,7 +132,7 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
 
         //Notify that cyberoam was unreachable
         if (!isSuccessful) {
-
+            Snackbar.make(mCoordinatorLayout, getString(R.string.cyberoam_unreachable), Snackbar.LENGTH_SHORT).show();
         }
     }
 
