@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.util.Log;
-import android.widget.Toast;
 
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
@@ -52,7 +51,6 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                         loginAgain(context, savedUsername, savedPassword);
                         Log.d(TAG, "Logging in again");
                     } else if (errorCode == ValueUtils.ERROR_VOLLEY_ERROR) {
-                        Toast.makeText(context, "Cannot reach cyberoam", Toast.LENGTH_SHORT).show();
                         //Send notification
                         NotificationsUtils.sendSimpleTextNotification(context,
                                 context.getString(R.string.cyberoam_unreachable),
@@ -75,7 +73,6 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
             @Override
             public void onResultReceived(boolean success, int errorCode) {
                 if (success && errorCode == ValueUtils.LOGIN_SUCCESS) {
-                    Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show();
                     SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_IN);
 
                     //Set further alarm

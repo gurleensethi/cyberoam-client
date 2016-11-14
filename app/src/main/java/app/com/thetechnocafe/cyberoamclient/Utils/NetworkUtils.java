@@ -2,7 +2,6 @@ package app.com.thetechnocafe.cyberoamclient.Utils;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -81,7 +80,6 @@ public abstract class NetworkUtils {
      * whether logged in or not
      */
     public void checkLoginStatus(Context context, final String username, String password) {
-        Toast.makeText(context, "Checking login", Toast.LENGTH_SHORT).show();
         //Create new string request to check status
         StringRequest checkRequest = new StringRequest(Request.Method.GET, getLoginCheckUrl(context, username, password), new Response.Listener<String>() {
             @Override
