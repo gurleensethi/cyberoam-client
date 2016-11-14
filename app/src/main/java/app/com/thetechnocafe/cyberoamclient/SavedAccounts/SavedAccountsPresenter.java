@@ -1,7 +1,5 @@
 package app.com.thetechnocafe.cyberoamclient.SavedAccounts;
 
-import android.widget.Toast;
-
 import java.util.List;
 
 import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
@@ -59,7 +57,6 @@ public class SavedAccountsPresenter implements ISavedAccountsPresenter {
     public boolean addNewAccount(String username, String password) {
         RealmDatabase.getInstance(mView.getContext()).insertAccount(username, password);
         mView.setUpOrRefreshRecyclerView(getSavedAccounts());
-        Toast.makeText(mView.getContext(), RealmDatabase.getInstance(mView.getContext()).getAllAccounts().size() + "", Toast.LENGTH_SHORT).show();
         return false;
     }
 }
