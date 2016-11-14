@@ -21,4 +21,6 @@ public interface ISavedAccountsPresenter {
     public void deleteAccount(String username);
 
     public void onViewReady();
+
+    public void validateAccounts();
 }

@@ -43,4 +43,5 @@
     <string name="no_saved_accounts">You don\'t have any saved accounts</string>
     <string name="notifications">Notifications</string>
     <string name="check_accounts">Check Accounts Validity</string>
+    <string name="validating_accounts">Validating Accounts...</string>
 </resources>

@@ -19,4 +19,6 @@ public interface ISavedAccountsView {
     public void setUpOrRefreshRecyclerView(List<AccountsModel> list);
 
     public Context getContext();
+
+    public void onValidationComplete();
 }

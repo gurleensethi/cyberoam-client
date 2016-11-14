@@ -1,5 +1,6 @@
 package app.com.thetechnocafe.cyberoamclient.SavedAccounts;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -35,6 +36,7 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     private Adapters.SavedAccountsRecyclerAdapter mSavedAccountsRecyclerAdapter;
     private ISavedAccountsPresenter mPresenter;
     private static final String NEW_ACCOUNT_DIALOG_TAG = "newaccountdialog";
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,10 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
                 return true;
             }
             case R.id.menu_check_accounts_validity: {
+                //Show the progress dialog
+                setUpProgressDialog(getString(R.string.validating_accounts));
+
+                mPresenter.validateAccounts();
                 return true;
             }
         }
@@ -113,6 +119,12 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     }
 
     @Override
+    public void onValidationComplete() {
+        //Dismiss the progress dialog
+        mProgressDialog.dismiss();
+    }
+
+    @Override
     public void onDialogSaveClicked(String username, String password) {
         mPresenter.addNewAccount(username, password);
     }
@@ -124,5 +136,16 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
         inflater.inflate(R.menu.menu_saved_accounts, menu);
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    //Configure the progress dialog and its properties
+    private void setUpProgressDialog(String message) {
+        //Show progress dialog
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.setMessage(message);
+
+        //Show the progress dialog
+        mProgressDialog.show();
     }
 }

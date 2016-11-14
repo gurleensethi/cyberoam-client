@@ -1,9 +1,12 @@
 package app.com.thetechnocafe.cyberoamclient.SavedAccounts;
 
+import android.widget.Toast;
+
 import java.util.List;
 
 import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
+import app.com.thetechnocafe.cyberoamclient.Utils.AccountValidator;
 
 /**
  * Created by gurleensethi on 02/11/16.
@@ -26,6 +29,22 @@ public class SavedAccountsPresenter implements ISavedAccountsPresenter {
         //Call the initial setup methods on View layer
         mView.setUpView();
         mView.setUpOrRefreshRecyclerView(getSavedAccounts());
+    }
+
+    @Override
+    public void validateAccounts() {
+        //Call the validation function
+        new AccountValidator() {
+            @Override
+            public void onValidationComplete(boolean isSuccessful) {
+                if (isSuccessful) {
+                    //Notify View on validation complete
+                    mView.onValidationComplete();
+                    mView.setUpOrRefreshRecyclerView(getSavedAccounts());
+                }
+                Toast.makeText(mView.getContext(), "Status : " + isSuccessful, Toast.LENGTH_SHORT).show();
+            }
+        }.validateAccounts(mView.getContext());
     }
 
     @Override
