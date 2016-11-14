@@ -12,6 +12,7 @@ public class SharedPreferenceUtils {
     private static final String SHARED_PREFERENCES_LOGGED_IN_STATE = "loggedin";
     private static final String SHARED_PREFERENCES_BASE_IP_ADDRESS = "ip_address";
     private static final String SHARED_PREFERENCES_PORT = "post";
+    private static final String SHARED_PREFERENCES_NOTIFICATIONS = "notifications";
 
     //Change the login state
     public static void changeLoginState(Context context, String state) {
@@ -124,5 +125,24 @@ public class SharedPreferenceUtils {
                 mode;
 
         return completeUrl;
+    }
+
+    //Enable disable notification
+    public static void setNotifications(Context context, boolean state) {
+        //Get shared preferences and return boolean
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+        //Get editor
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(SHARED_PREFERENCES_NOTIFICATIONS, state);
+        editor.commit();
+    }
+
+    //Get notifications state
+    public static boolean getNotifications(Context context) {
+        //Get shared preferences and return boolean
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+        return sharedPreferences.getBoolean(SHARED_PREFERENCES_NOTIFICATIONS, false);
     }
 }

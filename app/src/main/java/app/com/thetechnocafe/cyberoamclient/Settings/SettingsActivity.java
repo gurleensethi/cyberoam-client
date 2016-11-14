@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import app.com.thetechnocafe.cyberoamclient.R;
@@ -17,6 +18,8 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     TextView mIPAddressTextView;
     @BindView(R.id.text_port_address)
     TextView mPortTextView;
+    @BindView(R.id.notifications_switch)
+    Switch mNotificationsSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

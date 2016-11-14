@@ -41,4 +41,5 @@
     <string name="thetechnocafe">TheTechnoCafe</string>
     <string name="about">About</string>
     <string name="no_saved_accounts">You don\'t have any saved accounts</string>
+    <string name="notifications">Notifications</string>
 </resources>
