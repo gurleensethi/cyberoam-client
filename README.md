@@ -21,4 +21,10 @@ Android client for cyberoam.
 * Notifications for errors
 * Save and use multiple accounts
 
+####V 0.2.0(Beta):
+* Enable/Disable notifications settings
+* View states in Login Activty
+* Fixed timer settings
+* Removed Toasts
+
 
