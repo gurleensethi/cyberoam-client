@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/check_accounts_validity"
+        android:icon="@drawable/ic_checked"
+        android:title="@string/check_accounts"
+        app:showAsAction="ifRoom|withText"/>
+</menu>

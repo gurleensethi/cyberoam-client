@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -110,5 +112,14 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     @Override
     public void onDialogSaveClicked(String username, String password) {
         mPresenter.addNewAccount(username, password);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Get menu inflator and inflate menu
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_saved_accounts, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
 }
