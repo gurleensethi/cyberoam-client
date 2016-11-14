@@ -22,7 +22,7 @@ public abstract class AccountValidator {
 
         //Check if list is empty
         if (list.size() == 0) {
-            onValidationComplete(false);
+            onValidationComplete(true);
         }
 
         //Iterate over the list for validation

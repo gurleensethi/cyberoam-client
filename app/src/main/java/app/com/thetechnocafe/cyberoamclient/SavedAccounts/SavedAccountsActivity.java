@@ -132,7 +132,7 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
 
         //Notify that cyberoam was unreachable
         if (!isSuccessful) {
-            Snackbar.make(mCoordinatorLayout, getString(R.string.cyberoam_unreachable), Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(mNewAccountFAB, getString(R.string.cyberoam_unreachable), Snackbar.LENGTH_SHORT).show();
         }
     }
 
