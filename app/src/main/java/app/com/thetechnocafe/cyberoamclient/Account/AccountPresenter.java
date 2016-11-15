@@ -47,6 +47,9 @@ public class AccountPresenter implements IAccountPresenter {
             }
         }.logout(mView.getContext(), SharedPreferenceUtils.getUsername(mView.getContext()), SharedPreferenceUtils.getPassword(mView.getContext()));
 
+        //Change logged in state
+        SharedPreferenceUtils.changeLoginState(mView.getContext(), ValueUtils.STATE_LOGGED_OUT);
+
         //Notify the view for logout
         mView.onLogout();
     }
