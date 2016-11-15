@@ -9,6 +9,7 @@ import android.widget.Toast;
 import app.com.thetechnocafe.cyberoamclient.Login.LoginBroadcastReceiver;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.TrafficUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 
 import static app.com.thetechnocafe.cyberoamclient.Login.LoginPresenter.BROADCAST_REQUEST_CODE;
@@ -28,7 +29,8 @@ public class AccountPresenter implements IAccountPresenter {
     public void onViewReady() {
         mView.onViewReady();
         mView.setInitialData(
-                SharedPreferenceUtils.getUsername(mView.getContext())
+                SharedPreferenceUtils.getUsername(mView.getContext()),
+                TrafficUtils.getTotalUsage(mView.getContext())
         );
     }
 

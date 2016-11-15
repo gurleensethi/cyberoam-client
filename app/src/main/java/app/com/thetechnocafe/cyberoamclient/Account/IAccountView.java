@@ -11,7 +11,7 @@ public interface IAccountView {
 
     void onViewReady();
 
-    void setInitialData(String username);
+    void setInitialData(String username, double dataUsed);
 
     void onLogout();
 }

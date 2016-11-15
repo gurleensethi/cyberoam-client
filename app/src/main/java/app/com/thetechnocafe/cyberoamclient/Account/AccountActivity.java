@@ -17,6 +17,8 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
     TextView mLoggedInUsername;
     @BindView(R.id.logout_button)
     Button mLogoutButton;
+    @BindView(R.id.data_consumed_text_view)
+    TextView mDataConsumedTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,6 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
 
         //Initialize the presenter
         mPresenter = new AccountPresenter(this);
-        mPresenter.onViewReady();
     }
 
     @Override
@@ -52,12 +53,19 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
     }
 
     @Override
-    public void setInitialData(String username) {
+    public void setInitialData(String username, double dataUsed) {
         mLoggedInUsername.setText(username);
+        mDataConsumedTextView.setText(String.valueOf(dataUsed));
     }
 
     @Override
     public void onLogout() {
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.onViewReady();
     }
 }
