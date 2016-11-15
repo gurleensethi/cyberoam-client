@@ -58,7 +58,7 @@ public class AccountPresenter implements IAccountPresenter {
 
     @Override
     public boolean isLoggedIn() {
-        if (SharedPreferenceUtils.getLoginState(mView.getContext()) == ValueUtils.STATE_LOGGED_IN) {
+        if (SharedPreferenceUtils.getLoginState(mView.getContext()).equals(ValueUtils.STATE_LOGGED_IN)) {
             return true;
         }
         return false;

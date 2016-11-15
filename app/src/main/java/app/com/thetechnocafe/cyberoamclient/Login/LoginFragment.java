@@ -264,7 +264,9 @@ public class LoginFragment extends Fragment implements ILoginView {
         toggleViewStates(isLoggedIn, false);
 
         //If logged in go to account activity
-        Intent intent = new Intent(getContext(), AccountActivity.class);
-        startActivity(intent);
+        if (isLoggedIn) {
+            Intent intent = new Intent(getContext(), AccountActivity.class);
+            startActivity(intent);
+        }
     }
 }
