@@ -132,4 +132,9 @@ public class LoginPresenter implements ILoginPresenter {
                 SharedPreferenceUtils.getPassword(mainView.getContext())
         );
     }
+
+    @Override
+    public void refreshState() {
+        mainView.onRefreshState(SharedPreferenceUtils.getLoginState(mainView.getContext()).equals(ValueUtils.STATE_LOGGED_IN));
+    }
 }

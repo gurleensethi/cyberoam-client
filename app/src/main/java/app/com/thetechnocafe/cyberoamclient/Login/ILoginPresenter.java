@@ -18,4 +18,6 @@ public interface ILoginPresenter {
     List<AccountsModel> getSavedAccounts();
 
     void changeSharedUsernameAndPassword(String username);
+
+    void refreshState();
 }

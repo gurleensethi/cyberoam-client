@@ -252,4 +252,15 @@ public class LoginFragment extends Fragment implements ILoginView {
         SimpleMessageDialogFragment fragment = SimpleMessageDialogFragment.getInstance(R.drawable.ic_warning, null, getString(R.string.beta_message));
         fragment.show(getActivity().getFragmentManager(), SIMPLE_DIALOG_TAG);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mLoginPresenter.refreshState();
+    }
+
+    @Override
+    public void onRefreshState(boolean isLoggedIn) {
+        toggleViewStates(isLoggedIn, false);
+    }
 }

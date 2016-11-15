@@ -16,4 +16,6 @@ public interface ILoginView {
     void setUpSavedState(String username, String password);
 
     void completeFirstRunSetup();
+
+    void onRefreshState(boolean isLoggedIn);
 }
