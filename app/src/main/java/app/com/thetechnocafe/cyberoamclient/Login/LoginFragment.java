@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import app.com.thetechnocafe.cyberoamclient.Account.AccountActivity;
 import app.com.thetechnocafe.cyberoamclient.Dialogs.SavedAccountsSelectDialogFragment;
 import app.com.thetechnocafe.cyberoamclient.Dialogs.SimpleMessageDialogFragment;
 import app.com.thetechnocafe.cyberoamclient.R;
@@ -138,6 +139,10 @@ public class LoginFragment extends Fragment implements ILoginView {
 
             //Set up alarm manager for repeated checks for login
             mLoginPresenter.setUpAlarmManager();
+
+            //Move to Account Activity
+            Intent intent = new Intent(getContext(), AccountActivity.class);
+            startActivity(intent);
         } else {
             switch (errorCode) {
                 case ValueUtils.ERROR_USERNAME_EMPTY: {
