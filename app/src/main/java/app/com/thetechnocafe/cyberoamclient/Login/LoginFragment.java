@@ -262,5 +262,9 @@ public class LoginFragment extends Fragment implements ILoginView {
     @Override
     public void onRefreshState(boolean isLoggedIn) {
         toggleViewStates(isLoggedIn, false);
+
+        //If logged in go to account activity
+        Intent intent = new Intent(getContext(), AccountActivity.class);
+        startActivity(intent);
     }
 }
