@@ -6,4 +6,6 @@ package app.com.thetechnocafe.cyberoamclient.Account;
 
 public interface IAccountPresenter {
     void onViewReady();
+
+    void logout();
 }

@@ -10,4 +10,8 @@ public interface IAccountView {
     Context getContext();
 
     void onViewReady();
+
+    void setInitialData(String username);
+
+    void onLogout();
 }
