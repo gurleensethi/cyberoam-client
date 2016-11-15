@@ -12,7 +12,7 @@ public class TrafficUtils {
      * Store Total number of bytes from Traffic Stats(Received + Transmitted),
      * store it in SP
      */
-    private static void saveInitialBytes(Context context) {
+    public static void saveInitialBytes(Context context) {
         //Get total bytes
         long totalBytes = TrafficStats.getTotalRxBytes() + TrafficStats.getTotalTxBytes();
 
@@ -23,7 +23,7 @@ public class TrafficUtils {
     /**
      * Get current Data usage in MB
      */
-    private static double getTotalUsage(Context context) {
+    public static double getTotalUsage(Context context) {
         //Get initial bytes from SP
         long initialBytes = SharedPreferenceUtils.getInitialDataBytes(context);
 

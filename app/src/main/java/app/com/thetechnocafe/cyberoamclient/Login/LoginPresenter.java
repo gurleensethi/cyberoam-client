@@ -13,6 +13,7 @@ import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.TrafficUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 
 /**
@@ -69,6 +70,9 @@ public class LoginPresenter implements ILoginPresenter {
         } else {
             //Add username and password to shared preferences
             SharedPreferenceUtils.setUsernameAndPassword(mainView.getContext(), username, password);
+
+            //Save the initial bytes
+            TrafficUtils.saveInitialBytes(mainView.getContext());
 
             //Send login request
             mNetworkUtils.login(mainView.getContext(), username, password);
