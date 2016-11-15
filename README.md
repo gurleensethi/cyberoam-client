@@ -28,3 +28,7 @@ Android client for cyberoam.
 
 ####V 0.3.0(Beta):
 * Fixed timer settings
+
+####V 0.4.0(Beta)
+* Account Validtor(validate the credentials of your saved accounts)
+* Bug fixes
