@@ -56,6 +56,14 @@ public class AccountPresenter implements IAccountPresenter {
         mView.onLogout();
     }
 
+    @Override
+    public boolean isLoggedIn() {
+        if (SharedPreferenceUtils.getLoginState(mView.getContext()) == ValueUtils.STATE_LOGGED_IN) {
+            return true;
+        }
+        return false;
+    }
+
     //Cancel the pending alarms
     public void cancelAlarm() {
         //Get alarm manager service

@@ -8,4 +8,6 @@ public interface IAccountPresenter {
     void onViewReady();
 
     void logout();
+
+    boolean isLoggedIn();
 }

@@ -14,7 +14,7 @@ public class TrafficUtils {
      */
     public static void saveInitialBytes(Context context) {
         //Get total bytes
-        long totalBytes = TrafficStats.getTotalRxBytes() + TrafficStats.getTotalTxBytes();
+        long totalBytes = TrafficStats.getTotalRxBytes();// + TrafficStats.getTotalTxBytes();
 
         //Store the bytes
         SharedPreferenceUtils.setInitialDataBytes(context, totalBytes);
@@ -28,15 +28,18 @@ public class TrafficUtils {
         long initialBytes = SharedPreferenceUtils.getInitialDataBytes(context);
 
         //Get current bytes
-        long currentBytes = TrafficStats.getTotalRxBytes() + TrafficStats.getTotalTxBytes();
+        long currentBytes = TrafficStats.getTotalRxBytes();// + TrafficStats.getTotalTxBytes();
 
         //Subtract to get session bytes
         long bytesUsed = currentBytes - initialBytes;
 
         //Convert to MB
-        double bytesUsedInMB = (bytesUsed / 1024) / 1024;
+        double bytesUsedInMB = bytesUsed / (1024.0 * 1024.0);
 
-        return bytesUsedInMB;
+        //Convert to 2 decimal places
+        double bytesUsedInMB2Decimal = ((int) (bytesUsedInMB * 100)) / 100.0;
+
+        return bytesUsedInMB2Decimal;
     }
 
 }

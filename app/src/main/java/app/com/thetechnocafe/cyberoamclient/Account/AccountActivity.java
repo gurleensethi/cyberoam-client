@@ -68,4 +68,11 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
         super.onResume();
         mPresenter.onViewReady();
     }
+
+    @Override
+    public void onBackPressed() {
+        if (!mPresenter.isLoggedIn()) {
+            super.onBackPressed();
+        }
+    }
 }
