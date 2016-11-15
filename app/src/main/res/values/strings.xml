@@ -46,4 +46,8 @@
     <string name="validating_accounts">Validating Accounts...</string>
     <string name="valid_account">Valid Account</string>
     <string name="not_valid_account">Wrong Credentials</string>
+    <string name="logout">Logout</string>
+    <string name="mb">MB</string>
+    <string name="data_session_consumed">Data consumed this session</string>
+    <string name="logged_in_as">Logged in as</string>
 </resources>

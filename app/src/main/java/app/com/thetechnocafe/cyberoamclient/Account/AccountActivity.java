@@ -7,11 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import app.com.thetechnocafe.cyberoamclient.R;
 
 public class AccountActivity extends AppCompatActivity implements IAccountView {
+    private IAccountPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
+        mPresenter = new AccountPresenter(this);
     }
 
     @Override
