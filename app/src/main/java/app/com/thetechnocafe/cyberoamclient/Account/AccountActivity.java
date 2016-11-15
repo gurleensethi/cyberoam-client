@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AccountActivity extends AppCompatActivity implements IAccountView {
     private IAccountPresenter mPresenter;
@@ -22,7 +23,12 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
+        //Bind butter knife
+        ButterKnife.bind(this);
+
+        //Initialize the presenter
         mPresenter = new AccountPresenter(this);
+        mPresenter.onViewReady();
     }
 
     @Override
