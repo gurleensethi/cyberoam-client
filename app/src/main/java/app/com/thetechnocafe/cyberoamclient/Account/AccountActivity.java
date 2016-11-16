@@ -19,6 +19,8 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
     Button mLogoutButton;
     @BindView(R.id.data_consumed_text_view)
     TextView mDataConsumedTextView;
+    @BindView(R.id.logged_in_time)
+    TextView mLoggedInTimeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
     }
 
     @Override
-    public void onViewReady() {
+    public void onViewReady(boolean isLoggedIn) {
         setUpOnClickListeners();
     }
 

@@ -9,7 +9,7 @@ import android.content.Context;
 public interface IAccountView {
     Context getContext();
 
-    void onViewReady();
+    void onViewReady(boolean isLoggedIn);
 
     void setInitialData(String username, double dataUsed);
 

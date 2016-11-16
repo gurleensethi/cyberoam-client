@@ -50,4 +50,5 @@
     <string name="mb">MB</string>
     <string name="data_session_consumed">Data consumed this session</string>
     <string name="logged_in_as">Logged in as</string>
+    <string name="logged_in_at">Logged in at</string>
 </resources>
