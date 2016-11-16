@@ -14,6 +14,7 @@ public class SharedPreferenceUtils {
     private static final String SHARED_PREFERENCES_PORT = "post";
     private static final String SHARED_PREFERENCES_NOTIFICATIONS = "notifications";
     private static final String SHARED_PREFERENCES_DATA_BYTES = "databytes";
+    private static final String SHARED_PREFERENECS_LOGGED_IN_TIME = "loggedintime";
 
     //Change the login state
     public static void changeLoginState(Context context, String state) {
@@ -164,5 +165,24 @@ public class SharedPreferenceUtils {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
 
         return sharedPreferences.getLong(SHARED_PREFERENCES_DATA_BYTES, 0);
+    }
+
+    //Set logged in time
+    public static void setLoggedInTime(Context context, long bytes) {
+        //Get shared preferences and return boolean
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+        //Get editor
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong(SHARED_PREFERENECS_LOGGED_IN_TIME, bytes);
+        editor.commit();
+    }
+
+    //Get logged in time
+    public static long getLoggedInTime(Context context) {
+        //Get shared preferences and return boolean
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+        return sharedPreferences.getLong(SHARED_PREFERENECS_LOGGED_IN_TIME, 0);
     }
 }
