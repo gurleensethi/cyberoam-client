@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.util.Log;
 
+import java.util.Date;
 import java.util.List;
 
 import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
@@ -73,6 +74,9 @@ public class LoginPresenter implements ILoginPresenter {
 
             //Save the initial bytes
             TrafficUtils.saveInitialBytes(mainView.getContext());
+
+            //Save initial time
+            SharedPreferenceUtils.setLoggedInTime(mainView.getContext(), new Date().getTime());
 
             //Send login request
             mNetworkUtils.login(mainView.getContext(), username, password);

@@ -55,9 +55,10 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
     }
 
     @Override
-    public void setInitialData(String username, double dataUsed) {
+    public void setInitialData(String username, double dataUsed, String loggedInTime) {
         mLoggedInUsername.setText(username);
         mDataConsumedTextView.setText(String.valueOf(dataUsed));
+        mLoggedInTimeTextView.setText(loggedInTime);
     }
 
     @Override

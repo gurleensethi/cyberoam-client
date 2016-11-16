@@ -9,6 +9,7 @@ import android.widget.Toast;
 import app.com.thetechnocafe.cyberoamclient.Login.LoginBroadcastReceiver;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.TimeUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.TrafficUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 
@@ -30,7 +31,8 @@ public class AccountPresenter implements IAccountPresenter {
         mView.onViewReady(SharedPreferenceUtils.getLoginState(mView.getContext()).equals(ValueUtils.STATE_LOGGED_IN));
         mView.setInitialData(
                 SharedPreferenceUtils.getUsername(mView.getContext()),
-                TrafficUtils.getTotalUsage(mView.getContext())
+                TrafficUtils.getTotalUsage(mView.getContext()),
+                TimeUtils.getTimeInString(mView.getContext())
         );
     }
 
