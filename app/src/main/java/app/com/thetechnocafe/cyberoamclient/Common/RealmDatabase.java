@@ -11,6 +11,7 @@ import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
+import io.realm.Sort;
 import io.realm.exceptions.RealmPrimaryKeyConstraintException;
 
 /**
@@ -152,7 +153,7 @@ public class RealmDatabase {
 
         //Begin transaction and get list
         mRealm.beginTransaction();
-        modelsList = mRealm.where(SessionLogModel.class).findAll().sort(ValueUtils.REALM_SESSION_LOGGED_IN_TIME);
+        modelsList = mRealm.where(SessionLogModel.class).findAll().sort(ValueUtils.REALM_SESSION_LOGGED_IN_TIME, Sort.DESCENDING);
         mRealm.commitTransaction();
 
         return modelsList;

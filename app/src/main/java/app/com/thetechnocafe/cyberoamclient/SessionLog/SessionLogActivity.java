@@ -75,7 +75,12 @@ public class SessionLogActivity extends AppCompatActivity implements ISessionLog
             mSessionLogRecyclerAdapter = new Adapters().new SessionLogRecyclerAdapter(getContext(), list);
             mSessionLogRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             mSessionLogRecyclerView.setAdapter(mSessionLogRecyclerAdapter);
+        } else {
+            mSessionLogRecyclerAdapter.notifyDataSetChanged();
         }
+
+        //Add subtitle to toolbar
+        getSupportActionBar().setSubtitle(String.format(getString(R.string.total_logs), list.size()));
     }
 
     @Override
