@@ -27,6 +27,7 @@
                 android:textStyle="bold|italic"/>
 
             <TextView
+                android:id="@+id/enrollment_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
@@ -54,10 +55,11 @@
                         android:textStyle="bold|italic"/>
 
                     <TextView
+                        android:id="@+id/logged_in_time_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="12:32pm"
+                        android:text="12:32PM"
                         android:textColor="@android:color/white"
                         android:textSize="24sp"/>
                 </LinearLayout>
@@ -77,6 +79,7 @@
                         android:textStyle="bold|italic"/>
 
                     <TextView
+                        android:id="@+id/duration_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -121,6 +124,7 @@
                     android:src="@drawable/ic_flame"/>
 
                 <TextView
+                    android:id="@+id/data_consumed_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
