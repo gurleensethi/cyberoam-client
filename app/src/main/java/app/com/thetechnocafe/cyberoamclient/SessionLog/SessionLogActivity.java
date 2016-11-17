@@ -3,6 +3,7 @@ package app.com.thetechnocafe.cyberoamclient.SessionLog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import app.com.thetechnocafe.cyberoamclient.R;
@@ -12,6 +13,8 @@ public class SessionLogActivity extends AppCompatActivity implements ISessionLog
     private ISessionLogPresenter mPresenter;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.session_log_recycler_view)
+    RecyclerView mSessionLogRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,7 @@ public class SessionLogActivity extends AppCompatActivity implements ISessionLog
         //Set up toolbar
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.saved_accounts));
+        getSupportActionBar().setTitle(getString(R.string.activity_log));
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
 
         setUpOnClickListeners();
