@@ -8,4 +8,6 @@ public interface ISettingsPresenter {
     void onViewReady();
 
     void changeNotificationsState(boolean state);
+
+    void changeActivityLogState(boolean state);
 }

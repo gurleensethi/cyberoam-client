@@ -15,6 +15,7 @@ public class SharedPreferenceUtils {
     private static final String SHARED_PREFERENCES_NOTIFICATIONS = "notifications";
     private static final String SHARED_PREFERENCES_DATA_BYTES = "databytes";
     private static final String SHARED_PREFERENECS_LOGGED_IN_TIME = "loggedintime";
+    private static final String SHARED_PREFERENCES_ACTIVITY_LOG = "activitylog";
 
     //Change the login state
     public static void changeLoginState(Context context, String state) {
@@ -184,5 +185,24 @@ public class SharedPreferenceUtils {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
 
         return sharedPreferences.getLong(SHARED_PREFERENECS_LOGGED_IN_TIME, 0);
+    }
+
+    //Enable disable notification
+    public static void setActivityLog(Context context, boolean state) {
+        //Get shared preferences and return boolean
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+        //Get editor
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(SHARED_PREFERENCES_ACTIVITY_LOG, state);
+        editor.commit();
+    }
+
+    //Get notifications state
+    public static boolean getActivityLog(Context context) {
+        //Get shared preferences and return boolean
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+        return sharedPreferences.getBoolean(SHARED_PREFERENCES_ACTIVITY_LOG, false);
     }
 }

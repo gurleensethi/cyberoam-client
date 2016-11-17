@@ -9,7 +9,7 @@ import android.content.Context;
 interface ISettingsView {
     void setUpView();
 
-    void setUpSettingsState(String ipAddress, String port, boolean notificationsEnabled);
+    void setUpSettingsState(String ipAddress, String port, boolean notificationsEnabled, boolean isActivityLogEnabled);
 
     Context getContext();
 }

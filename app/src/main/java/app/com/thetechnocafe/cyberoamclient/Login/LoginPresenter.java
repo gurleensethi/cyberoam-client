@@ -52,6 +52,7 @@ public class LoginPresenter implements ILoginPresenter {
             SharedPreferenceUtils.setBaseIPAddress(mainView.getContext(), ValueUtils.BASE_IP_ADDRESS);
             SharedPreferenceUtils.setBasePort(mainView.getContext(), ValueUtils.BASE_PORT);
             SharedPreferenceUtils.setNotifications(mainView.getContext(), true);
+            SharedPreferenceUtils.setActivityLog(mainView.getContext(), true);
 
             mainView.completeFirstRunSetup();
         }

@@ -21,6 +21,8 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     TextView mPortTextView;
     @BindView(R.id.notifications_switch)
     Switch mNotificationsSwitch;
+    @BindView(R.id.activity_log_switch)
+    Switch mActivityLogSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +49,11 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     }
 
     @Override
-    public void setUpSettingsState(String ipAddress, String port, boolean notificationsEnabled) {
+    public void setUpSettingsState(String ipAddress, String port, boolean notificationsEnabled, boolean isActivityLogEnabled) {
         mIPAddressTextView.setText(ipAddress);
         mPortTextView.setText(port);
         mNotificationsSwitch.setChecked(notificationsEnabled);
+        mActivityLogSwitch.setChecked(isActivityLogEnabled);
     }
 
     //Set up onclickListeners
@@ -59,6 +62,13 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mPresenter.changeNotificationsState(isChecked);
+            }
+        });
+
+        mActivityLogSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
             }
         });
     }
