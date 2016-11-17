@@ -3,6 +3,7 @@ package app.com.thetechnocafe.cyberoamclient.Common;
 import android.content.Context;
 
 import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
+import app.com.thetechnocafe.cyberoamclient.Models.SessionLogModel;
 import app.com.thetechnocafe.cyberoamclient.Utils.RealmMigrationUtil;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import io.realm.Realm;
@@ -100,7 +101,7 @@ public class RealmDatabase {
     }
 
     /**
-     * Get passwrod for a corresponding username
+     * Get password for a corresponding username
      */
     public String getPassword(String username) {
         String password = "";
@@ -125,6 +126,18 @@ public class RealmDatabase {
             public void execute(Realm realm) {
                 AccountsModel model = mRealm.where(AccountsModel.class).equalTo(ValueUtils.REALM_ACCOUNTS_USERNAME, username).findFirst();
                 model.setAccountValid(isValid);
+            }
+        });
+    }
+
+    /**
+     * Insert session log into realm
+     */
+    public void saveLogSession(final SessionLogModel model) {
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.insert(model);
             }
         });
     }

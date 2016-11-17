@@ -11,6 +11,7 @@ import android.util.Log;
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.NotificationsUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.SessionLogUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 
@@ -58,6 +59,9 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
 
                         //Change login state to LOGGED OUT
                         SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
+
+                        //Record session
+                        SessionLogUtils.saveSessionLog(context);
                     }
                 }
             }
@@ -106,6 +110,9 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
 
                     //Change logged in state
                     SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
+
+                    //Record session
+                    SessionLogUtils.saveSessionLog(context);
                 }
             }
         }.login(context, username, password);

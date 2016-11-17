@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.Date;
 
+import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
 import app.com.thetechnocafe.cyberoamclient.Models.SessionLogModel;
 
 /**
@@ -14,7 +15,7 @@ public class SessionLogUtils {
     /**
      * Save the log of the user into realm
      */
-    public static void saveLog(Context context) {
+    public static void saveSessionLog(Context context) {
         //Get consumed data
         double dataConsumed = TrafficUtils.getTotalUsage(context);
 
@@ -33,5 +34,8 @@ public class SessionLogUtils {
         model.setDataConsumed(dataConsumed);
         model.setLoggedInDuration(loggedInDuration);
         model.setLoggedInTime(loggedInTime);
+
+        //Save to realm
+        RealmDatabase.getInstance(context).saveLogSession(model);
     }
 }

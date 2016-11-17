@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import app.com.thetechnocafe.cyberoamclient.Login.LoginBroadcastReceiver;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.SessionLogUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.TimeUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.TrafficUtils;
@@ -39,7 +40,7 @@ public class AccountPresenter implements IAccountPresenter {
     @Override
     public void logout() {
         cancelAlarm();
-        SharedPreferenceUtils.changeLoginState(mView.getContext(), ValueUtils.STATE_LOGGED_OUT);
+
         new NetworkUtils(null) {
             @Override
             public void onResultReceived(boolean success, int errorCode) {
@@ -53,6 +54,9 @@ public class AccountPresenter implements IAccountPresenter {
 
         //Change logged in state
         SharedPreferenceUtils.changeLoginState(mView.getContext(), ValueUtils.STATE_LOGGED_OUT);
+
+        //Record session
+        SessionLogUtils.saveSessionLog(mView.getContext());
 
         //Notify the view for logout
         mView.onLogout();
