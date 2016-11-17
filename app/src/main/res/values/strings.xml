@@ -18,6 +18,7 @@
     <string name="saved_accounts">Saved Accounts</string>
     <string-array name="navigation_options">
         <item>Saved Accounts</item>
+        <item>Activity Log</item>
         <item>Settings</item>
         <item>About</item>
     </string-array>
@@ -51,4 +52,6 @@
     <string name="data_session_consumed">Data consumed this session</string>
     <string name="logged_in_as">Logged in as</string>
     <string name="logged_in_at">Logged in at</string>
+    <string name="duration">Duration</string>
+    <string name="data_consumed">Data consumed</string>
 </resources>

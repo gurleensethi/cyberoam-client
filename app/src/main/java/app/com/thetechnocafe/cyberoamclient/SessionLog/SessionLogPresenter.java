@@ -13,6 +13,6 @@ public class SessionLogPresenter implements ISessionLogPresenter {
 
     @Override
     public void onViewReady() {
-        mView.onViewRead();
+        mView.onViewReady();
     }
 }

@@ -9,5 +9,5 @@ import android.content.Context;
 public interface ISessionLogView {
     Context getContext();
 
-    void onViewRead();
+    void onViewReady();
 }
