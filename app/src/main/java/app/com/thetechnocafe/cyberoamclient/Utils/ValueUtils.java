@@ -48,4 +48,6 @@ public class ValueUtils {
     public static final String REALM_ACCOUNTS_VALID = "isAccountValid";
 
     public static final String FIRST_RUN = "first_run";
+
+    public static final long UI_UPDATE_INTERVAL = 1000;
 }

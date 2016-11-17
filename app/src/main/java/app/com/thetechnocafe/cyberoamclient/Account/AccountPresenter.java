@@ -66,6 +66,15 @@ public class AccountPresenter implements IAccountPresenter {
         return false;
     }
 
+    @Override
+    public void refreshUIDate() {
+        mView.setInitialData(
+                SharedPreferenceUtils.getUsername(mView.getContext()),
+                TrafficUtils.getTotalUsage(mView.getContext()),
+                TimeUtils.getTimeInString(mView.getContext())
+        );
+    }
+
     //Cancel the pending alarms
     public void cancelAlarm() {
         //Get alarm manager service

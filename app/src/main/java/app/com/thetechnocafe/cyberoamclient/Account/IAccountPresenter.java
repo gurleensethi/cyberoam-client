@@ -10,4 +10,6 @@ public interface IAccountPresenter {
     void logout();
 
     boolean isLoggedIn();
+
+    void refreshUIDate();
 }
