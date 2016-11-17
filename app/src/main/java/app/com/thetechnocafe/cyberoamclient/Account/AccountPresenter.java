@@ -29,12 +29,12 @@ public class AccountPresenter implements IAccountPresenter {
 
     @Override
     public void onViewReady() {
-        mView.onViewReady(SharedPreferenceUtils.getLoginState(mView.getContext()).equals(ValueUtils.STATE_LOGGED_IN));
         mView.setInitialData(
                 SharedPreferenceUtils.getUsername(mView.getContext()),
                 TrafficUtils.getTotalUsage(mView.getContext()),
                 TimeUtils.getTimeInString(mView.getContext())
         );
+        mView.onViewReady(SharedPreferenceUtils.getLoginState(mView.getContext()).equals(ValueUtils.STATE_LOGGED_IN));
     }
 
     @Override

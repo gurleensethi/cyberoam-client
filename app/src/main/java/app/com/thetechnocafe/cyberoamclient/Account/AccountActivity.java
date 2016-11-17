@@ -46,6 +46,11 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
 
     @Override
     public void onViewReady(boolean isLoggedIn) {
+        //If not logged in
+        if (!isLoggedIn) {
+            finish();
+        }
+
         setUpOnClickListeners();
         setUpAndStartUIHandler();
     }
