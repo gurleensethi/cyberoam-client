@@ -6,4 +6,6 @@ package app.com.thetechnocafe.cyberoamclient.SessionLog;
 
 public interface ISessionLogPresenter {
     void onViewReady();
+
+    void requestSessionData();
 }

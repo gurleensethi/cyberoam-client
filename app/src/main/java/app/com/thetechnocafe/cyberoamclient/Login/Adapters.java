@@ -16,6 +16,7 @@ import app.com.thetechnocafe.cyberoamclient.About.AboutActivity;
 import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.SavedAccounts.SavedAccountsActivity;
+import app.com.thetechnocafe.cyberoamclient.SessionLog.SessionLogActivity;
 import app.com.thetechnocafe.cyberoamclient.Settings.SettingsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,6 +67,10 @@ public class Adapters {
                         mOptionsImage.setImageResource(R.drawable.ic_info);
                         break;
                     }
+                    case "Activity Log": {
+                        mOptionsImage.setImageResource(R.drawable.ic_notebook);
+                        break;
+                    }
                 }
             }
 
@@ -84,6 +89,11 @@ public class Adapters {
                     }
                     case "About": {
                         Intent intent = new Intent(mContext, AboutActivity.class);
+                        mContext.startActivity(intent);
+                        break;
+                    }
+                    case "Activity Log": {
+                        Intent intent = new Intent(mContext, SessionLogActivity.class);
                         mContext.startActivity(intent);
                         break;
                     }

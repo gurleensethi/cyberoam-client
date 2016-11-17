@@ -152,7 +152,7 @@ public class RealmDatabase {
 
         //Begin transaction and get list
         mRealm.beginTransaction();
-        modelsList = mRealm.where(SessionLogModel.class).findAll();
+        modelsList = mRealm.where(SessionLogModel.class).findAll().sort(ValueUtils.REALM_SESSION_LOGGED_IN_TIME);
         mRealm.commitTransaction();
 
         return modelsList;
