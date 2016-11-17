@@ -24,5 +24,20 @@ public class RealmMigrationUtil implements RealmMigration {
             //Increment the version
             oldVersion++;
         }
+
+        //If version 1 add SessionLogModel
+        if (oldVersion == 1) {
+            if (!schema.contains(ValueUtils.REALM_SESSION_CLASS)) {
+                //Add model
+                schema.get(ValueUtils.REALM_SESSION_CLASS)
+                        .addField(ValueUtils.REALM_SESSION_USERNAME, String.class)
+                        .addField(ValueUtils.REALM_SESSION_DATA_CONSUMED, double.class)
+                        .addField(ValueUtils.REALM_SESSION_LOGGED_IN_DURATION, long.class)
+                        .addField(ValueUtils.REALM_SESSION_LOGGED_IN_TIME, long.class);
+            }
+
+            //Increment the version
+            oldVersion++;
+        }
     }
 }

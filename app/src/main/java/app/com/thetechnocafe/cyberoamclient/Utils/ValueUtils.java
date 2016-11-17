@@ -40,12 +40,18 @@ public class ValueUtils {
     public static final String VOLLEY_ACCOUNT_VALIDITY_TAG = "volley_account_validity_tag";
 
     //Keys for Realm (Don't change these values)
-    public static final long REALM_DATABASE_VERSION = 1;
+    public static final long REALM_DATABASE_VERSION = 2;
 
     public static final String REALM_ACCOUNTS_CLASS = "AccountsModel";
     public static final String REALM_ACCOUNTS_USERNAME = "mUsername";
     public static final String REALM_ACCOUNTS_PASSWORD = "mPassword";
     public static final String REALM_ACCOUNTS_VALID = "isAccountValid";
+
+    public static final String REALM_SESSION_CLASS = "SessionLogModel";
+    public static final String REALM_SESSION_USERNAME = "mUsername";
+    public static final String REALM_SESSION_LOGGED_IN_TIME = "mLoggedInTime";
+    public static final String REALM_SESSION_DATA_CONSUMED = "mDataConsumed";
+    public static final String REALM_SESSION_LOGGED_IN_DURATION = "mLoggedInDuration";
 
     public static final String FIRST_RUN = "first_run";
 

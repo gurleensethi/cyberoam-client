@@ -2,6 +2,8 @@ package app.com.thetechnocafe.cyberoamclient.Common;
 
 import android.content.Context;
 
+import java.util.List;
+
 import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.Models.SessionLogModel;
 import app.com.thetechnocafe.cyberoamclient.Utils.RealmMigrationUtil;
@@ -140,5 +142,19 @@ public class RealmDatabase {
                 realm.insert(model);
             }
         });
+    }
+
+    /**
+     * Get a list of all SessionLogModels
+     */
+    public List<SessionLogModel> getSessionLogs() {
+        List<SessionLogModel> modelsList;
+
+        //Begin transaction and get list
+        mRealm.beginTransaction();
+        modelsList = mRealm.where(SessionLogModel.class).findAll();
+        mRealm.commitTransaction();
+
+        return modelsList;
     }
 }
