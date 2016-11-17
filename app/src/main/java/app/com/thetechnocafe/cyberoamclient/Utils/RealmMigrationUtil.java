@@ -29,7 +29,7 @@ public class RealmMigrationUtil implements RealmMigration {
         if (oldVersion == 1) {
             if (!schema.contains(ValueUtils.REALM_SESSION_CLASS)) {
                 //Add model
-                schema.get(ValueUtils.REALM_SESSION_CLASS)
+                schema.create(ValueUtils.REALM_SESSION_CLASS)
                         .addField(ValueUtils.REALM_SESSION_USERNAME, String.class)
                         .addField(ValueUtils.REALM_SESSION_DATA_CONSUMED, double.class)
                         .addField(ValueUtils.REALM_SESSION_LOGGED_IN_DURATION, long.class)
