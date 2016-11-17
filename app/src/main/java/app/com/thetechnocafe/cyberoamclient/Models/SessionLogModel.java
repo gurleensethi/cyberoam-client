@@ -8,31 +8,31 @@ import io.realm.RealmObject;
 
 public class SessionLogModel extends RealmObject {
     private String mUsername;
-    private String mLoggedInTime;
-    private long mDataConsumed;
-    private String mLoggedInDuration;
+    private long mLoggedInTime;
+    private double mDataConsumed;
+    private long mLoggedInDuration;
 
-    public long getDataConsumed() {
+    public double getDataConsumed() {
         return mDataConsumed;
     }
 
-    public void setDataConsumed(long dataConsumed) {
+    public void setDataConsumed(double dataConsumed) {
         mDataConsumed = dataConsumed;
     }
 
-    public String getLoggedInDuration() {
+    public long getLoggedInDuration() {
         return mLoggedInDuration;
     }
 
-    public void setLoggedInDuration(String loggedInDuration) {
+    public void setLoggedInDuration(long loggedInDuration) {
         mLoggedInDuration = loggedInDuration;
     }
 
-    public String getLoggedInTime() {
+    public long getLoggedInTime() {
         return mLoggedInTime;
     }
 
-    public void setLoggedInTime(String loggedInTime) {
+    public void setLoggedInTime(long loggedInTime) {
         mLoggedInTime = loggedInTime;
     }
 
