@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class SessionLogActivity extends AppCompatActivity implements ISessionLog
     Toolbar mToolbar;
     @BindView(R.id.session_log_recycler_view)
     RecyclerView mSessionLogRecyclerView;
+    @BindView(R.id.session_log_text_view)
+    TextView mSessionLogTextView;
     private Adapters.SessionLogRecyclerAdapter mSessionLogRecyclerAdapter;
 
     @Override
@@ -54,8 +58,13 @@ public class SessionLogActivity extends AppCompatActivity implements ISessionLog
     }
 
     @Override
-    public void onSessionDataReceived(List<SessionLogModel> list) {
-        setUpOrRefreshRecyclerView(list);
+    public void onSessionDataReceived(List<SessionLogModel> list, boolean isActivatedInSettings) {
+        //If deactivated in settings show message
+        if (!isActivatedInSettings) {
+            mSessionLogTextView.setText(getString(R.string.activity_log_not_enabled));
+        } else {
+            setUpOrRefreshRecyclerView(list);
+        }
     }
 
     //Set up onClickListeners
@@ -71,16 +80,25 @@ public class SessionLogActivity extends AppCompatActivity implements ISessionLog
 
     //Refresh recycler view
     private void setUpOrRefreshRecyclerView(List<SessionLogModel> list) {
-        if (mSessionLogRecyclerAdapter == null) {
-            mSessionLogRecyclerAdapter = new Adapters().new SessionLogRecyclerAdapter(getContext(), list);
-            mSessionLogRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            mSessionLogRecyclerView.setAdapter(mSessionLogRecyclerAdapter);
-        } else {
-            mSessionLogRecyclerAdapter.notifyDataSetChanged();
-        }
+        //Check if list is empty
+        if (list.size() > 0) {
+            if (mSessionLogRecyclerAdapter == null) {
+                mSessionLogRecyclerAdapter = new Adapters().new SessionLogRecyclerAdapter(getContext(), list);
+                mSessionLogRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                mSessionLogRecyclerView.setAdapter(mSessionLogRecyclerAdapter);
+            } else {
+                mSessionLogRecyclerAdapter.notifyDataSetChanged();
+            }
 
-        //Add subtitle to toolbar
-        getSupportActionBar().setSubtitle(String.format(getString(R.string.total_logs), list.size()));
+            //Toggle visibility
+            mSessionLogRecyclerView.setVisibility(View.VISIBLE);
+            mSessionLogTextView.setVisibility(View.GONE);
+
+            //Add subtitle to toolbar
+            getSupportActionBar().setSubtitle(String.format(getString(R.string.total_logs), String.valueOf(list.size())));
+        } else {
+            mSessionLogTextView.setText(getString(R.string.empty_activity_log));
+        }
     }
 
     @Override

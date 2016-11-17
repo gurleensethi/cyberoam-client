@@ -158,4 +158,16 @@ public class RealmDatabase {
 
         return modelsList;
     }
+
+    /**
+     * Delete all the activity logs
+     */
+    public void clearActivityLogs() {
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.where(SessionLogModel.class).findAll().deleteAllFromRealm();
+            }
+        });
+    }
 }

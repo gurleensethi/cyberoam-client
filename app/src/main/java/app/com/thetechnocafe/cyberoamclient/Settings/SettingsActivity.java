@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -23,6 +25,8 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     Switch mNotificationsSwitch;
     @BindView(R.id.activity_log_switch)
     Switch mActivityLogSwitch;
+    @BindView(R.id.clear_logs_button)
+    Button mClearLogsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +72,14 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
         mActivityLogSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mPresenter.changeActivityLogState(b);
+            }
+        });
 
+        mClearLogsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.cleanActivityLogs();
             }
         });
     }

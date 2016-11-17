@@ -4,6 +4,7 @@ import java.util.List;
 
 import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
 import app.com.thetechnocafe.cyberoamclient.Models.SessionLogModel;
+import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 
 /**
  * Created by gurleensethi on 17/11/16.
@@ -27,6 +28,9 @@ public class SessionLogPresenter implements ISessionLogPresenter {
         List<SessionLogModel> list = RealmDatabase.getInstance(mView.getContext()).getSessionLogs();
 
         //Give data to view
-        mView.onSessionDataReceived(list);
+        mView.onSessionDataReceived(
+                list,
+                SharedPreferenceUtils.getActivityLog(mView.getContext())
+        );
     }
 }

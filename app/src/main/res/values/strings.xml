@@ -55,5 +55,8 @@
     <string name="duration">Duration</string>
     <string name="data_consumed">Data consumed</string>
     <string name="activity_log">Activity Log</string>
-    <string name="total_logs">%1$i Total Logs</string>
+    <string name="total_logs">%1$s Total Logs</string>
+    <string name="clear_logs">Clear all logs</string>
+    <string name="activity_log_not_enabled">Activity Log is turned off. Turn it on from Settings</string>
+    <string name="empty_activity_log">No logs found</string>
 </resources>

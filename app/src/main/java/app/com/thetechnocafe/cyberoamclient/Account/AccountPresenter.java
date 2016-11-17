@@ -55,8 +55,10 @@ public class AccountPresenter implements IAccountPresenter {
         //Change logged in state
         SharedPreferenceUtils.changeLoginState(mView.getContext(), ValueUtils.STATE_LOGGED_OUT);
 
-        //Record session
-        SessionLogUtils.saveSessionLog(mView.getContext());
+        //Check if logs are enabled
+        if (SharedPreferenceUtils.getActivityLog(mView.getContext())) {
+            SessionLogUtils.saveSessionLog(mView.getContext());
+        }
 
         //Notify the view for logout
         mView.onLogout();

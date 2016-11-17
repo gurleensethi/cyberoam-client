@@ -1,5 +1,6 @@
 package app.com.thetechnocafe.cyberoamclient.Settings;
 
+import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 
 /**
@@ -36,6 +37,12 @@ public class SettingsPresenter implements ISettingsPresenter {
 
         //Update settings
         updateSettingsInView();
+    }
+
+    @Override
+    public void cleanActivityLogs() {
+        //Clear all the logs
+        RealmDatabase.getInstance(mView.getContext()).clearActivityLogs();
     }
 
     //Provide View with updated settings

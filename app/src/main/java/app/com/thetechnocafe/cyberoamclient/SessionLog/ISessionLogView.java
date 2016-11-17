@@ -15,5 +15,5 @@ public interface ISessionLogView {
 
     void onViewReady();
 
-    void onSessionDataReceived(List<SessionLogModel> list);
+    void onSessionDataReceived(List<SessionLogModel> list, boolean isActivatedInSettings);
 }

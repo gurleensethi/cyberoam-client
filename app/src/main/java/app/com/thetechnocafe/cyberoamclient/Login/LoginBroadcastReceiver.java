@@ -60,8 +60,10 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                         //Change login state to LOGGED OUT
                         SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
 
-                        //Record session
-                        SessionLogUtils.saveSessionLog(context);
+                        //Check if logs are enabled
+                        if (SharedPreferenceUtils.getActivityLog(context)) {
+                            SessionLogUtils.saveSessionLog(context);
+                        }
                     }
                 }
             }
@@ -111,8 +113,10 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                     //Change logged in state
                     SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
 
-                    //Record session
-                    SessionLogUtils.saveSessionLog(context);
+                    //Check if logs are enabled
+                    if (SharedPreferenceUtils.getActivityLog(context)) {
+                        SessionLogUtils.saveSessionLog(context);
+                    }
                 }
             }
         }.login(context, username, password);

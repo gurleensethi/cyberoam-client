@@ -10,4 +10,6 @@ public interface ISettingsPresenter {
     void changeNotificationsState(boolean state);
 
     void changeActivityLogState(boolean state);
+
+    void cleanActivityLogs();
 }
