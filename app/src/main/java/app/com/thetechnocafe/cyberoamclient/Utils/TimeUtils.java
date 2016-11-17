@@ -18,7 +18,7 @@ public class TimeUtils {
         Date date = new Date(timeInMillis);
 
         //Get Formatter
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:MM a");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:MM a");
 
         return simpleDateFormat.format(date);
     }
