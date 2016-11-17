@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
+import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,4 +1,4 @@
-package app.com.thetechnocafe.cyberoamclient.Common;
+package app.com.thetechnocafe.cyberoamclient.Models;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

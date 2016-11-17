@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.com.thetechnocafe.cyberoamclient.About.AboutActivity;
-import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
+import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.SavedAccounts.SavedAccountsActivity;
 import app.com.thetechnocafe.cyberoamclient.Settings.SettingsActivity;

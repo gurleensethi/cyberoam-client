@@ -2,7 +2,7 @@ package app.com.thetechnocafe.cyberoamclient.Login;
 
 import java.util.List;
 
-import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
+import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 
 /**
  * Created by gurleensethi on 18/10/16.

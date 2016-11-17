@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
-import app.com.thetechnocafe.cyberoamclient.Common.AccountsModel;
+import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
 import app.com.thetechnocafe.cyberoamclient.Common.VolleyRequestQueue;
 
