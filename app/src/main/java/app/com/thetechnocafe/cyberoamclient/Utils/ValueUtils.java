@@ -35,7 +35,7 @@ public class ValueUtils {
 
     public static final String STATE_LOGGED_IN = "loggedIn";
     public static final String STATE_LOGGED_OUT = "loggedOut";
-    public static final long FIXED_INTERVAL = 120000;
+    public static final long FIXED_INTERVAL = 90000;
 
     //Volley specific values
     public static final String VOLLEY_ACCOUNT_VALIDITY_TAG = "volley_account_validity_tag";
