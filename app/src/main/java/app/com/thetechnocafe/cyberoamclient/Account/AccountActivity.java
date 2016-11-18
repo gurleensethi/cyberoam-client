@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import app.com.thetechnocafe.cyberoamclient.R;
@@ -26,6 +27,10 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
     TextView mDataConsumedTextView;
     @BindView(R.id.logged_in_time)
     TextView mLoggedInTimeTextView;
+    @BindView(R.id.wifi_strength_progress_bar)
+    ProgressBar mWifiStrengthProgressBar;
+    @BindView(R.id.wifi_strength_text_view)
+    TextView mWifiStrengthTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,9 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
             finish();
         }
 
+        //Set progress bar max value
+        mWifiStrengthProgressBar.setMax(ValueUtils.WIFI_LEVELS);
+
         setUpOnClickListeners();
         setUpAndStartUIHandler();
     }
@@ -66,10 +74,12 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
     }
 
     @Override
-    public void setInitialData(String username, double dataUsed, String loggedInTime) {
+    public void setInitialData(String username, double dataUsed, String loggedInTime, int wifiStrength) {
         mLoggedInUsername.setText(username);
         mDataConsumedTextView.setText(String.valueOf(dataUsed));
         mLoggedInTimeTextView.setText(loggedInTime);
+        mWifiStrengthTextView.setText(String.valueOf(wifiStrength) + "%");
+        mWifiStrengthProgressBar.setProgress(wifiStrength);
     }
 
     @Override

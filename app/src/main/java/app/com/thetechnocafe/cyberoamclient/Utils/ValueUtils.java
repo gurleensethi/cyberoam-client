@@ -56,4 +56,6 @@ public class ValueUtils {
     public static final String FIRST_RUN = "first_run";
 
     public static final long UI_UPDATE_INTERVAL = 1000;
+
+    public static final int WIFI_LEVELS = 100;
 }

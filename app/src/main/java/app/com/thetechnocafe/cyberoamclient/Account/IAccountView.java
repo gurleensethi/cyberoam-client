@@ -11,7 +11,7 @@ public interface IAccountView {
 
     void onViewReady(boolean isLoggedIn);
 
-    void setInitialData(String username, double dataUsed, String loggedInTime);
+    void setInitialData(String username, double dataUsed, String loggedInTime, int wifiStrength);
 
     void onLogout();
 }

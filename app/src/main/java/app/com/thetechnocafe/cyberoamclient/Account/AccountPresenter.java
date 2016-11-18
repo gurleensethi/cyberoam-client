@@ -13,6 +13,7 @@ import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.TimeUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.TrafficUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.WifiUtils;
 
 import static app.com.thetechnocafe.cyberoamclient.Login.LoginPresenter.BROADCAST_REQUEST_CODE;
 
@@ -32,7 +33,8 @@ public class AccountPresenter implements IAccountPresenter {
         mView.setInitialData(
                 SharedPreferenceUtils.getUsername(mView.getContext()),
                 TrafficUtils.getTotalUsage(mView.getContext()),
-                TimeUtils.getTimeInString(mView.getContext())
+                TimeUtils.getTimeInString(mView.getContext()),
+                WifiUtils.getWifiStrength(mView.getContext())
         );
         mView.onViewReady(SharedPreferenceUtils.getLoginState(mView.getContext()).equals(ValueUtils.STATE_LOGGED_IN));
     }
@@ -77,7 +79,8 @@ public class AccountPresenter implements IAccountPresenter {
         mView.setInitialData(
                 SharedPreferenceUtils.getUsername(mView.getContext()),
                 TrafficUtils.getTotalUsage(mView.getContext()),
-                TimeUtils.getTimeInString(mView.getContext())
+                TimeUtils.getTimeInString(mView.getContext()),
+                WifiUtils.getWifiStrength(mView.getContext())
         );
     }
 
