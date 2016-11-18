@@ -17,9 +17,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.Dialogs.CustomProgressDialog;
 import app.com.thetechnocafe.cyberoamclient.Dialogs.NewAccountDialogFragment;
+import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +42,8 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     private static final String NEW_ACCOUNT_DIALOG_TAG = "newaccountdialog";
     private static final String PROGRESS_DIALOG_TAG = "progress_dialog_tag";
     private CustomProgressDialog mProgressDialog;
+    private boolean isSavedInstanceSaved;
+    private boolean isProgressDissmised;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +93,7 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
             case R.id.menu_check_accounts_validity: {
                 //Show the progress dialog
                 setUpProgressDialog(getString(R.string.validating_accounts));
-
+                isProgressDissmised = false;
                 mPresenter.validateAccounts();
                 return true;
             }
@@ -128,7 +130,10 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     @Override
     public void onValidationComplete(boolean isSuccessful) {
         //Dismiss the progress dialog
-        mProgressDialog.dismiss();
+        if (!isSavedInstanceSaved)
+            mProgressDialog.dismiss();
+
+        isProgressDissmised = true;
 
         //Notify that cyberoam was unreachable
         if (!isSuccessful) {
@@ -157,5 +162,24 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
 
         //Show the progress dialog
         mProgressDialog.show(getFragmentManager(), PROGRESS_DIALOG_TAG);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        isSavedInstanceSaved = true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        isSavedInstanceSaved = false;
+
+        //Dismiss dialog if already running
+        if (isProgressDissmised) {
+            mProgressDialog.dismiss();
+        }
     }
 }
