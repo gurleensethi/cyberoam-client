@@ -175,6 +175,10 @@ public class LoginFragment extends Fragment implements ILoginView {
                     mErrorTextView.setText(getString(R.string.not_allowed_to_login));
                     break;
                 }
+                case ValueUtils.ERROR_DATA_EXCEED: {
+                    mErrorTextView.setText(getString(R.string.data_exceeded));
+                    break;
+                }
             }
         }
 

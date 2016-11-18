@@ -51,6 +51,8 @@ public abstract class NetworkUtils {
                     onResultReceived(false, ValueUtils.ERROR_SERVER_ACCOUNT_LOCKED);
                 } else if (response.contains("You are not allowed to login")) {
                     onResultReceived(false, ValueUtils.ERROR_NOT_ALLOWED);
+                } else if (response.contains("Your data transfer has been exceeded")) {
+                    onResultReceived(false, ValueUtils.ERROR_DATA_EXCEED);
                 }
             }
         }, new Response.ErrorListener() {

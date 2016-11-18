@@ -103,6 +103,10 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                             errorMessage = context.getString(R.string.wrong_password_username);
                             break;
                         }
+                        case ValueUtils.ERROR_DATA_EXCEED: {
+                            errorMessage = context.getString(R.string.data_exceed);
+                            break;
+                        }
                     }
 
                     //Check if notifications are enable and send notification
