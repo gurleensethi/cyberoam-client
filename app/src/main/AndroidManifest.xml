@@ -37,6 +37,8 @@
         </activity>
         <activity android:name=".SessionLog.SessionLogActivity">
         </activity>
+        <activity android:name=".Info.InfoActivity">
+        </activity>
     </application>
 
 </manifest>
