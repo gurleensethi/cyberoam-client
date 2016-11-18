@@ -8,10 +8,15 @@ import app.com.thetechnocafe.cyberoamclient.R;
 
 public class InfoActivity extends AppCompatActivity implements IInfoView {
 
+    private IInfoPresenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+
+        mPresenter = new InfoPresenter(this);
+        mPresenter.onViewReady();
     }
 
     @Override

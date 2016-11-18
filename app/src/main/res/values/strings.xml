@@ -61,4 +61,6 @@
     <string name="empty_activity_log">No logs found</string>
     <string name="wifi_strength">WiFi Strength</string>
     <string name="data_exceeded">Your data transfer has been exceeded, Please contact the administrator</string>
+    <string name="total_logged_in_time">Total logged in duration</string>
+    <string name="total_times_logged_in">Times logged in</string>
 </resources>
