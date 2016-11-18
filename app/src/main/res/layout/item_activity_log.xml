@@ -104,7 +104,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.4"
+            android:layout_weight="0.45"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -123,7 +123,7 @@
 
                 <ImageView
                     android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_height="match_parent"
                     android:src="@drawable/ic_flame"/>
 
                 <TextView
@@ -131,16 +131,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="32.3"
+                    android:text="322.33"
                     android:textColor="@android:color/white"
-                    android:textSize="32sp"/>
+                    android:textSize="28sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mb"
                     android:textColor="@android:color/white"
-                    android:textStyle="italic"/>
+                    android:textStyle="italic"
+                    android:layout_marginLeft="4dp"/>
             </LinearLayout>
 
         </LinearLayout>
