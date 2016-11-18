@@ -171,6 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@android:color/transparent"
+                android:drawableRight="@drawable/ic_delete"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center|left"
                 android:text="@string/clear_logs"

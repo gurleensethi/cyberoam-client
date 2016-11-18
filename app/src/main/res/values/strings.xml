@@ -60,4 +60,5 @@
     <string name="activity_log_not_enabled">Activity Log is turned off. Turn it on from Settings</string>
     <string name="empty_activity_log">No logs found</string>
     <string name="wifi_strength">WiFi Strength</string>
+    <string name="data_exceeded">Your data transfer has been exceeded, Please contact the administrator</string>
 </resources>
