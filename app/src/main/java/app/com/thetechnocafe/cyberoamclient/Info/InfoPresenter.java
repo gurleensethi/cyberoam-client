@@ -1,5 +1,6 @@
 package app.com.thetechnocafe.cyberoamclient.Info;
 
+import app.com.thetechnocafe.cyberoamclient.Utils.ChartUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.StatsUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.TimeUtils;
 
@@ -27,7 +28,7 @@ public class InfoPresenter implements IInfoPresenter {
 
         //Set the Today data char
         mView.setUpTodayChart(
-                null,
+                ChartUtils.getBarChartDataForToday(mView.getContext()),
                 StatsUtils.getTotalDataUsedToday(mView.getContext())
         );
     }

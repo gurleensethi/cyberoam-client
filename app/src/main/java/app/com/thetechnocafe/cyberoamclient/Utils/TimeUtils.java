@@ -3,7 +3,9 @@ package app.com.thetechnocafe.cyberoamclient.Utils;
 import android.content.Context;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -43,5 +45,20 @@ public class TimeUtils {
 
         String formattedTime = mins + ":" + secs;
         return formattedTime;
+    }
+
+    /**
+     * Return the time for today (12:00AM)
+     */
+    public static long getTodayTimeInMillis() {
+        //Create a new date for today
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.setTimeInMillis(1478620479914l);
+
+        return calendar.getTimeInMillis();
     }
 }

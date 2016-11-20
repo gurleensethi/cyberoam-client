@@ -42,4 +42,11 @@ public class TrafficUtils {
         return bytesUsedInMB2Decimal;
     }
 
+    /**
+     * Convert to two decimal places
+     */
+    public static double getTwoDecimalPlaces(double dataUsed) {
+        return ((int) dataUsed * 100) / 100.0;
+    }
+
 }

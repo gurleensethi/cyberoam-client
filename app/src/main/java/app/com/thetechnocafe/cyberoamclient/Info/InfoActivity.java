@@ -4,8 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 
 import app.com.thetechnocafe.cyberoamclient.R;
@@ -25,6 +30,8 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
     TextView mTimesLoggedInText;
     @BindView(R.id.total_data_used_today_text_view)
     TextView mTotalDataUsedToday;
+    @BindView(R.id.data_used_today_bar_chart)
+    BarChart mTodayDataBarChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,5 +69,41 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
     @Override
     public void setUpTodayChart(BarData barData, double dataConsumed) {
         mTotalDataUsedToday.setText(String.valueOf(dataConsumed));
+
+        //Configure bar data
+        barData.setBarWidth(1.0f);
+
+        //Configure the bar chart
+        mTodayDataBarChart.setData(barData);
+        mTodayDataBarChart.setVisibleXRange(0, 7);
+        Description description = new Description();
+        description.setText("");
+        mTodayDataBarChart.setDescription(description);
+
+
+        XAxis xAxis = mTodayDataBarChart.getXAxis();
+        xAxis.setDrawAxisLine(false);
+        xAxis.setDrawGridLines(false);
+        xAxis.setDrawLabels(false);
+
+        YAxis leftAxis = mTodayDataBarChart.getAxisLeft();
+        leftAxis.setDrawGridLines(false);
+        leftAxis.setDrawAxisLine(false);
+
+        YAxis rightAxis = mTodayDataBarChart.getAxisRight();
+        rightAxis.setDrawGridLines(false);
+        rightAxis.setDrawLabels(false);
+        rightAxis.setDrawAxisLine(false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

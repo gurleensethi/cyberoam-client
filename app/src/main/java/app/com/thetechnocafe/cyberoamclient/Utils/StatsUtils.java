@@ -2,9 +2,6 @@ package app.com.thetechnocafe.cyberoamclient.Utils;
 
 import android.content.Context;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
@@ -66,16 +63,8 @@ public class StatsUtils {
      * Check which logs logged in time more than the 12:00AM in millis
      */
     public static double getTotalDataUsedToday(Context context) {
-        //Create a new date for today
-        Calendar calendar = GregorianCalendar.getInstance();
-        calendar.setTime(new Date());
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.setTimeInMillis(1478620479914l);
-
-        //Convert to long
-        long timeInLong = calendar.getTimeInMillis();
+        //Get time in millis
+        long timeInLong = TimeUtils.getTodayTimeInMillis();
 
         //Get list of models
         List<SessionLogModel> list = RealmDatabase.getInstance(context).getSessionLogs();
