@@ -143,7 +143,7 @@
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="400"
-                            android:textColor="@color/md_red_400"
+                            android:textColor="@color/md_red_A400"
                             android:textSize="20sp"/>
 
                         <TextView
@@ -154,7 +154,7 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="bottom"
                             android:text="@string/mb"
-                            android:textColor="@color/md_red_400"
+                            android:textColor="@color/md_red_A400"
                             android:textStyle="italic"/>
 
                     </LinearLayout>

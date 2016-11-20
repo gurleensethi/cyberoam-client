@@ -39,5 +39,15 @@ public class RealmMigrationUtil implements RealmMigration {
             //Increment the version
             oldVersion++;
         }
+
+        //If version 2, change SessionLogModel
+        if (oldVersion == 2) {
+            //Add mLoginStatus
+            schema.get(ValueUtils.REALM_SESSION_CLASS)
+                    .addField(ValueUtils.REALM_SESSION_LOGIN_IN_STATUS, int.class, null);
+
+            //Increment the older version
+            oldVersion++;
+        }
     }
 }

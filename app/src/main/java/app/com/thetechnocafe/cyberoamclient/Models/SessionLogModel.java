@@ -11,6 +11,7 @@ public class SessionLogModel extends RealmObject {
     private long mLoggedInTime;
     private double mDataConsumed;
     private long mLoggedInDuration;
+    private int mLoginStatus;
 
     public double getDataConsumed() {
         return mDataConsumed;
@@ -42,5 +43,13 @@ public class SessionLogModel extends RealmObject {
 
     public void setUsername(String username) {
         mUsername = username;
+    }
+
+    public int getLoginStatus() {
+        return mLoginStatus;
+    }
+
+    public void setLoginStatus(int loginStatus) {
+        mLoginStatus = loginStatus;
     }
 }
