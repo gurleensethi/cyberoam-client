@@ -1,17 +1,21 @@
 package app.com.thetechnocafe.cyberoamclient.SessionLog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import java.util.List;
 
+import app.com.thetechnocafe.cyberoamclient.Info.InfoActivity;
 import app.com.thetechnocafe.cyberoamclient.Models.SessionLogModel;
 import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
@@ -108,7 +112,21 @@ public class SessionLogActivity extends AppCompatActivity implements ISessionLog
                 finish();
                 return true;
             }
+            case R.id.menu_info: {
+                Intent intent = new Intent(this, InfoActivity.class);
+                startActivity(intent);
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+
+        menuInflater.inflate(R.menu.menu_session_log, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
 }

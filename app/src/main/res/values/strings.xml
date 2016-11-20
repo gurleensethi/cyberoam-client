@@ -63,4 +63,5 @@
     <string name="data_exceeded">Your data transfer has been exceeded, Please contact the administrator</string>
     <string name="total_logged_in_time">Total logged in duration</string>
     <string name="total_times_logged_in">Times logged in</string>
+    <string name="info">Info</string>
 </resources>
