@@ -34,6 +34,7 @@ public class SessionLogUtils {
         model.setDataConsumed(dataConsumed);
         model.setLoggedInDuration(loggedInDuration);
         model.setLoggedInTime(loggedInTime);
+        model.setLoginStatus(ValueUtils.LOGIN_SUCCESS);
 
         //Save to realm
         RealmDatabase.getInstance(context).saveLogSession(model);
