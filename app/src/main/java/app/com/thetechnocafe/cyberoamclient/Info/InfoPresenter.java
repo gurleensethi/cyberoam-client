@@ -18,7 +18,7 @@ public class InfoPresenter implements IInfoPresenter {
         mView.onViewReady();
 
         //Provide initial data
-        mView.setIntialData(
+        mView.setInitialData(
                 StatsUtils.getTotalTimesLoggedIn(mView.getContext()),
                 StatsUtils.getTotalDurationLoggedIn(mView.getContext()),
                 StatsUtils.getTotalDataConsumed(mView.getContext())

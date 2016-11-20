@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class InfoActivity extends AppCompatActivity implements IInfoView {
 
@@ -25,6 +26,9 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+
+        //Bind butter knife
+        ButterKnife.bind(this);
 
         mPresenter = new InfoPresenter(this);
         mPresenter.onViewReady();
@@ -45,7 +49,7 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
     }
 
     @Override
-    public void setIntialData(int timesLoggedIn, long durationLoggedIn, double dataConsumed) {
+    public void setInitialData(int timesLoggedIn, long durationLoggedIn, double dataConsumed) {
         mTotalDataUsedTextView.setText(String.valueOf(dataConsumed));
         mTimesLogedInText.setText(String.valueOf(timesLoggedIn));
         mTotalLoggedInTime.setText(String.valueOf(durationLoggedIn));
