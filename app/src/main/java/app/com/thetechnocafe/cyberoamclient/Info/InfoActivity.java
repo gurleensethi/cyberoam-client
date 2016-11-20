@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
@@ -13,6 +14,12 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
     private IInfoPresenter mPresenter;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.total_data_used_text_view)
+    TextView mTotalDataUsedTextView;
+    @BindView(R.id.total_logged_in_time_text_view)
+    TextView mTotalLoggedInTime;
+    @BindView(R.id.times_logged_in_text_view)
+    TextView mTimesLogedInText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +42,12 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
     @Override
     public Context getContext() {
         return getApplicationContext();
+    }
+
+    @Override
+    public void setIntialData(int timesLoggedIn, long durationLoggedIn, double dataConsumed) {
+        mTotalDataUsedTextView.setText(String.valueOf(dataConsumed));
+        mTimesLogedInText.setText(String.valueOf(timesLoggedIn));
+        mTotalLoggedInTime.setText(String.valueOf(durationLoggedIn));
     }
 }

@@ -10,4 +10,6 @@ public interface IInfoView {
     void onViewReady();
 
     Context getContext();
+
+    void setIntialData(int timesLoggedIn, long durationLoggedIn, double dataConsumed);
 }
