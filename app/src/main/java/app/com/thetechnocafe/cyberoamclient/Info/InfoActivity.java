@@ -111,6 +111,18 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
     @Override
     public void setUpEnrollmentPieChart(PieData pieData, int totalEnrollment) {
         mTotalEnrollmentIdUsedTextView.setText(String.valueOf(totalEnrollment));
+
+        //Remove description
+        Description description = new Description();
+        description.setText("");
+        mEnrollmentUsedPieChart.setDescription(description);
+
+        //Configure pie chart
+        mEnrollmentUsedPieChart.setData(pieData);
+        mEnrollmentUsedPieChart.setDrawHoleEnabled(false);
+
+        //Animate the chart
+        mEnrollmentUsedPieChart.animateXY(ValueUtils.CHART_ANIMATION_DURATION, ValueUtils.CHART_ANIMATION_DURATION);
     }
 
     @Override

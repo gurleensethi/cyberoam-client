@@ -34,7 +34,7 @@ public class InfoPresenter implements IInfoPresenter {
 
         //Set up enrollment pie charts
         mView.setUpEnrollmentPieChart(
-                null,
+                ChartUtils.getPieChartDataForEnrollmentUsed(mView.getContext()),
                 StatsUtils.getTotalEnrollmentIdUsed(mView.getContext())
         );
     }
