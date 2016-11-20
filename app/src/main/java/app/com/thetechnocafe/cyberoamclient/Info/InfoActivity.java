@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.data.BarData;
+
 import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,7 +22,9 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
     @BindView(R.id.total_logged_in_time_text_view)
     TextView mTotalLoggedInTime;
     @BindView(R.id.times_logged_in_text_view)
-    TextView mTimesLogedInText;
+    TextView mTimesLoggedInText;
+    @BindView(R.id.total_data_used_today_text_view)
+    TextView mTotalDataUsedToday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,12 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
     @Override
     public void setInitialData(int timesLoggedIn, String durationLoggedIn, double dataConsumed) {
         mTotalDataUsedTextView.setText(String.valueOf(dataConsumed));
-        mTimesLogedInText.setText(String.valueOf(timesLoggedIn));
+        mTimesLoggedInText.setText(String.valueOf(timesLoggedIn));
         mTotalLoggedInTime.setText(durationLoggedIn);
+    }
+
+    @Override
+    public void setUpTodayChart(BarData barData, double dataConsumed) {
+        mTotalDataUsedToday.setText(String.valueOf(dataConsumed));
     }
 }

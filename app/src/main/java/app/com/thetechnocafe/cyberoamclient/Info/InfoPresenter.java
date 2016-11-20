@@ -24,5 +24,11 @@ public class InfoPresenter implements IInfoPresenter {
                 TimeUtils.convertLongToDuration(StatsUtils.getTotalDurationLoggedIn(mView.getContext())),
                 StatsUtils.getTotalDataConsumed(mView.getContext())
         );
+
+        //Set the Today data char
+        mView.setUpTodayChart(
+                null,
+                StatsUtils.getTotalDataUsedToday(mView.getContext())
+        );
     }
 }
