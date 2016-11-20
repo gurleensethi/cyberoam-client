@@ -60,4 +60,6 @@ public class ValueUtils {
     public static final long UI_UPDATE_INTERVAL = 1000;
 
     public static final int WIFI_LEVELS = 100;
+
+    public static final int CHART_ANIMATION_DURATION = 1500;
 }

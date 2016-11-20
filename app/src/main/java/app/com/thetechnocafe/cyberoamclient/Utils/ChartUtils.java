@@ -5,16 +5,13 @@ import android.content.Context;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
 import app.com.thetechnocafe.cyberoamclient.Models.SessionLogModel;
+import app.com.thetechnocafe.cyberoamclient.R;
 
 /**
  * Created by gurleensethi on 20/11/16.
@@ -24,7 +21,10 @@ public class ChartUtils {
     /**
      * Create the bar chart on the basis of data consumed today
      */
-    public static BarData getBarChartDataForToday(Context context) {
+
+    private static final int[] CHART_COLORS_800 = {R.color.md_yellow_800, R.color.md_red_800, R.color.md_blue_800, R.color.md_green_800, R.color.md_amber_800, R.color.md_blue_grey_800};
+
+    public static BarData getBarChartDataForToday(final Context context) {
         //Get today time
         long todayTimeInMillis = TimeUtils.getTodayTimeInMillis();
 
@@ -36,24 +36,21 @@ public class ChartUtils {
 
         //Iterate and check for time greater than today
         //Add the list of bar entries
+        int placeCounter = 0;
         for (int count = 0; count < modelList.size(); count++) {
             SessionLogModel model = modelList.get(count);
             if (model.getLoggedInTime() > todayTimeInMillis) {
-                barEntries.add(new BarEntry((float) count, (float) TrafficUtils.getTwoDecimalPlaces(model.getDataConsumed())));
+                barEntries.add(new BarEntry((float) placeCounter, (float) TrafficUtils.getTwoDecimalPlaces(model.getDataConsumed())));
+                placeCounter++;
             }
         }
 
         //Create data set
         BarDataSet dataSet = new BarDataSet(barEntries, "");
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        dataSet.setValueTextSize(8f);
 
-        dataSet.setValueFormatter(new IValueFormatter() {
-            @Override
-            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-                return TimeUtils.convertLongToString(modelList.get((int) entry.getX()).getLoggedInTime()) + "\n" +
-                        String.valueOf(modelList.get((int) entry.getX()).getDataConsumed());
-            }
-        });
+        //Set custom colors
+        dataSet.setColors(CHART_COLORS_800, context);
 
         return new BarData(dataSet);
     }

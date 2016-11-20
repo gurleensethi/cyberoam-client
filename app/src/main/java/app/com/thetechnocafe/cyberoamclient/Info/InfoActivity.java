@@ -14,6 +14,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 
 import app.com.thetechnocafe.cyberoamclient.R;
+import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -50,7 +51,7 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
         //Set up toolbar
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.activity_log));
+        getSupportActionBar().setTitle(getString(R.string.stats));
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
     }
 
@@ -80,20 +81,25 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
         description.setText("");
         mTodayDataBarChart.setDescription(description);
 
-
+        //Remove the grid and axis line from X-Axis
         XAxis xAxis = mTodayDataBarChart.getXAxis();
         xAxis.setDrawAxisLine(false);
         xAxis.setDrawGridLines(false);
         xAxis.setDrawLabels(false);
 
+        //Remove the grid and axis line from left Y-Axis
         YAxis leftAxis = mTodayDataBarChart.getAxisLeft();
         leftAxis.setDrawGridLines(false);
         leftAxis.setDrawAxisLine(false);
 
+        //Remove the grid and axis line from right Y-Axis
         YAxis rightAxis = mTodayDataBarChart.getAxisRight();
         rightAxis.setDrawGridLines(false);
         rightAxis.setDrawLabels(false);
         rightAxis.setDrawAxisLine(false);
+
+        //Animate the chart
+        mTodayDataBarChart.animateXY(ValueUtils.CHART_ANIMATION_DURATION, ValueUtils.CHART_ANIMATION_DURATION);
     }
 
     @Override

@@ -62,7 +62,12 @@
     <string name="wifi_strength">WiFi Strength</string>
     <string name="data_exceeded">Your data transfer has been exceeded, Please contact the administrator</string>
     <string name="total_logged_in_time">Total logged in duration</string>
-    <string name="total_times_logged_in">Times logged in</string>
+    <string name="summary_total_times_logged_in">Times logged in</string>
     <string name="info">Info</string>
     <string name="data_used_today">Total Data Used Today</string>
+    <string name="summary">Summary</string>
+    <string name="mins">Mins</string>
+    <string name="stats">Stats</string>
+    <string name="summary_total_data_used">Total data used (MB)</string>
+    <string name="summary_logged_in_duration">Total logged in duration (Mins)</string>
 </resources>
