@@ -1,6 +1,7 @@
 package app.com.thetechnocafe.cyberoamclient.Info;
 
 import app.com.thetechnocafe.cyberoamclient.Utils.StatsUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.TimeUtils;
 
 /**
  * Created by gurleensethi on 19/11/16.
@@ -20,7 +21,7 @@ public class InfoPresenter implements IInfoPresenter {
         //Provide initial data
         mView.setInitialData(
                 StatsUtils.getTotalTimesLoggedIn(mView.getContext()),
-                StatsUtils.getTotalDurationLoggedIn(mView.getContext()),
+                TimeUtils.convertLongToDuration(StatsUtils.getTotalDurationLoggedIn(mView.getContext())),
                 StatsUtils.getTotalDataConsumed(mView.getContext())
         );
     }

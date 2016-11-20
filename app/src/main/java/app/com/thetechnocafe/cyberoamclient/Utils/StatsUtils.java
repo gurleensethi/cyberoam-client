@@ -53,6 +53,7 @@ public class StatsUtils {
             totalLoggedInTime += model.getLoggedInDuration();
         }
 
+
         return totalLoggedInTime;
     }
 }

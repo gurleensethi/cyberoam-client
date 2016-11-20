@@ -49,9 +49,9 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
     }
 
     @Override
-    public void setInitialData(int timesLoggedIn, long durationLoggedIn, double dataConsumed) {
+    public void setInitialData(int timesLoggedIn, String durationLoggedIn, double dataConsumed) {
         mTotalDataUsedTextView.setText(String.valueOf(dataConsumed));
         mTimesLogedInText.setText(String.valueOf(timesLoggedIn));
-        mTotalLoggedInTime.setText(String.valueOf(durationLoggedIn));
+        mTotalLoggedInTime.setText(durationLoggedIn);
     }
 }

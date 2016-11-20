@@ -11,5 +11,5 @@ public interface IInfoView {
 
     Context getContext();
 
-    void setInitialData(int timesLoggedIn, long durationLoggedIn, double dataConsumed);
+    void setInitialData(int timesLoggedIn, String durationLoggedIn, double dataConsumed);
 }
