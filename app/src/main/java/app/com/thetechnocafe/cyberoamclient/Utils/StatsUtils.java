@@ -2,7 +2,9 @@ package app.com.thetechnocafe.cyberoamclient.Utils;
 
 import android.content.Context;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
 import app.com.thetechnocafe.cyberoamclient.Models.SessionLogModel;
@@ -80,5 +82,22 @@ public class StatsUtils {
 
         //Convert to 2 decimal places
         return ((int) (totalDataConsumed * 100)) / 100.0;
+    }
+
+    /**
+     * Get total enrollment id used
+     */
+    public static int getTotalEnrollmentIdUsed(Context context) {
+        //Get list of models
+        List<SessionLogModel> list = RealmDatabase.getInstance(context).getSessionLogs();
+
+        Set<String> set = new HashSet<>();
+
+        //Iterate and get id's
+        for (SessionLogModel model : list) {
+            set.add(model.getUsername());
+        }
+
+        return set.size();
     }
 }

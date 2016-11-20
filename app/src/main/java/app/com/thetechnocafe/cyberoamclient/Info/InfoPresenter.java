@@ -31,5 +31,11 @@ public class InfoPresenter implements IInfoPresenter {
                 ChartUtils.getBarChartDataForToday(mView.getContext()),
                 StatsUtils.getTotalDataUsedToday(mView.getContext())
         );
+
+        //Set up enrollment pie charts
+        mView.setUpEnrollmentPieChart(
+                null,
+                StatsUtils.getTotalEnrollmentIdUsed(mView.getContext())
+        );
     }
 }

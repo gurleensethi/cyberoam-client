@@ -8,10 +8,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.PieData;
 
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
@@ -33,6 +35,10 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
     TextView mTotalDataUsedToday;
     @BindView(R.id.data_used_today_bar_chart)
     BarChart mTodayDataBarChart;
+    @BindView(R.id.enrollment_used_pie_chart)
+    PieChart mEnrollmentUsedPieChart;
+    @BindView(R.id.total_enrollment_id_used_text_view)
+    TextView mTotalEnrollmentIdUsedTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +106,11 @@ public class InfoActivity extends AppCompatActivity implements IInfoView {
 
         //Animate the chart
         mTodayDataBarChart.animateXY(ValueUtils.CHART_ANIMATION_DURATION, ValueUtils.CHART_ANIMATION_DURATION);
+    }
+
+    @Override
+    public void setUpEnrollmentPieChart(PieData pieData, int totalEnrollment) {
+        mTotalEnrollmentIdUsedTextView.setText(String.valueOf(totalEnrollment));
     }
 
     @Override

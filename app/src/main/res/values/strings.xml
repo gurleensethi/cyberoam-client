@@ -70,4 +70,5 @@
     <string name="stats">Stats</string>
     <string name="summary_total_data_used">Total data used (MB)</string>
     <string name="summary_logged_in_duration">Total logged in duration (Mins)</string>
+    <string name="enrollment_used">Enrollment ID\'s used</string>
 </resources>
