@@ -100,4 +100,70 @@ public class StatsUtils {
 
         return set.size();
     }
+
+    /**
+     * Get data for a same day for a particular id
+     */
+    public static double getDataForSingleDay(Context context, String username) {
+        //Get list of sessions
+        List<SessionLogModel> list = RealmDatabase.getInstance(context).getSessionLogs();
+
+        double totalDataConsumed = 0.0;
+
+        //Get today time in millis
+        long todayTimeInMillis = TimeUtils.getTodayTimeInMillis();
+
+        //Iterate and find the values that have greater time
+        for (SessionLogModel model : list) {
+            if (model.getLoggedInTime() >= todayTimeInMillis && model.getUsername().equals(username)) {
+                totalDataConsumed += model.getDataConsumed();
+            }
+        }
+
+        return TrafficUtils.getTwoDecimalPlaces(totalDataConsumed);
+    }
+
+    /**
+     * Get times logged in for single user in a single day
+     */
+    public static int getTimesLoggedInForSingleDay(Context context, String username) {
+        //Get list of sessions
+        List<SessionLogModel> list = RealmDatabase.getInstance(context).getSessionLogs();
+
+        int totalTimesLoggedIn = 0;
+
+        //Get today time in millis
+        long todayTimeInMillis = TimeUtils.getTodayTimeInMillis();
+
+        //Iterate and find the values that have greater time
+        for (SessionLogModel model : list) {
+            if (model.getLoggedInTime() >= todayTimeInMillis && model.getUsername().equals(username)) {
+                totalTimesLoggedIn++;
+            }
+        }
+
+        return totalTimesLoggedIn;
+    }
+
+    /**
+     * Get total duration logged in today for a single account
+     */
+    public static String getDurationLoggedInForSingleDay(Context context, String username) {
+        //Get list of sessions
+        List<SessionLogModel> list = RealmDatabase.getInstance(context).getSessionLogs();
+
+        long durationLoggedIn = 0;
+
+        //Get today time in millis
+        long todayTimeInMillis = TimeUtils.getTodayTimeInMillis();
+
+        //Iterate and find the values that have greater time
+        for (SessionLogModel model : list) {
+            if (model.getLoggedInTime() >= todayTimeInMillis && model.getUsername().equals(username)) {
+                durationLoggedIn += model.getLoggedInDuration();
+            }
+        }
+
+        return TimeUtils.convertLongToDuration(durationLoggedIn);
+    }
 }

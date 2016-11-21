@@ -64,11 +64,16 @@
     <string name="total_logged_in_time">Total logged in duration</string>
     <string name="summary_total_times_logged_in">Times logged in</string>
     <string name="info">Info</string>
-    <string name="data_used_today">Total Data Used Today</string>
+    <string name="total_data_used_today">Total Data Used Today</string>
     <string name="summary">Summary</string>
     <string name="mins">Mins</string>
     <string name="stats">Stats</string>
     <string name="summary_total_data_used">Total data used (MB)</string>
     <string name="summary_logged_in_duration">Total logged in duration (Mins)</string>
     <string name="enrollment_used">Enrollment ID\'s used</string>
+    <string name="data_used_today">Data used Today</string>
+    <string name="logged_in_time_today">Logged in time Today</string>
+    <string name="wifi_stats">WiFi Stats</string>
+    <string name="stats_for_this_id">Stats for this ID</string>
+    <string name="wifi_name">Network Name</string>
 </resources>

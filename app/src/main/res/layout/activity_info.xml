@@ -182,7 +182,7 @@
                             android:layout_weight="1"
                             android:fontFamily="sans-serif-light"
                             android:gravity="left"
-                            android:text="@string/data_used_today"
+                            android:text="@string/total_data_used_today"
                             android:textColor="@android:color/white"/>
 
                         <TextView

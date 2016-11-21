@@ -31,6 +31,14 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
     ProgressBar mWifiStrengthProgressBar;
     @BindView(R.id.wifi_strength_text_view)
     TextView mWifiStrengthTextView;
+    @BindView(R.id.duration_logged_in_with_id_text_view)
+    TextView mDurationLoggedInWithIDTextView;
+    @BindView(R.id.times_logged_in_with_id_text_view)
+    TextView mTimesLoggedInWithIDTextView;
+    @BindView(R.id.data_consumed_with_id_text_view)
+    TextView mDataConsumedWithIDTextView;
+    @BindView(R.id.wifi_network_name_text_view)
+    TextView mWifiNetworkNameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +95,15 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
         finish();
     }
 
+
+    @Override
+    public void setStatsData(double dataConsumed, int timesLoggedIn, String durationLoggedIn, String wifiNetworkName) {
+        mDataConsumedWithIDTextView.setText(String.valueOf(dataConsumed));
+        mTimesLoggedInWithIDTextView.setText(String.valueOf(timesLoggedIn));
+        mDurationLoggedInWithIDTextView.setText(durationLoggedIn);
+        mWifiNetworkNameTextView.setText(wifiNetworkName);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -111,7 +128,7 @@ public class AccountActivity extends AppCompatActivity implements IAccountView {
             @Override
             public void run() {
                 //Ask presenter for refresh
-                mPresenter.refreshUIDate();
+                mPresenter.refreshUIData();
 
                 //Call the runnable again
                 mUIUpdateHandler.postDelayed(mUIRunnable, ValueUtils.UI_UPDATE_INTERVAL);

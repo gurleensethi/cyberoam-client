@@ -14,4 +14,6 @@ public interface IAccountView {
     void setInitialData(String username, double dataUsed, String loggedInTime, int wifiStrength);
 
     void onLogout();
+
+    void setStatsData(double dataConsumed, int timesLoggedIn, String durationLoggedIn, String wifiNetworkName);
 }

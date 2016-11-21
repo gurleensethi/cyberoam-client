@@ -10,6 +10,7 @@ import app.com.thetechnocafe.cyberoamclient.Login.LoginBroadcastReceiver;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SessionLogUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.StatsUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.TimeUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.TrafficUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
@@ -36,7 +37,15 @@ public class AccountPresenter implements IAccountPresenter {
                 TimeUtils.getTimeInString(mView.getContext()),
                 WifiUtils.getWifiStrength(mView.getContext())
         );
-        mView.onViewReady(SharedPreferenceUtils.getLoginState(mView.getContext()).equals(ValueUtils.STATE_LOGGED_IN));
+
+        mView.setStatsData(
+                StatsUtils.getDataForSingleDay(mView.getContext(), SharedPreferenceUtils.getUsername(mView.getContext())),
+                StatsUtils.getTimesLoggedInForSingleDay(mView.getContext(), SharedPreferenceUtils.getUsername(mView.getContext())),
+                StatsUtils.getDurationLoggedInForSingleDay(mView.getContext(), SharedPreferenceUtils.getUsername(mView.getContext())),
+                WifiUtils.getWifiSSID(mView.getContext())
+        );
+
+        mView.onViewReady(isLoggedIn());
     }
 
     @Override
@@ -75,7 +84,7 @@ public class AccountPresenter implements IAccountPresenter {
     }
 
     @Override
-    public void refreshUIDate() {
+    public void refreshUIData() {
         mView.setInitialData(
                 SharedPreferenceUtils.getUsername(mView.getContext()),
                 TrafficUtils.getTotalUsage(mView.getContext()),

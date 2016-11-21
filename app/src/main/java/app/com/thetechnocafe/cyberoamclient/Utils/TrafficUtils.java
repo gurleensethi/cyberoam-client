@@ -48,5 +48,4 @@ public class TrafficUtils {
     public static double getTwoDecimalPlaces(double dataUsed) {
         return ((int) dataUsed * 100) / 100.0;
     }
-
 }

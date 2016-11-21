@@ -11,5 +11,5 @@ public interface IAccountPresenter {
 
     boolean isLoggedIn();
 
-    void refreshUIDate();
+    void refreshUIData();
 }

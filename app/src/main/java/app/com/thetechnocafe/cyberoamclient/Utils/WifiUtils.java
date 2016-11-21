@@ -19,4 +19,18 @@ public class WifiUtils {
         //Return level
         return WifiManager.calculateSignalLevel(info.getRssi(), ValueUtils.WIFI_LEVELS);
     }
+
+    /**
+     * Return the name of WiFi
+     */
+    public static String getWifiSSID(Context context) {
+        //Get wifi manager
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+
+        //Get wifi info
+        WifiInfo info = wifiManager.getConnectionInfo();
+
+        //Return level
+        return info.getSSID().replace("\"", "");
+    }
 }
