@@ -10,13 +10,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/colorAccent"
         android:orientation="vertical">
 
         <ImageView
-            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="16dp"
             android:src="@drawable/ic_launcher"/>
 
     </LinearLayout>
@@ -24,10 +23,19 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/navigation_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
         android:padding="8dp">
 
     </android.support.v7.widget.RecyclerView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="@string/thetechnocafe"
+        />
 
 </LinearLayout>
