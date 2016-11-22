@@ -78,4 +78,5 @@
     <string name="wifi_name">Network Name</string>
     <string name="update_account">Update account details</string>
     <string name="save">Save</string>
+    <string name="continuous_login">Continuous Login</string>
 </resources>

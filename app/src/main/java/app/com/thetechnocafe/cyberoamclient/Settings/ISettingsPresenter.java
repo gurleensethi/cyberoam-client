@@ -12,4 +12,6 @@ public interface ISettingsPresenter {
     void changeActivityLogState(boolean state);
 
     void cleanActivityLogs();
+
+    void changeContinuousLogin(boolean isEnabled);
 }

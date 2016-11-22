@@ -45,13 +45,20 @@ public class SettingsPresenter implements ISettingsPresenter {
         RealmDatabase.getInstance(mView.getContext()).clearActivityLogs();
     }
 
+    @Override
+    public void changeContinuousLogin(boolean isEnabled) {
+        //Change continuous login feature
+        SharedPreferenceUtils.setContinousLogin(mView.getContext(), isEnabled);
+    }
+
     //Provide View with updated settings
     private void updateSettingsInView() {
         mView.setUpSettingsState(
                 SharedPreferenceUtils.getBaseIPAddress(mView.getContext()),
                 SharedPreferenceUtils.getBasePort(mView.getContext()),
                 SharedPreferenceUtils.getNotifications(mView.getContext()),
-                SharedPreferenceUtils.getActivityLog(mView.getContext())
+                SharedPreferenceUtils.getActivityLog(mView.getContext()),
+                SharedPreferenceUtils.getContinuousLogin(mView.getContext())
         );
     }
 }

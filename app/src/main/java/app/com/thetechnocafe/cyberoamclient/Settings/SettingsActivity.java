@@ -27,6 +27,8 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     Switch mActivityLogSwitch;
     @BindView(R.id.clear_logs_button)
     Button mClearLogsButton;
+    @BindView(R.id.continuous_login_switch)
+    Switch mContinuousLoginSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +55,12 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     }
 
     @Override
-    public void setUpSettingsState(String ipAddress, String port, boolean notificationsEnabled, boolean isActivityLogEnabled) {
+    public void setUpSettingsState(String ipAddress, String port, boolean notificationsEnabled, boolean isActivityLogEnabled, boolean continuousLogin) {
         mIPAddressTextView.setText(ipAddress);
         mPortTextView.setText(port);
         mNotificationsSwitch.setChecked(notificationsEnabled);
         mActivityLogSwitch.setChecked(isActivityLogEnabled);
+        mContinuousLoginSwitch.setChecked(continuousLogin);
     }
 
     //Set up onclickListeners
@@ -80,6 +83,13 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
             @Override
             public void onClick(View view) {
                 mPresenter.cleanActivityLogs();
+            }
+        });
+
+        mContinuousLoginSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mPresenter.changeContinuousLogin(b);
             }
         });
     }
