@@ -10,8 +10,9 @@ import android.util.Log;
 import java.util.Date;
 import java.util.List;
 
-import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
+import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
+import app.com.thetechnocafe.cyberoamclient.Utils.ContinuousLoginUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.TrafficUtils;
@@ -79,8 +80,12 @@ public class LoginPresenter implements ILoginPresenter {
             //Save initial time
             SharedPreferenceUtils.setLoggedInTime(mainView.getContext(), new Date().getTime());
 
-            //Send login request
-            mNetworkUtils.login(mainView.getContext(), username, password);
+            if (SharedPreferenceUtils.getContinuousLogin(mainView.getContext())) {
+                continuousLogin(0);
+            } else {
+                //Send login request
+                mNetworkUtils.login(mainView.getContext(), username, password);
+            }
         }
     }
 
@@ -141,5 +146,31 @@ public class LoginPresenter implements ILoginPresenter {
     @Override
     public void refreshState() {
         mainView.onRefreshState(SharedPreferenceUtils.getLoginState(mainView.getContext()).equals(ValueUtils.STATE_LOGGED_IN));
+    }
+
+    /**
+     * User the continuous login utils to login with all accounts
+     */
+    public void continuousLogin(int position) {
+        //Get all accounts
+        new ContinuousLoginUtils() {
+            @Override
+            public void onLoginResult(boolean success, int resultCode, boolean isLast, int position, String username, String password) {
+                //If login successful then notify the user
+                if (success) {
+                    //Notify the view for change
+                    mainView.setUpSavedState(username, password);
+                    //Change the current shared preferences login and password
+                    SharedPreferenceUtils.setUsernameAndPassword(mainView.getContext(), username, password);
+                    //Notify the view
+                    mainView.isLoginSuccessful(success, resultCode);
+                } else if (!isLast) {
+                    //Login is not successful then try next
+                    LoginPresenter.this.continuousLogin(position + 1);
+                } else {
+                    mainView.isLoginSuccessful(success, resultCode);
+                }
+            }
+        }.continuousLogin(mainView.getContext(), position);
     }
 }
