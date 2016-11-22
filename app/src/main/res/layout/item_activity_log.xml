@@ -36,7 +36,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="14103093"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"/>
+                android:textSize="20sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                         android:fontFamily="sans-serif-light"
                         android:text="12:32PM"
                         android:textColor="@android:color/white"
-                        android:textSize="24sp"/>
+                        android:textSize="20sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -88,7 +88,7 @@
                         android:fontFamily="sans-serif-light"
                         android:text="2:30"
                         android:textColor="@android:color/white"
-                        android:textSize="24sp"/>
+                        android:textSize="20sp"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -133,15 +133,15 @@
                     android:fontFamily="sans-serif-light"
                     android:text="322.33"
                     android:textColor="@android:color/white"
-                    android:textSize="28sp"/>
+                    android:textSize="24sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
                     android:text="@string/mb"
                     android:textColor="@android:color/white"
-                    android:textStyle="italic"
-                    android:layout_marginLeft="4dp"/>
+                    android:textStyle="italic"/>
             </LinearLayout>
 
         </LinearLayout>

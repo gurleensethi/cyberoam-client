@@ -25,6 +25,12 @@ public abstract class ContinuousLoginUtils {
         //Get list of all accounts
         List<AccountsModel> list = RealmDatabase.getInstance(context).getAllAccounts();
 
+        //If no saved accounts, return with error
+        if (list.size() == 0) {
+            onLoginResult(false, ValueUtils.ERROR_NO_SAVED_ACCOUNTS, true, 0, null, null);
+            return;
+        }
+
         //Check if is last account
         final boolean isLast = ((position + 1) == list.size());
 

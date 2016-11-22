@@ -88,7 +88,7 @@
                 android:id="@+id/loginButton"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/circle"
                 android:clickable="true"
                 android:elevation="6dp"
@@ -100,13 +100,15 @@
                 android:id="@+id/loadingProgressBar"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/continuous_login_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif-light"
                 android:text="@string/continuous_login_enabled"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
@@ -117,7 +119,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text=""
                 android:textColor="@android:color/white"
                 android:textSize="16sp"/>
 

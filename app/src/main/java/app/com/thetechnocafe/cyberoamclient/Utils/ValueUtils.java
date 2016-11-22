@@ -32,6 +32,7 @@ public class ValueUtils {
     public static final int ERROR_VOLLEY_ERROR = 110;
     public static final int ERROR_NOT_ALLOWED = 111;
     public static final int ERROR_DATA_EXCEED = 112;
+    public static final int ERROR_NO_SAVED_ACCOUNTS = 113;
 
     public static final String STATE_LOGGED_IN = "loggedIn";
     public static final String STATE_LOGGED_OUT = "loggedOut";

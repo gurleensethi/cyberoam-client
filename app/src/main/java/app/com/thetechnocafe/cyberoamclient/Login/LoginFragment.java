@@ -181,6 +181,10 @@ public class LoginFragment extends Fragment implements ILoginView {
                     mErrorTextView.setText(getString(R.string.data_exceeded));
                     break;
                 }
+                case ValueUtils.ERROR_NO_SAVED_ACCOUNTS: {
+                    mErrorTextView.setText(getString(R.string.no_accounts_found));
+                    break;
+                }
             }
         }
 
