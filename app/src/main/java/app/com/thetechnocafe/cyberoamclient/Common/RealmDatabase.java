@@ -170,4 +170,17 @@ public class RealmDatabase {
             }
         });
     }
+
+    /**
+     * Update a particular account
+     */
+    public void updateAccount(String username, String password) {
+        //Begin transaction
+        mRealm.beginTransaction();
+        AccountsModel model = mRealm.where(AccountsModel.class).equalTo(ValueUtils.REALM_ACCOUNTS_USERNAME, username).findFirst();
+        if (model != null) {
+            model.setPassword(password);
+        }
+        mRealm.commitTransaction();
+    }
 }

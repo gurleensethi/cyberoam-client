@@ -76,4 +76,6 @@
     <string name="wifi_stats">WiFi Stats</string>
     <string name="stats_for_this_id">Stats for this ID</string>
     <string name="wifi_name">Network Name</string>
+    <string name="update_account">Update account details</string>
+    <string name="save">Save</string>
 </resources>

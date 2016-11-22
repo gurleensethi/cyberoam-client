@@ -104,7 +104,7 @@ public class SavedAccountsActivity extends AppCompatActivity implements ISavedAc
     @Override
     public void setUpOrRefreshRecyclerView(List<AccountsModel> list) {
         if (mSavedAccountsRecyclerAdapter == null) {
-            mSavedAccountsRecyclerAdapter = new Adapters().new SavedAccountsRecyclerAdapter(getApplicationContext(), list, mPresenter);
+            mSavedAccountsRecyclerAdapter = new Adapters().new SavedAccountsRecyclerAdapter(getApplicationContext(), list, mPresenter, getFragmentManager());
             mSavedAccountsRecyclerView.setAdapter(mSavedAccountsRecyclerAdapter);
             mSavedAccountsRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         } else {

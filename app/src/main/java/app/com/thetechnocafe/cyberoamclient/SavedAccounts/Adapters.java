@@ -1,5 +1,6 @@
 package app.com.thetechnocafe.cyberoamclient.SavedAccounts;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
+import app.com.thetechnocafe.cyberoamclient.Dialogs.EditAccountDialogFragment;
 import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
@@ -25,11 +26,14 @@ public class Adapters {
         private List<AccountsModel> mAccountsModelList;
         private Context mContext;
         private ISavedAccountsPresenter mPresenter;
+        private FragmentManager mFragmentManager;
+        private static final String DIALOG_TAG = "dialog";
 
-        public SavedAccountsRecyclerAdapter(Context context, List<AccountsModel> accountsModelList, ISavedAccountsPresenter presenter) {
+        public SavedAccountsRecyclerAdapter(Context context, List<AccountsModel> accountsModelList, ISavedAccountsPresenter presenter, FragmentManager fragmentManager) {
             mContext = context;
             mAccountsModelList = accountsModelList;
             mPresenter = presenter;
+            mFragmentManager = fragmentManager;
         }
 
         class SavedAccountsViewHolder extends RecyclerView.ViewHolder {
@@ -66,8 +70,8 @@ public class Adapters {
                 mEditAccountImageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO:Add functionality here
-                        Toast.makeText(mContext, "Add editing functionality here", Toast.LENGTH_SHORT).show();
+                        EditAccountDialogFragment dialogFragment = EditAccountDialogFragment.getInstance(mEnrollmentTextView.getText().toString());
+                        dialogFragment.show(mFragmentManager, DIALOG_TAG);
                     }
                 });
 
