@@ -53,11 +53,11 @@ public class LoginPresenter implements ILoginPresenter {
             SharedPreferenceUtils.setBasePort(mainView.getContext(), ValueUtils.BASE_PORT);
             SharedPreferenceUtils.setNotifications(mainView.getContext(), true);
             SharedPreferenceUtils.setActivityLog(mainView.getContext(), true);
+            SharedPreferenceUtils.setContinousLogin(mainView.getContext(), false);
 
             mainView.completeFirstRunSetup();
         }
     }
-
 
     /**
      * View calls this function to login
