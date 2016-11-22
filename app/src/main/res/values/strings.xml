@@ -79,4 +79,5 @@
     <string name="update_account">Update account details</string>
     <string name="save">Save</string>
     <string name="continuous_login">Continuous Login</string>
+    <string name="continuous_login_enabled">Continuous login is enabled</string>
 </resources>

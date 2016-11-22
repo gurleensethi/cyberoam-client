@@ -18,4 +18,6 @@ public interface ILoginView {
     void completeFirstRunSetup();
 
     void onRefreshState(boolean isLoggedIn);
+
+    void isContinuousLoginEnabled(boolean isEnabled);
 }

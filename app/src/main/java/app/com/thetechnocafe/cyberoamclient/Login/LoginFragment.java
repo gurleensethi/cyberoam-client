@@ -56,6 +56,8 @@ public class LoginFragment extends Fragment implements ILoginView {
     Button mLogoutButton;
     @BindView(R.id.saved_accounts_select_image_button)
     ImageButton mSavedAccountsImageButton;
+    @BindView(R.id.continuous_login_text_view)
+    TextView mContinuousLoginTextView;
 
     public static LoginFragment getInstance() {
         LoginFragment fragment = new LoginFragment();
@@ -271,6 +273,15 @@ public class LoginFragment extends Fragment implements ILoginView {
         if (isLoggedIn) {
             Intent intent = new Intent(getContext(), AccountActivity.class);
             startActivity(intent);
+        }
+    }
+
+    @Override
+    public void isContinuousLoginEnabled(boolean isEnabled) {
+        if (isEnabled) {
+            mContinuousLoginTextView.setVisibility(View.VISIBLE);
+        } else {
+            mContinuousLoginTextView.setVisibility(View.GONE);
         }
     }
 }
