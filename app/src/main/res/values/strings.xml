@@ -83,4 +83,6 @@
     <string name="no_accounts_found">No saved accounts found</string>
     <string name="config">Configuration</string>
     <string name="wifi_auto_login">Auto Login on Wifi</string>
+    <string name="auto_wifi_logged_in">Logged into cyerboam with %1$s</string>
+    <string name="logged_into_cyerbaom">Successfully logged in</string>
 </resources>

@@ -5,9 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.widget.Toast;
 
+import app.com.thetechnocafe.cyberoamclient.R;
+import app.com.thetechnocafe.cyberoamclient.Utils.AlarmUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.NotificationsUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 
 /**
  * Created by gurleensethi on 23/11/16.
@@ -16,7 +20,7 @@ import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 public class AutoLoginBroadcastReceiver extends BroadcastReceiver {
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(final Context context, Intent intent) {
         //Get connectivity service
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -30,7 +34,35 @@ public class AutoLoginBroadcastReceiver extends BroadcastReceiver {
             if (isWifi) {
                 //Check if AutoLogin is enabled
                 if (SharedPreferenceUtils.getAutoLoginOnWifi(context)) {
-                    Toast.makeText(context, "Wifi!", Toast.LENGTH_SHORT).show();
+                    //Get username and password from shared preferences
+                    final String username = SharedPreferenceUtils.getUsername(context);
+                    String password = SharedPreferenceUtils.getPassword(context);
+
+                    if (!username.equals("") || !password.equals("")) {
+                        //Login into Wifi
+                        new NetworkUtils(null) {
+                            @Override
+                            public void onResultReceived(boolean success, int errorCode) {
+                                //Check for success
+                                if (success) {
+                                    //Change login state
+                                    SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_IN);
+
+                                    //Start alarms
+                                    AlarmUtils.setUpAlarm(context);
+
+                                    //Notify user
+                                    if (SharedPreferenceUtils.getNotifications(context)) {
+                                        NotificationsUtils.sendSimpleTextNotification(
+                                                context,
+                                                context.getString(R.string.logged_into_cyerbaom),
+                                                String.format(context.getString(R.string.auto_wifi_logged_in), username)
+                                        );
+                                    }
+                                }
+                            }
+                        }.login(context, username, password);
+                    }
                 }
             }
         }
