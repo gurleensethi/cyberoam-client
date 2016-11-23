@@ -17,6 +17,7 @@ public class SharedPreferenceUtils {
     private static final String SHARED_PREFERENCES_LOGGED_IN_TIME = "loggedintime";
     private static final String SHARED_PREFERENCES_ACTIVITY_LOG = "activitylog";
     private static final String SHARED_PREFERENCES_CONTINUOUS_LOGIN = "continouslogin";
+    private static final String SHARED_PREFERENCES_AUTO_LOGIN_ON_WIFI = "autologinonwifi";
 
     //Change the login state
     public static void changeLoginState(Context context, String state) {
@@ -224,5 +225,24 @@ public class SharedPreferenceUtils {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
 
         return sharedPreferences.getBoolean(SHARED_PREFERENCES_CONTINUOUS_LOGIN, false);
+    }
+
+    //Set auto login on wifi enabled/disabled
+    public static void changeAutoLoginOnWifi(Context context, boolean isEnabled) {
+        //Get shared preferences and return boolean
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+        //Get editor
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(SHARED_PREFERENCES_AUTO_LOGIN_ON_WIFI, isEnabled);
+        editor.commit();
+    }
+
+    //Get auto login on wifi state
+    public static boolean getAutoLoginOnWifi(Context context) {
+        //Get shared preferences and return boolean
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+        return sharedPreferences.getBoolean(SHARED_PREFERENCES_AUTO_LOGIN_ON_WIFI, false);
     }
 }
