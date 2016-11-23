@@ -14,4 +14,6 @@ public interface ISettingsPresenter {
     void cleanActivityLogs();
 
     void changeContinuousLogin(boolean isEnabled);
+
+    void changeWifiAutoLogin(boolean isEnabled);
 }

@@ -29,6 +29,8 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     Button mClearLogsButton;
     @BindView(R.id.continuous_login_switch)
     Switch mContinuousLoginSwitch;
+    @BindView(R.id.auto_login_switch)
+    Switch mWifiAutoLoginSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,11 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
         mContinuousLoginSwitch.setChecked(continuousLogin);
     }
 
+    @Override
+    public void setUpGeneralSettingsState(boolean isAutoLoginEnabled) {
+        mWifiAutoLoginSwitch.setChecked(isAutoLoginEnabled);
+    }
+
     //Set up onclickListeners
     private void setUpOnClickListeners() {
         mNotificationsSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -90,6 +97,13 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mPresenter.changeContinuousLogin(b);
+            }
+        });
+
+        mWifiAutoLoginSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mPresenter.changeWifiAutoLogin(b);
             }
         });
     }

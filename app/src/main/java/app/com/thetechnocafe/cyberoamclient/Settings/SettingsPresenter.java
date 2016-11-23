@@ -51,6 +51,12 @@ public class SettingsPresenter implements ISettingsPresenter {
         SharedPreferenceUtils.setContinousLogin(mView.getContext(), isEnabled);
     }
 
+    @Override
+    public void changeWifiAutoLogin(boolean isEnabled) {
+        //Change auto login wifi state
+        SharedPreferenceUtils.changeAutoLoginOnWifi(mView.getContext(), isEnabled);
+    }
+
     //Provide View with updated settings
     private void updateSettingsInView() {
         mView.setUpSettingsState(
@@ -59,6 +65,10 @@ public class SettingsPresenter implements ISettingsPresenter {
                 SharedPreferenceUtils.getNotifications(mView.getContext()),
                 SharedPreferenceUtils.getActivityLog(mView.getContext()),
                 SharedPreferenceUtils.getContinuousLogin(mView.getContext())
+        );
+
+        mView.setUpGeneralSettingsState(
+                SharedPreferenceUtils.getAutoLoginOnWifi(mView.getContext())
         );
     }
 }

@@ -56,6 +56,7 @@ public class LoginPresenter implements ILoginPresenter {
             SharedPreferenceUtils.setNotifications(mainView.getContext(), true);
             SharedPreferenceUtils.setActivityLog(mainView.getContext(), true);
             SharedPreferenceUtils.setContinousLogin(mainView.getContext(), false);
+            SharedPreferenceUtils.changeAutoLoginOnWifi(mainView.getContext(), false);
 
             mainView.completeFirstRunSetup();
         }

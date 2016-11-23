@@ -81,4 +81,6 @@
     <string name="continuous_login">Continuous Login</string>
     <string name="continuous_login_enabled">Continuous login is enabled</string>
     <string name="no_accounts_found">No saved accounts found</string>
+    <string name="config">Configuration</string>
+    <string name="wifi_auto_login">Auto Login on Wifi</string>
 </resources>

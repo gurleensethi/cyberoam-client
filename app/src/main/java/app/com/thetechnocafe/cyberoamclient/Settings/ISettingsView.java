@@ -11,5 +11,7 @@ interface ISettingsView {
 
     void setUpSettingsState(String ipAddress, String port, boolean notificationsEnabled, boolean isActivityLogEnabled, boolean continuousLogin);
 
+    void setUpGeneralSettingsState(boolean isAutoLoginEnabled);
+
     Context getContext();
 }

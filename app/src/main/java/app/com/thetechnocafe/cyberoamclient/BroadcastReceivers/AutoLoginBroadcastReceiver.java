@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.widget.Toast;
+
+import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 
 /**
  * Created by gurleensethi on 23/11/16.
@@ -19,11 +22,17 @@ public class AutoLoginBroadcastReceiver extends BroadcastReceiver {
 
         NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
 
-        //Check if connection type is WiFi
-        boolean isWifi = activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
+        if (activeNetwork != null) {
 
-        if (isWifi) {
+            //Check if connection type is WiFi
+            boolean isWifi = activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
 
+            if (isWifi) {
+                //Check if AutoLogin is enabled
+                if (SharedPreferenceUtils.getAutoLoginOnWifi(context)) {
+                    Toast.makeText(context, "Wifi!", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
 }
