@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import app.com.thetechnocafe.cyberoamclient.Login.LoginBroadcastReceiver;
+import app.com.thetechnocafe.cyberoamclient.BroadcastReceivers.LoginBroadcastReceiver;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SessionLogUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;

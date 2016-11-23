@@ -22,7 +22,7 @@
         </activity>
 
         <receiver
-            android:name=".Login.LoginBroadcastReceiver"
+            android:name=".BroadcastReceivers.LoginBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
         </receiver>

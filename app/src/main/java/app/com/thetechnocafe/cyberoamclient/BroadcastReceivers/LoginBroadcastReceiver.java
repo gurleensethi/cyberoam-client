@@ -1,4 +1,4 @@
-package app.com.thetechnocafe.cyberoamclient.Login;
+package app.com.thetechnocafe.cyberoamclient.BroadcastReceivers;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
