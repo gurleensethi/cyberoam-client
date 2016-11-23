@@ -85,7 +85,7 @@ public abstract class AccountValidator {
      * it got logged out while checking account validity
      */
     private void loginIfWasLoggedIn(final Context context) {
-        if (SharedPreferenceUtils.getLoginState(context) == ValueUtils.STATE_LOGGED_IN) {
+        if (SharedPreferenceUtils.getLoginState(context).equals(ValueUtils.STATE_LOGGED_IN)) {
             new NetworkUtils(null) {
                 @Override
                 public void onResultReceived(boolean success, int errorCode) {
