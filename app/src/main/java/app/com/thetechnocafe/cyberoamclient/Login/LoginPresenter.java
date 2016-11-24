@@ -13,6 +13,7 @@ import java.util.List;
 import app.com.thetechnocafe.cyberoamclient.BroadcastReceivers.LoginBroadcastReceiver;
 import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
 import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
+import app.com.thetechnocafe.cyberoamclient.Utils.AlarmUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ContinuousLoginUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
@@ -81,6 +82,9 @@ public class LoginPresenter implements ILoginPresenter {
 
             //Save initial time
             SharedPreferenceUtils.setLoggedInTime(mainView.getContext(), new Date().getTime());
+
+            //Cancel any previous alarms
+            AlarmUtils.cancelAlarm(mainView.getContext());
 
             if (SharedPreferenceUtils.getContinuousLogin(mainView.getContext())) {
                 continuousLogin(0);
