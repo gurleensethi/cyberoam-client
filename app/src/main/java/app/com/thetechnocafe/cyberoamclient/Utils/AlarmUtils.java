@@ -36,4 +36,19 @@ public class AlarmUtils {
         //Set alarm
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, interval, pendingIntent);
     }
+
+    /**
+     * Stop alarm
+     */
+    public static void cancelAlarm(Context context) {
+        //Get alarm manager service
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+
+        //Create a pending intent for broadcast receiver
+        Intent intent = new Intent(context, LoginBroadcastReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, BROADCAST_REQUEST_CODE, intent, 0);
+
+        //Cancel alarms
+        alarmManager.cancel(pendingIntent);
+    }
 }

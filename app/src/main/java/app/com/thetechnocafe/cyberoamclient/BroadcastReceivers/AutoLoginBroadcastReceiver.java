@@ -6,11 +6,15 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import java.util.Date;
+
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.Utils.AlarmUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.NotificationsUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.SessionLogUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
+import app.com.thetechnocafe.cyberoamclient.Utils.TrafficUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 
 /**
@@ -45,19 +49,40 @@ public class AutoLoginBroadcastReceiver extends BroadcastReceiver {
                             public void onResultReceived(boolean success, int errorCode) {
                                 //Check for success
                                 if (success) {
-                                    //Change login state
-                                    SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_IN);
 
-                                    //Start alarms
-                                    AlarmUtils.setUpAlarm(context);
+                                    //If was already logged in
+                                    if (!SharedPreferenceUtils.getLoginState(context).equals(ValueUtils.STATE_LOGGED_IN)) {
+                                        //Change login state
+                                        SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_IN);
 
-                                    //Notify user
-                                    if (SharedPreferenceUtils.getNotifications(context)) {
-                                        NotificationsUtils.sendSimpleTextNotification(
-                                                context,
-                                                context.getString(R.string.logged_into_cyerbaom),
-                                                String.format(context.getString(R.string.auto_wifi_logged_in), username)
-                                        );
+                                        //Cancel Alarm if already running
+                                        AlarmUtils.cancelAlarm(context);
+
+                                        //Start alarms
+                                        AlarmUtils.setUpAlarm(context);
+
+                                        //Start data tracking
+                                        TrafficUtils.saveInitialBytes(context);
+
+                                        //Save initial time
+                                        SharedPreferenceUtils.setLoggedInTime(context, new Date().getTime());
+
+                                        //Notify user
+                                        if (SharedPreferenceUtils.getNotifications(context)) {
+                                            NotificationsUtils.sendSimpleTextNotification(
+                                                    context,
+                                                    context.getString(R.string.logged_into_cyerbaom),
+                                                    String.format(context.getString(R.string.auto_wifi_logged_in), username)
+                                            );
+                                        }
+                                    }
+                                } else {
+                                    if (SharedPreferenceUtils.getLoginState(context).equals(ValueUtils.STATE_LOGGED_IN)) {
+                                        //Change login state
+                                        SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
+
+                                        //Record session
+                                        SessionLogUtils.saveSessionLog(context);
                                     }
                                 }
                             }
