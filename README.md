@@ -32,3 +32,15 @@ Android client for cyberoam.
 ####V 0.4.0(Beta)
 * Account Validtor(validate the credentials of your saved accounts)
 * Bug fixes
+
+####V 0.5.0(Beta)
+* Session Data Tracking
+* Activity logs
+* Bug fixes
+
+####V 0.6.0(Beta)
+* Activity log graphical data visualization
+* Continuous Login
+* Auto login on wifi network connected
+* Wifi and ID related details on session account activity
+* Bug fixes
