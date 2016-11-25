@@ -46,6 +46,7 @@ public class TrafficUtils {
      * Convert to two decimal places
      */
     public static double getTwoDecimalPlaces(double dataUsed) {
-        return ((int) dataUsed * 100) / 100.0;
+        int integerValue = (int) (dataUsed * 100);
+        return integerValue / 100.00;
     }
 }

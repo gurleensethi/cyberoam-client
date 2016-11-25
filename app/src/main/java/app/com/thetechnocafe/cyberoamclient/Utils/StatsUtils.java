@@ -1,6 +1,7 @@
 package app.com.thetechnocafe.cyberoamclient.Utils;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.HashSet;
 import java.util.List;
@@ -119,6 +120,8 @@ public class StatsUtils {
                 totalDataConsumed += model.getDataConsumed();
             }
         }
+
+        Log.d("STATSLOG", "" + TrafficUtils.getTwoDecimalPlaces(totalDataConsumed));
 
         return TrafficUtils.getTwoDecimalPlaces(totalDataConsumed);
     }

@@ -33,7 +33,7 @@ public abstract class NetworkUtils {
      * Send login POST request to cyberoam ip address specified
      * Notify the result to the presenter
      */
-    public void login(Context context, final String username, final String password) {
+    public void login(final Context context, final String username, final String password) {
         //Create new String request
         StringRequest loginRequest = new StringRequest(Request.Method.POST, SharedPreferenceUtils.getCompleteUrlAddress(context, ValueUtils.BASE_LOGIN_URL), new Response.Listener<String>() {
             @Override

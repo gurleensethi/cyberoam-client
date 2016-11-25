@@ -138,8 +138,7 @@ public class LoginFragment extends Fragment implements ILoginView {
         Log.d("LoginFragment", success + " login fragment " + errorCode);
         //Check if login is successful
         if (success) {
-            mErrorTextView.setText(getString(R.string.login_success));
-
+            mErrorTextView.setText("");
 
             //Set up alarm manager for repeated checks for login
             mLoginPresenter.setUpAlarmManager();
