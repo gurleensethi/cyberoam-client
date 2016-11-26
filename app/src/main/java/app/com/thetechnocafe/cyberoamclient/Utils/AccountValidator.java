@@ -42,7 +42,7 @@ public abstract class AccountValidator {
                         //Cannot reach cyberoam
                         VolleyRequestQueue.getInstance(context).getRequestQueue().cancelAll(ValueUtils.VOLLEY_ACCOUNT_VALIDITY_TAG);
                         onValidationComplete(false);
-                    } else if (!success) {
+                    } else if (!success && message.contains("system could not log you on")) {
                         //Change validation status to false
                         RealmDatabase.getInstance(context).changeValidation(username, false);
                         //Check if last
