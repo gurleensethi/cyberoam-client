@@ -40,7 +40,7 @@ public class ValueUtils {
     public static final int ERROR_LOGOUT = 107;
     public static final int ERROR_LOGIN_AGAIN = 108;
     public static final int ALREADY_LOGGED_IN = 109;
-    public static final String ERROR_VOLLEY_ERROR = "Cannot reach cyberoam";
+    public static final String ERROR_VOLLEY_ERROR = "Cannot reach cyberoam. Please check your wifi connection and base ip/port.";
     public static final int ERROR_NOT_ALLOWED = 111;
     public static final int ERROR_DATA_EXCEED = 112;
     public static final String ERROR_NO_SAVED_ACCOUNTS = "No saved accounts found";
@@ -75,4 +75,7 @@ public class ValueUtils {
     public static final int WIFI_LEVELS = 100;
 
     public static final int CHART_ANIMATION_DURATION = 1500;
+
+    public static final String IP_ADDRESS = "ip";
+    public static final String PORT = "port";
 }

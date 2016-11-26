@@ -16,4 +16,8 @@ public interface ISettingsPresenter {
     void changeContinuousLogin(boolean isEnabled);
 
     void changeWifiAutoLogin(boolean isEnabled);
+
+    void changeIPAddress(String ipAddress);
+
+    void changePort(String port);
 }

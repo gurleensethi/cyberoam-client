@@ -57,6 +57,18 @@ public class SettingsPresenter implements ISettingsPresenter {
         SharedPreferenceUtils.changeAutoLoginOnWifi(mView.getContext(), isEnabled);
     }
 
+    @Override
+    public void changeIPAddress(String ipAddress) {
+        //Change ip address
+        SharedPreferenceUtils.setBaseIPAddress(mView.getContext(), ipAddress);
+    }
+
+    @Override
+    public void changePort(String port) {
+        //Change port number
+        SharedPreferenceUtils.setBasePort(mView.getContext(), port);
+    }
+
     //Provide View with updated settings
     private void updateSettingsInView() {
         mView.setUpSettingsState(

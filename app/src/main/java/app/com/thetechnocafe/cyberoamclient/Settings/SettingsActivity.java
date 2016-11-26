@@ -2,16 +2,21 @@ package app.com.thetechnocafe.cyberoamclient.Settings;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import app.com.thetechnocafe.cyberoamclient.R;
+import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -106,6 +111,20 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
                 mPresenter.changeWifiAutoLogin(b);
             }
         });
+
+        mIPAddressTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showEditTextDialog(ValueUtils.IP_ADDRESS);
+            }
+        });
+
+        mPortTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showEditTextDialog(ValueUtils.PORT);
+            }
+        });
     }
 
     @Override
@@ -122,5 +141,77 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Show an dialog box with edit text
+     */
+    private void showEditTextDialog(final String mode) {
+        //Create an alert dialog box with edit text
+        AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
+
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit_text, null);
+
+        //Get edit text and text view
+        final EditText editText = (EditText) view.findViewById(R.id.edit_text);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        editText.setLayoutParams(lp);
+
+        TextView titleText = (TextView) view.findViewById(R.id.title_text_view);
+        TextView mCancelTextView = (TextView) view.findViewById(R.id.cancel_button);
+        TextView mSaveTextView = (TextView) view.findViewById(R.id.save_button);
+
+        //Configure according to mode
+        switch (mode) {
+            case ValueUtils.IP_ADDRESS: {
+                titleText.setText(R.string.ip_address);
+                editText.setText(mIPAddressTextView.getText());
+                break;
+            }
+            case ValueUtils.PORT: {
+                titleText.setText(R.string.port);
+                editText.setText(mPortTextView.getText());
+                break;
+            }
+        }
+
+        //Set the edit text
+        builder.setView(view);
+
+        //Create the dialog box
+        final AlertDialog dialog = builder.create();
+
+        mCancelTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        mSaveTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (mode) {
+                    case ValueUtils.IP_ADDRESS: {
+                        mPresenter.changeIPAddress(editText.getText().toString());
+                        break;
+                    }
+                    case ValueUtils.PORT: {
+                        mPresenter.changePort(editText.getText().toString());
+                        break;
+                    }
+                }
+
+                //Dismiss the dialog
+                dialog.dismiss();
+
+                //Refersh the settings
+                mPresenter.onViewReady();
+            }
+        });
+
+        dialog.show();
     }
 }
