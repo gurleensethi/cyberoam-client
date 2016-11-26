@@ -35,43 +35,37 @@ public abstract class AccountValidator {
             //Create new Network request
             new NetworkUtils(ValueUtils.VOLLEY_ACCOUNT_VALIDITY_TAG) {
                 @Override
-                public void onResultReceived(boolean success, int errorCode) {
+                public void onResultReceived(boolean success, String message) {
 
                     //If cannot reach cyberoam, cancel all requests
-                    switch (errorCode) {
-                        case ValueUtils.ERROR_VOLLEY_ERROR: {
-                            //Cannot reach cyberoam
-                            VolleyRequestQueue.getInstance(context).getRequestQueue().cancelAll(ValueUtils.VOLLEY_ACCOUNT_VALIDITY_TAG);
-                            onValidationComplete(false);
-                            break;
+                    if (message.equals(ValueUtils.ERROR_VOLLEY_ERROR)) {
+                        //Cannot reach cyberoam
+                        VolleyRequestQueue.getInstance(context).getRequestQueue().cancelAll(ValueUtils.VOLLEY_ACCOUNT_VALIDITY_TAG);
+                        onValidationComplete(false);
+                    } else if (!success) {
+                        //Change validation status to false
+                        RealmDatabase.getInstance(context).changeValidation(username, false);
+                        //Check if last
+                        if (position + 1 == list.size()) {
+                            onValidationComplete(true);
+                            loginIfWasLoggedIn(context);
                         }
-                        case ValueUtils.ERROR_USERNAME_PASSWORD: {
-                            //Change validation status to false
-                            RealmDatabase.getInstance(context).changeValidation(username, false);
-                            //Check if last
-                            if (position + 1 == list.size()) {
-                                onValidationComplete(true);
-                                loginIfWasLoggedIn(context);
+                    } else {
+                        //Change validation status to true
+                        RealmDatabase.getInstance(context).changeValidation(username, true);
+
+                        //If valid then account might get logged, log it out
+                        new NetworkUtils(null) {
+                            @Override
+                            public void onResultReceived(boolean success, String message) {
+
                             }
-                            break;
-                        }
-                        default: {
-                            //Change validation status to true
-                            RealmDatabase.getInstance(context).changeValidation(username, true);
+                        }.logout(context, username, password);
 
-                            //If valid then account might get logged, log it out
-                            new NetworkUtils(null) {
-                                @Override
-                                public void onResultReceived(boolean success, int errorCode) {
-
-                                }
-                            }.logout(context, username, password);
-
-                            //Check if last
-                            if (position + 1 == list.size()) {
-                                onValidationComplete(true);
-                                loginIfWasLoggedIn(context);
-                            }
+                        //Check if last
+                        if (position + 1 == list.size()) {
+                            onValidationComplete(true);
+                            loginIfWasLoggedIn(context);
                         }
                     }
                 }
@@ -88,9 +82,9 @@ public abstract class AccountValidator {
         if (SharedPreferenceUtils.getLoginState(context).equals(ValueUtils.STATE_LOGGED_IN)) {
             new NetworkUtils(null) {
                 @Override
-                public void onResultReceived(boolean success, int errorCode) {
+                public void onResultReceived(boolean success, String message) {
                     //If unable to log in, change state to logged out
-                    if (errorCode != ValueUtils.LOGIN_SUCCESS) {
+                    if (success != true) {
                         SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_OUT);
                     }
                 }

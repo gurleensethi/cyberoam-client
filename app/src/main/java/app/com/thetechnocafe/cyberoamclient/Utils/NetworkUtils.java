@@ -38,7 +38,7 @@ public abstract class NetworkUtils {
         VOLLEY_TAG = tag;
     }
 
-    public abstract void onResultReceived(boolean success, int errorCode);
+    public abstract void onResultReceived(boolean success, String message);
 
     /**
      * Send login POST request to cyberoam ip address specified
@@ -59,9 +59,9 @@ public abstract class NetworkUtils {
                 //Check the status from the response
                 if (status != null) {
                     if (status.toUpperCase().equals(ValueUtils.XML_STATUS_LIVE)) {
-                        onResultReceived(true, ValueUtils.LOGIN_SUCCESS);
+                        onResultReceived(true, message);
                     } else {
-                        onResultReceived(false, ValueUtils.ERROR_USERNAME_PASSWORD);
+                        onResultReceived(false, message);
                     }
                 }
             }
@@ -115,9 +115,9 @@ public abstract class NetworkUtils {
 
                 if(status != null) {
                     if(status.toUpperCase().equals(ValueUtils.XML_ACK.toUpperCase())) {
-                        onResultReceived(true, ValueUtils.ALREADY_LOGGED_IN);
+                        onResultReceived(true, message);
                     } else {
-                        onResultReceived(false, ValueUtils.ERROR_LOGIN_AGAIN);
+                        onResultReceived(false, message);
                     }
                 }
             }
@@ -166,9 +166,9 @@ public abstract class NetworkUtils {
                 //Check the status
                 if (status != null) {
                     if (status.toUpperCase().equals(ValueUtils.XML_STATUS_LOGIN)) {
-                        onResultReceived(true, ValueUtils.LOGOUT_SUCCESS);
+                        onResultReceived(true, message);
                     } else {
-                        onResultReceived(false, ValueUtils.ERROR_LOGOUT);
+                        onResultReceived(false, message);
                     }
                 }
             }

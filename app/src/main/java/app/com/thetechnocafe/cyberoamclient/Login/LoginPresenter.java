@@ -31,9 +31,9 @@ public class LoginPresenter implements ILoginPresenter {
     private ILoginView mainView;
     private NetworkUtils mNetworkUtils = new NetworkUtils(null) {
         @Override
-        public void onResultReceived(boolean success, int errorCode) {
-            Log.d("LoginPresenter", success + " " + errorCode);
-            mainView.isLoginSuccessful(success, errorCode);
+        public void onResultReceived(boolean success, String message) {
+            Log.d("LoginPresenter", success + " " + message);
+            mainView.isLoginSuccessful(success, message);
         }
     };
 
@@ -162,7 +162,7 @@ public class LoginPresenter implements ILoginPresenter {
         //Get all accounts
         new ContinuousLoginUtils() {
             @Override
-            public void onLoginResult(boolean success, int resultCode, boolean isLast, int position, String username, String password) {
+            public void onLoginResult(boolean success, String message, boolean isLast, int position, String username, String password) {
                 //If login successful then notify the user
                 if (success) {
                     //Notify the view for change
@@ -170,12 +170,12 @@ public class LoginPresenter implements ILoginPresenter {
                     //Change the current shared preferences login and password
                     SharedPreferenceUtils.setUsernameAndPassword(mainView.getContext(), username, password);
                     //Notify the view
-                    mainView.isLoginSuccessful(success, resultCode);
+                    mainView.isLoginSuccessful(success, message);
                 } else if (!isLast) {
                     //Login is not successful then try next
                     LoginPresenter.this.continuousLogin(position + 1);
                 } else {
-                    mainView.isLoginSuccessful(success, resultCode);
+                    mainView.isLoginSuccessful(success, message);
                 }
             }
         }.continuousLogin(mainView.getContext(), position);

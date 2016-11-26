@@ -13,7 +13,7 @@ import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 
 public abstract class ContinuousLoginUtils {
 
-    public abstract void onLoginResult(boolean success, int resultCode, boolean isLast, int position, String username, String password);
+    public abstract void onLoginResult(boolean success, String message, boolean isLast, int position, String username, String password);
 
     /**
      * Login using all accounts
@@ -39,9 +39,9 @@ public abstract class ContinuousLoginUtils {
 
         new NetworkUtils(null) {
             @Override
-            public void onResultReceived(boolean success, int errorCode) {
+            public void onResultReceived(boolean success, String message) {
                 //Notify about result
-                onLoginResult(success, errorCode, isLast, position, model.getUsername(), model.getPassword());
+                onLoginResult(success, message, isLast, position, model.getUsername(), model.getPassword());
             }
         }.login(context, model.getUsername(), model.getPassword());
     }

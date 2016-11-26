@@ -46,7 +46,7 @@ public class AutoLoginBroadcastReceiver extends BroadcastReceiver {
                         //Login into Wifi
                         new NetworkUtils(null) {
                             @Override
-                            public void onResultReceived(boolean success, int errorCode) {
+                            public void onResultReceived(boolean success, String message) {
                                 //Check for success
                                 if (success) {
 

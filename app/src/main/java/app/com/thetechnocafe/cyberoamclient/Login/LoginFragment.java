@@ -118,7 +118,7 @@ public class LoginFragment extends Fragment implements ILoginView {
                 toggleViewStates(false, false);
                 new NetworkUtils(null) {
                     @Override
-                    public void onResultReceived(boolean success, int errorCode) {
+                    public void onResultReceived(boolean success, String message) {
                         if (success) {
                             Toast.makeText(getContext(), "Successfully logged out", Toast.LENGTH_SHORT).show();
                         } else {
@@ -134,8 +134,8 @@ public class LoginFragment extends Fragment implements ILoginView {
      * Handle the login response from presenter
      */
     @Override
-    public void isLoginSuccessful(boolean success, int errorCode) {
-        Log.d("LoginFragment", success + " login fragment " + errorCode);
+    public void isLoginSuccessful(boolean success, String message) {
+        Log.d("LoginFragment", success + " login fragment " + message);
         //Check if login is successful
         if (success) {
             mErrorTextView.setText("");
@@ -147,43 +147,19 @@ public class LoginFragment extends Fragment implements ILoginView {
             Intent intent = new Intent(getContext(), AccountActivity.class);
             startActivity(intent);
         } else {
-            switch (errorCode) {
+            switch (message) {
                 case ValueUtils.ERROR_USERNAME_EMPTY: {
-                    mErrorTextView.setText(getString(R.string.username_error));
+                    mErrorTextView.setText(message);
                     mEnrollmentEditText.requestFocus();
                     break;
                 }
                 case ValueUtils.ERROR_PASSWORD_EMPTY: {
-                    mErrorTextView.setText(getString(R.string.password_error));
+                    mErrorTextView.setText(message);
                     mPasswordEditText.requestFocus();
                     break;
                 }
-                case ValueUtils.ERROR_USERNAME_PASSWORD: {
-                    mErrorTextView.setText(getString(R.string.wrong_password_username));
-                    break;
-                }
-                case ValueUtils.ERROR_VOLLEY_ERROR: {
-                    mErrorTextView.setText(getString(R.string.cyberoam_unreachable));
-                    break;
-                }
-                case ValueUtils.ERROR_SERVER_ACCOUNT_LOCKED: {
-                    mErrorTextView.setText(getString(R.string.account_locked));
-                    break;
-                }
-                case ValueUtils.ERROR_MAXIMUM_LOGIN_LIMIT: {
-                    mErrorTextView.setText(getString(R.string.maximum_login_limit));
-                    break;
-                }
-                case ValueUtils.ERROR_NOT_ALLOWED: {
-                    mErrorTextView.setText(getString(R.string.not_allowed_to_login));
-                    break;
-                }
-                case ValueUtils.ERROR_DATA_EXCEED: {
-                    mErrorTextView.setText(getString(R.string.data_exceeded));
-                    break;
-                }
-                case ValueUtils.ERROR_NO_SAVED_ACCOUNTS: {
-                    mErrorTextView.setText(getString(R.string.no_accounts_found));
+                default: {
+                    mErrorTextView.setText(message);
                     break;
                 }
             }

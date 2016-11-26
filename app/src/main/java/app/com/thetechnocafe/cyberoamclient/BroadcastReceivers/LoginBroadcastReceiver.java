@@ -39,7 +39,7 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
         //Request to check if already logged in
         new NetworkUtils(null) {
             @Override
-            public void onResultReceived(boolean success, int errorCode) {
+            public void onResultReceived(boolean success, String message) {
                 if (success) {
                     //Check if user has not logged out, if not then set another alarm
                     if (SharedPreferenceUtils.getLoginState(context).equals(ValueUtils.STATE_LOGGED_IN)) {
@@ -48,10 +48,10 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                     }
                 } else {
                     //Check if login state is logged in and check returns to login again
-                    if (errorCode == ValueUtils.ERROR_LOGIN_AGAIN && SharedPreferenceUtils.getLoginState(context).equals(ValueUtils.STATE_LOGGED_IN)) {
+                    if (message == ValueUtils.XML_LOGIN_AGAIN && SharedPreferenceUtils.getLoginState(context).equals(ValueUtils.STATE_LOGGED_IN)) {
                         loginAgain(context, savedUsername, savedPassword);
                         Log.d(TAG, "Logging in again");
-                    } else if (errorCode == ValueUtils.ERROR_VOLLEY_ERROR) {
+                    } else if (message == ValueUtils.ERROR_VOLLEY_ERROR) {
                         //Check if notifications are enable and send notification
                         if (SharedPreferenceUtils.getNotifications(context)) {
                             NotificationsUtils.sendSimpleTextNotification(context, context.getString(R.string.cyberoam_unreachable), context.getString(R.string.check_wifi));
@@ -77,41 +77,16 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
     private void loginAgain(final Context context, String username, String password) {
         new NetworkUtils(null) {
             @Override
-            public void onResultReceived(boolean success, int errorCode) {
-                if (success && errorCode == ValueUtils.LOGIN_SUCCESS) {
+            public void onResultReceived(boolean success, String message) {
+                if (success) {
                     SharedPreferenceUtils.changeLoginState(context, ValueUtils.STATE_LOGGED_IN);
 
                     //Set further alarm
                     setUpAlarm(context);
                 } else {
-                    //Detect error and notify user
-                    String errorMessage = "";
-                    switch (errorCode) {
-                        case ValueUtils.ERROR_MAXIMUM_LOGIN_LIMIT: {
-                            errorMessage = context.getString(R.string.maximum_login_limit);
-                            break;
-                        }
-                        case ValueUtils.ERROR_NOT_ALLOWED: {
-                            errorMessage = context.getString(R.string.not_allowed_to_login);
-                            break;
-                        }
-                        case ValueUtils.ERROR_SERVER_ACCOUNT_LOCKED: {
-                            errorMessage = context.getString(R.string.account_locked);
-                            break;
-                        }
-                        case ValueUtils.ERROR_USERNAME_PASSWORD: {
-                            errorMessage = context.getString(R.string.wrong_password_username);
-                            break;
-                        }
-                        case ValueUtils.ERROR_DATA_EXCEED: {
-                            errorMessage = context.getString(R.string.data_exceed);
-                            break;
-                        }
-                    }
-
                     //Check if notifications are enable and send notification
                     if (SharedPreferenceUtils.getNotifications(context)) {
-                        NotificationsUtils.sendSimpleTextNotification(context, errorMessage, context.getString(R.string.you_have_been_logged_out));
+                        NotificationsUtils.sendSimpleTextNotification(context, message, context.getString(R.string.you_have_been_logged_out));
                     }
 
                     //Change logged in state

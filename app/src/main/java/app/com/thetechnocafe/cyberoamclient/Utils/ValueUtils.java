@@ -28,10 +28,11 @@ public class ValueUtils {
     public static final String XML_LIVE_REQUEST_RESPONSE = "liverequestresponse";
     public static final String XML_ACK = "ack";
     public static final String XML_LIVE_MESSAGE = "livemessage";
+    public static final String XML_LOGIN_AGAIN = "login_again";
 
     public static final int LOGIN_SUCCESS = 100;
-    public static final int ERROR_USERNAME_EMPTY = 101;
-    public static final int ERROR_PASSWORD_EMPTY = 102;
+    public static final String ERROR_USERNAME_EMPTY = "Username cannot be empty";
+    public static final String ERROR_PASSWORD_EMPTY = "Password cannot be empty";
     public static final int ERROR_USERNAME_PASSWORD = 103;
     public static final int ERROR_MAXIMUM_LOGIN_LIMIT = 104;
     public static final int ERROR_SERVER_ACCOUNT_LOCKED = 105;
@@ -39,10 +40,10 @@ public class ValueUtils {
     public static final int ERROR_LOGOUT = 107;
     public static final int ERROR_LOGIN_AGAIN = 108;
     public static final int ALREADY_LOGGED_IN = 109;
-    public static final int ERROR_VOLLEY_ERROR = 110;
+    public static final String ERROR_VOLLEY_ERROR = "Cannot reach cyberoam";
     public static final int ERROR_NOT_ALLOWED = 111;
     public static final int ERROR_DATA_EXCEED = 112;
-    public static final int ERROR_NO_SAVED_ACCOUNTS = 113;
+    public static final String ERROR_NO_SAVED_ACCOUNTS = "No saved accounts found";
 
     public static final String STATE_LOGGED_IN = "loggedIn";
     public static final String STATE_LOGGED_OUT = "loggedOut";

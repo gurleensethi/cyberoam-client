@@ -54,7 +54,7 @@ public class AccountPresenter implements IAccountPresenter {
 
         new NetworkUtils(null) {
             @Override
-            public void onResultReceived(boolean success, int errorCode) {
+            public void onResultReceived(boolean success, String message) {
                 if (success) {
                     Toast.makeText(mView.getContext(), "Successfully logged out", Toast.LENGTH_SHORT).show();
                 } else {

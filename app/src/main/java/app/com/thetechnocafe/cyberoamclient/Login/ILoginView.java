@@ -7,7 +7,7 @@ import android.content.Context;
  */
 
 public interface ILoginView {
-    void isLoginSuccessful(boolean success, int errorCode);
+    void isLoginSuccessful(boolean success, String message);
 
     void setUpOnClickListeners();
 
