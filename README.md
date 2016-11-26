@@ -49,3 +49,6 @@ Android client for cyberoam.
 * Ability to change IP/Port
 * Bug fixes
 * UI changes
+
+####V 0.8.0(Beta)
+* Bug fixes
