@@ -44,3 +44,8 @@ Android client for cyberoam.
 * Auto login on wifi network connected
 * Wifi and ID related details on session account activity
 * Bug fixes
+
+####V 0.7.0(Beta)
+* Ability to change IP/Port
+* Bug fixes
+* UI changes
