@@ -18,7 +18,16 @@ public class ValueUtils {
     public static final String MODE_CHECK = "192";
     public static final String MODE_LOGOUT = "193";
     public static final String A = "a";
-    public static final String STATUS_LIVE = "LIVE";
+
+
+    public static final String XML_STATUS_LIVE = "LIVE";
+    public static final String XML_STATUS_LOGIN = "LOGIN";
+    public static final String XML_REQUEST_RESPONSE = "requestresponse";
+    public static final String XML_MESSAGE = "message";
+    public static final String XML_STATUS = "status";
+    public static final String XML_LIVE_REQUEST_RESPONSE = "liverequestresponse";
+    public static final String XML_ACK = "ack";
+    public static final String XML_LIVE_MESSAGE = "livemessage";
 
     public static final int LOGIN_SUCCESS = 100;
     public static final int ERROR_USERNAME_EMPTY = 101;

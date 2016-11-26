@@ -3,6 +3,7 @@ package app.com.thetechnocafe.cyberoamclient.Utils;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -10,8 +11,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
+import java.io.StringReader;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import app.com.thetechnocafe.cyberoamclient.Common.VolleyRequestQueue;
 
@@ -40,19 +51,18 @@ public abstract class NetworkUtils {
             public void onResponse(String response) {
                 Log.d(TAG, response);
 
-                //Check for login success
-                if (response.contains("successfully logged into JIIT")) {
-                    onResultReceived(true, ValueUtils.LOGIN_SUCCESS);
-                } else if (response.contains("could not log you")) {
-                    onResultReceived(false, ValueUtils.ERROR_USERNAME_PASSWORD);
-                } else if (response.contains("Maximum Login Limit")) {
-                    onResultReceived(false, ValueUtils.ERROR_MAXIMUM_LOGIN_LIMIT);
-                } else if (response.contains("Your AD Server account is locked")) {
-                    onResultReceived(false, ValueUtils.ERROR_SERVER_ACCOUNT_LOCKED);
-                } else if (response.contains("You are not allowed to login")) {
-                    onResultReceived(false, ValueUtils.ERROR_NOT_ALLOWED);
-                } else if (response.contains("Your data transfer has been exceeded")) {
-                    onResultReceived(false, ValueUtils.ERROR_DATA_EXCEED);
+                //Get status and message
+                String status = getXMLStatus(response);
+                String message = getXMLMessage(response);
+                Toast.makeText(context, status + " - " + message, Toast.LENGTH_SHORT).show();
+
+                //Check the status from the response
+                if (status != null) {
+                    if (status.toUpperCase().equals(ValueUtils.XML_STATUS_LIVE)) {
+                        onResultReceived(true, ValueUtils.LOGIN_SUCCESS);
+                    } else {
+                        onResultReceived(false, ValueUtils.ERROR_USERNAME_PASSWORD);
+                    }
                 }
             }
         }, new Response.ErrorListener() {
@@ -97,12 +107,18 @@ public abstract class NetworkUtils {
         StringRequest checkRequest = new StringRequest(Request.Method.GET, getLoginCheckUrl(context, username, password), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Check if already logged in
-                if (response.contains("login_again")) {
-                    //Login again
-                    onResultReceived(false, ValueUtils.ERROR_LOGIN_AGAIN);
-                } else {
-                    onResultReceived(true, ValueUtils.ALREADY_LOGGED_IN);
+
+                //Get status and message
+                String status = getXMLLiveAck(response);
+                String message = getXMLLiveMessage(response);
+                Toast.makeText(context, status + " - " + message, Toast.LENGTH_SHORT).show();
+
+                if(status != null) {
+                    if(status.toUpperCase().equals(ValueUtils.XML_ACK.toUpperCase())) {
+                        onResultReceived(true, ValueUtils.ALREADY_LOGGED_IN);
+                    } else {
+                        onResultReceived(false, ValueUtils.ERROR_LOGIN_AGAIN);
+                    }
                 }
             }
         }, new Response.ErrorListener() {
@@ -136,16 +152,24 @@ public abstract class NetworkUtils {
      * Logout from existing logged in account
      * Notify presenter on login
      */
-    public void logout(Context context, final String username, String password) {
+    public void logout(final Context context, final String username, String password) {
         //Create new string request to logout
         StringRequest logoutRequest = new StringRequest(Request.Method.POST, SharedPreferenceUtils.getCompleteUrlAddress(context, ValueUtils.BASE_LOGOUT_URL), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Check for response
-                if (response.contains("successfully logged off from JIIT")) {
-                    onResultReceived(true, ValueUtils.LOGOUT_SUCCESS);
-                } else {
-                    onResultReceived(false, ValueUtils.ERROR_LOGOUT);
+
+                //Get status and message
+                String status = getXMLStatus(response);
+                String message = getXMLMessage(response);
+                Toast.makeText(context, status + " - " + message, Toast.LENGTH_SHORT).show();
+
+                //Check the status
+                if (status != null) {
+                    if (status.toUpperCase().equals(ValueUtils.XML_STATUS_LOGIN)) {
+                        onResultReceived(true, ValueUtils.LOGOUT_SUCCESS);
+                    } else {
+                        onResultReceived(false, ValueUtils.ERROR_LOGOUT);
+                    }
                 }
             }
         }, new Response.ErrorListener() {
@@ -178,4 +202,115 @@ public abstract class NetworkUtils {
                 ValueUtils.A + "=" + new Date().getTime();
     }
 
+    /**
+     * Get the Status code from XML
+     */
+    private String getXMLStatus(String xml) {
+        try {
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+
+            InputSource inputSource = new InputSource();
+            inputSource.setCharacterStream(new StringReader(xml));
+
+            Document document = documentBuilder.parse(inputSource);
+
+            Element element = document.getDocumentElement();
+            element.normalize();
+
+            NodeList nodeList = document.getElementsByTagName(ValueUtils.XML_REQUEST_RESPONSE);
+            Element element1 = (Element) nodeList.item(0);
+
+            NodeList statusList = element1.getElementsByTagName(ValueUtils.XML_STATUS).item(0).getChildNodes();
+            Node statusNode = statusList.item(0);
+            return statusNode.getNodeValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Get the Message from XML
+     */
+    private String getXMLMessage(String xml) {
+        try {
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+
+            InputSource inputSource = new InputSource();
+            inputSource.setCharacterStream(new StringReader(xml));
+
+            Document document = documentBuilder.parse(inputSource);
+
+            Element element = document.getDocumentElement();
+            element.normalize();
+
+            NodeList nodeList = document.getElementsByTagName(ValueUtils.XML_REQUEST_RESPONSE);
+            Element element1 = (Element) nodeList.item(0);
+
+            NodeList messageList = element1.getElementsByTagName(ValueUtils.XML_MESSAGE).item(0).getChildNodes();
+            Node messageNode = messageList.item(0);
+            return messageNode.getNodeValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Get the status code for live requets
+     */
+    private String getXMLLiveAck(String xml) {
+        try {
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+
+            InputSource inputSource = new InputSource();
+            inputSource.setCharacterStream(new StringReader(xml));
+
+            Document document = documentBuilder.parse(inputSource);
+
+            Element element = document.getDocumentElement();
+            element.normalize();
+
+            NodeList nodeList = document.getElementsByTagName(ValueUtils.XML_LIVE_REQUEST_RESPONSE);
+            Element element1 = (Element) nodeList.item(0);
+
+            NodeList statusList = element1.getElementsByTagName(ValueUtils.XML_ACK).item(0).getChildNodes();
+            Node statusNode = statusList.item(0);
+            return statusNode.getNodeValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Get the live message for live request
+     */
+    private String getXMLLiveMessage(String xml) {
+        try {
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+
+            InputSource inputSource = new InputSource();
+            inputSource.setCharacterStream(new StringReader(xml));
+
+            Document document = documentBuilder.parse(inputSource);
+
+            Element element = document.getDocumentElement();
+            element.normalize();
+
+            NodeList nodeList = document.getElementsByTagName(ValueUtils.XML_LIVE_REQUEST_RESPONSE);
+            Element element1 = (Element) nodeList.item(0);
+
+            NodeList messageList = element1.getElementsByTagName(ValueUtils.XML_LIVE_MESSAGE).item(0).getChildNodes();
+            Node messageNode = messageList.item(0);
+            return messageNode.getNodeValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
