@@ -67,7 +67,7 @@ public class LoginBroadcastReceiver extends BroadcastReceiver {
                     }
                 }
             }
-        }.checkLoginStatus(context, savedUsername, savedPassword);
+        }.checkLoginStatus(context, savedUsername, savedPassword, 0);
     }
 
     /**

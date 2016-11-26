@@ -18,6 +18,7 @@ public class ValueUtils {
     public static final String MODE_CHECK = "192";
     public static final String MODE_LOGOUT = "193";
     public static final String A = "a";
+    public static final String STATUS_LIVE = "LIVE";
 
     public static final int LOGIN_SUCCESS = 100;
     public static final int ERROR_USERNAME_EMPTY = 101;
@@ -37,6 +38,7 @@ public class ValueUtils {
     public static final String STATE_LOGGED_IN = "loggedIn";
     public static final String STATE_LOGGED_OUT = "loggedOut";
     public static final long FIXED_INTERVAL = 90000;
+    public static final int MAX_RETRY_NUMBER = 2;
 
     //Volley specific values
     public static final String VOLLEY_ACCOUNT_VALIDITY_TAG = "volley_account_validity_tag";

@@ -92,7 +92,7 @@ public abstract class NetworkUtils {
      * Check for login status,
      * whether logged in or not
      */
-    public void checkLoginStatus(Context context, final String username, String password) {
+    public void checkLoginStatus(final Context context, final String username, final String password, final int retryNum) {
         //Create new string request to check status
         StringRequest checkRequest = new StringRequest(Request.Method.GET, getLoginCheckUrl(context, username, password), new Response.Listener<String>() {
             @Override
@@ -108,7 +108,11 @@ public abstract class NetworkUtils {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                onResultReceived(false, ValueUtils.ERROR_VOLLEY_ERROR);
+                if (retryNum > ValueUtils.MAX_RETRY_NUMBER) {
+                    onResultReceived(false, ValueUtils.ERROR_VOLLEY_ERROR);
+                } else {
+                    checkLoginStatus(context, username, password, retryNum + 1);
+                }
             }
         });
 
