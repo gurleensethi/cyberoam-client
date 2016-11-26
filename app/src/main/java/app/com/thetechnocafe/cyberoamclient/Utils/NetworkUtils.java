@@ -3,7 +3,6 @@ package app.com.thetechnocafe.cyberoamclient.Utils;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -54,7 +53,6 @@ public abstract class NetworkUtils {
                 //Get status and message
                 String status = getXMLStatus(response);
                 String message = getXMLMessage(response);
-                Toast.makeText(context, status + " - " + message, Toast.LENGTH_SHORT).show();
 
                 //Check the status from the response
                 if (status != null) {
@@ -111,7 +109,6 @@ public abstract class NetworkUtils {
                 //Get status and message
                 String status = getXMLLiveAck(response);
                 String message = getXMLLiveMessage(response);
-                Toast.makeText(context, status + " - " + message, Toast.LENGTH_SHORT).show();
 
                 if(status != null) {
                     if(status.toUpperCase().equals(ValueUtils.XML_ACK.toUpperCase())) {
@@ -161,7 +158,6 @@ public abstract class NetworkUtils {
                 //Get status and message
                 String status = getXMLStatus(response);
                 String message = getXMLMessage(response);
-                Toast.makeText(context, status + " - " + message, Toast.LENGTH_SHORT).show();
 
                 //Check the status
                 if (status != null) {
