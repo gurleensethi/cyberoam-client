@@ -11,20 +11,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import app.com.thetechnocafe.cyberoamclient.Account.AccountActivity;
 import app.com.thetechnocafe.cyberoamclient.BroadcastReceivers.LoginBroadcastReceiver;
 import app.com.thetechnocafe.cyberoamclient.Dialogs.SavedAccountsSelectDialogFragment;
 import app.com.thetechnocafe.cyberoamclient.Dialogs.SimpleMessageDialogFragment;
 import app.com.thetechnocafe.cyberoamclient.R;
-import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import butterknife.BindView;
@@ -53,8 +50,6 @@ public class LoginFragment extends Fragment implements ILoginView {
     TextView mErrorTextView;
     @BindView(R.id.loadingProgressBar)
     ProgressBar mLoadingProgressBar;
-    @BindView(R.id.logoutButton)
-    Button mLogoutButton;
     @BindView(R.id.saved_accounts_select_image_button)
     ImageButton mSavedAccountsImageButton;
     @BindView(R.id.continuous_login_text_view)
@@ -105,27 +100,6 @@ public class LoginFragment extends Fragment implements ILoginView {
             public void onClick(View v) {
                 SavedAccountsSelectDialogFragment dialogFragment = SavedAccountsSelectDialogFragment.getInstance(mLoginPresenter);
                 dialogFragment.show(getActivity().getFragmentManager(), SAVED_ACCOUNTS_DIALOG_TAG);
-            }
-        });
-
-        //TODO:Remove this code from final production
-        //Temporary logout button
-        mLogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancelAlarm();
-                SharedPreferenceUtils.changeLoginState(getContext(), ValueUtils.STATE_LOGGED_OUT);
-                toggleViewStates(false, false);
-                new NetworkUtils(null) {
-                    @Override
-                    public void onResultReceived(boolean success, String message) {
-                        if (success) {
-                            Toast.makeText(getContext(), "Successfully logged out", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getContext(), "Error logging out", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }.logout(getContext(), mEnrollmentEditText.getText().toString(), mPasswordEditText.getText().toString());
             }
         });
     }
