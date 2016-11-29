@@ -81,8 +81,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:fontFamily="sans-serif-light"
+                android:textSize="16sp"
                 android:text="@string/data_session_consumed"
                 android:textColor="@android:color/white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/data_not_accurate"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

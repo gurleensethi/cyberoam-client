@@ -88,4 +88,5 @@
     <string name="no_saved_accounts_found">No saved accounts found</string>
     <string name="save_accounts_continuous_login">Save accounts to use continuous login</string>
     <string name="unable_to_login_saved_accounts">Unable to login with saved accounts</string>
+    <string name="data_not_accurate">(Data calculations might not match the actual consumption)</string>
 </resources>
