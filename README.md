@@ -52,3 +52,7 @@ Android client for cyberoam.
 
 ####V 0.8.0(Beta)
 * Bug fixes
+
+####V 0.9.0(Stable)
+* Added continuous login on auto wifi login
+* Bug fixes
