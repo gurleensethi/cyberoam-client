@@ -210,7 +210,7 @@ public class LoginFragment extends Fragment implements ILoginView {
      */
     @Override
     public void completeFirstRunSetup() {
-        SimpleMessageDialogFragment fragment = SimpleMessageDialogFragment.getInstance(R.drawable.ic_warning, null, getString(R.string.beta_message));
+        SimpleMessageDialogFragment fragment = SimpleMessageDialogFragment.getInstance(R.drawable.ic_welcome, null, getString(R.string.welcome_message));
         fragment.show(getActivity().getFragmentManager(), SIMPLE_DIALOG_TAG);
     }
 

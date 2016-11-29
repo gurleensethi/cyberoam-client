@@ -32,6 +32,7 @@
     <string name="select_account">Select Account</string>
     <string name="alert">Alert!</string>
     <string name="beta_message">You are using a beta version of this app. The app is still under development. If you encounter any bugs or crashes it is highly appreciated to notify the developer for the same.</string>
+    <string name="welcome_message">Thank you for downloading Cyberoam Client. We hope you enjoy using this app. If you encounter any bugs or crashes it is highly appreciated to notify the developer for the same.</string>
     <string name="settings">Settings</string>
     <string name="ip_address">IP Address</string>
     <string name="general">General</string>
