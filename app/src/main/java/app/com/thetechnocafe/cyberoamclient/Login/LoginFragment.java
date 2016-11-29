@@ -1,7 +1,5 @@
 package app.com.thetechnocafe.cyberoamclient.Login;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +16,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import app.com.thetechnocafe.cyberoamclient.Account.AccountActivity;
-import app.com.thetechnocafe.cyberoamclient.BroadcastReceivers.LoginBroadcastReceiver;
 import app.com.thetechnocafe.cyberoamclient.Dialogs.SavedAccountsSelectDialogFragment;
 import app.com.thetechnocafe.cyberoamclient.Dialogs.SimpleMessageDialogFragment;
 import app.com.thetechnocafe.cyberoamclient.R;
@@ -26,8 +23,6 @@ import app.com.thetechnocafe.cyberoamclient.Utils.SharedPreferenceUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static app.com.thetechnocafe.cyberoamclient.Login.LoginPresenter.BROADCAST_REQUEST_CODE;
 
 /**
  * Created by gurleensethi on 18/10/16.
@@ -190,19 +185,6 @@ public class LoginFragment extends Fragment implements ILoginView {
         if (SharedPreferenceUtils.getLoginState(getContext()).equals(ValueUtils.STATE_LOGGED_IN)) {
             toggleViewStates(true, false);
         }
-    }
-
-    //TODO:Remove this code from final production
-    public void cancelAlarm() {
-        //Get alarm manager service
-        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-
-        //Create a pending intent for broadcast receiver
-        Intent intent = new Intent(getContext(), LoginBroadcastReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), BROADCAST_REQUEST_CODE, intent, 0);
-
-        //Cancel alarms
-        alarmManager.cancel(pendingIntent);
     }
 
     /**
