@@ -13,6 +13,7 @@ import java.util.List;
 import app.com.thetechnocafe.cyberoamclient.BroadcastReceivers.LoginBroadcastReceiver;
 import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
 import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
+import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.Utils.AlarmUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ContinuousLoginUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
@@ -175,7 +176,7 @@ public class LoginPresenter implements ILoginPresenter {
                     //Login is not successful then try next
                     LoginPresenter.this.continuousLogin(position + 1);
                 } else {
-                    mainView.isLoginSuccessful(success, message);
+                    mainView.isLoginSuccessful(success, mainView.getContext().getString(R.string.unable_to_login_saved_accounts));
                 }
             }
         }.continuousLogin(mainView.getContext(), position);

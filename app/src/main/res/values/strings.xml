@@ -80,9 +80,12 @@
     <string name="save">Save</string>
     <string name="continuous_login">Continuous Login</string>
     <string name="continuous_login_enabled">Continuous login is enabled</string>
-    <string name="no_accounts_found">No saved accounts found</string>
+    <string name="no_accounts_found">No saved accounts found. Please save one or more accounts to use continuous login.</string>
     <string name="config">Configuration</string>
     <string name="wifi_auto_login">Auto Login on Wifi</string>
     <string name="auto_wifi_logged_in">Logged into cyerboam with %1$s</string>
     <string name="logged_into_cyerbaom">Successfully logged in</string>
+    <string name="no_saved_accounts_found">No saved accounts found</string>
+    <string name="save_accounts_continuous_login">Save accounts to use continuous login</string>
+    <string name="unable_to_login_saved_accounts">Unable to login with saved accounts</string>
 </resources>

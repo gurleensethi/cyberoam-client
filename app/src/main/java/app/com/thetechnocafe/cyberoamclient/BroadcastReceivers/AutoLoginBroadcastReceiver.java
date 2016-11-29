@@ -89,6 +89,16 @@ public class AutoLoginBroadcastReceiver extends BroadcastReceiver {
                     //Login is not successful then try next
                     AutoLoginBroadcastReceiver.this.continuousLogin(context, position + 1);
                 } else {
+                    //Notify user
+                    if (SharedPreferenceUtils.getNotifications(context)) {
+                        if (!message.equals(ValueUtils.ERROR_VOLLEY_ERROR) && !message.equals(ValueUtils.ERROR_NO_SAVED_ACCOUNTS)) {
+                            NotificationsUtils.sendSimpleTextNotification(
+                                    context,
+                                    context.getString(R.string.unable_to_login_saved_accounts),
+                                    ""
+                            );
+                        }
+                    }
                 }
             }
         }.continuousLogin(context, position);

@@ -43,7 +43,7 @@ public class ValueUtils {
     public static final String ERROR_VOLLEY_ERROR = "Cannot reach cyberoam. Please check your wifi connection and base ip/port.";
     public static final int ERROR_NOT_ALLOWED = 111;
     public static final int ERROR_DATA_EXCEED = 112;
-    public static final String ERROR_NO_SAVED_ACCOUNTS = "No saved accounts found";
+    public static final String ERROR_NO_SAVED_ACCOUNTS = "No saved accounts found. Please save one or more accounts to use continuous login.";
 
     public static final String STATE_LOGGED_IN = "loggedIn";
     public static final String STATE_LOGGED_OUT = "loggedOut";
