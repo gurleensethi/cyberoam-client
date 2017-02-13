@@ -2,6 +2,9 @@ package app.com.thetechnocafe.cyberoamclient.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v4.content.ContextCompat;
+
+import app.com.thetechnocafe.cyberoamclient.R;
 
 /**
  * Created by gurleensethi on 19/10/16.
@@ -18,6 +21,7 @@ public class SharedPreferenceUtils {
     private static final String SHARED_PREFERENCES_ACTIVITY_LOG = "activitylog";
     private static final String SHARED_PREFERENCES_CONTINUOUS_LOGIN = "continouslogin";
     private static final String SHARED_PREFERENCES_AUTO_LOGIN_ON_WIFI = "autologinonwifi";
+    private static final String SHARED_PREFERENCES_THEME_COLOR = "themecolor";
 
     //Change the login state
     public static void changeLoginState(Context context, String state) {
@@ -244,5 +248,24 @@ public class SharedPreferenceUtils {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
 
         return sharedPreferences.getBoolean(SHARED_PREFERENCES_AUTO_LOGIN_ON_WIFI, false);
+    }
+
+    //Set the theme color
+    public static void changeThemeColor(Context context, int color) {
+        //Get shared preferences and return boolean
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+        //Get editor
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(SHARED_PREFERENCES_THEME_COLOR, color);
+        editor.commit();
+    }
+
+    //Get the theme color
+    public static int getThemeColor(Context context) {
+        //Get shared preferences and return boolean
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+        return sharedPreferences.getInt(SHARED_PREFERENCES_THEME_COLOR, ContextCompat.getColor(context, R.color.colorPrimary));
     }
 }
