@@ -69,6 +69,12 @@ public class SettingsPresenter implements ISettingsPresenter {
         SharedPreferenceUtils.setBasePort(mView.getContext(), port);
     }
 
+    @Override
+    public void changeThemeColor(int colorCode) {
+        //Change the theme color
+        SharedPreferenceUtils.changeThemeColor(mView.getContext(), colorCode);
+    }
+
     //Provide View with updated settings
     private void updateSettingsInView() {
         mView.setUpSettingsState(

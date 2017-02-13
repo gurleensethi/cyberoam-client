@@ -20,4 +20,6 @@ public interface ISettingsPresenter {
     void changeIPAddress(String ipAddress);
 
     void changePort(String port);
+
+    void changeThemeColor(int colorCode);
 }
