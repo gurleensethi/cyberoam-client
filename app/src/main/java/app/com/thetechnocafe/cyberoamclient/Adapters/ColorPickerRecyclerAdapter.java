@@ -21,14 +21,21 @@ public class ColorPickerRecyclerAdapter extends RecyclerView.Adapter<ColorPicker
             R.color.md_deep_orange_500, R.color.md_orange_500, R.color.md_pink_500, R.color.md_yellow_500, R.color.md_amber_500,
             R.color.md_brown_500, R.color.md_cyan_500, R.color.md_green_500, R.color.md_grey_500, R.color.md_indigo_500, R.color.md_lime_500,
             R.color.md_purple_500, R.color.md_teal_500, R.color.md_light_blue_500, R.color.md_deep_purple_500};
+
     private Context mContext;
+    private OnColorSelectedListener mListener;
 
     public ColorPickerRecyclerAdapter(Context context) {
         mContext = context;
     }
 
+    //Interface for callbacks
+    public interface OnColorSelectedListener {
+        void onColorSelected(int color);
+    }
+
     //View Holder
-    class ColorPickerViewHolder extends RecyclerView.ViewHolder {
+    class ColorPickerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private int colorCode;
         @BindView(R.id.color_circle_view)
         View mCircleView;
@@ -44,6 +51,13 @@ public class ColorPickerRecyclerAdapter extends RecyclerView.Adapter<ColorPicker
             colorCode = colorList[position];
             //Change the background
             ((GradientDrawable) mCircleView.getBackground()).setColor(mContext.getResources().getColor(colorList[position]));
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (mListener != null) {
+                mListener.onColorSelected(colorCode);
+            }
         }
     }
 
@@ -63,4 +77,7 @@ public class ColorPickerRecyclerAdapter extends RecyclerView.Adapter<ColorPicker
         return colorList.length;
     }
 
+    public void setOnColorSelectedListener(OnColorSelectedListener listener) {
+        mListener = listener;
+    }
 }

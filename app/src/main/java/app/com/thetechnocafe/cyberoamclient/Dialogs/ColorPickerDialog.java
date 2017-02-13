@@ -26,6 +26,12 @@ public class ColorPickerDialog extends DialogFragment {
 
     private ColorPickerRecyclerAdapter mColorPickerRecyclerAdapter;
     private static final int GRID_SIZE = 5;
+    private OnColorSelectedListener mListener;
+
+    //Interface for callbacks
+    public interface OnColorSelectedListener {
+        void onColorSelected(int color);
+    }
 
     public static ColorPickerDialog getInstance() {
         return new ColorPickerDialog();
@@ -53,6 +59,18 @@ public class ColorPickerDialog extends DialogFragment {
         if (mColorPickerRecyclerAdapter == null) {
             mColorPickerRecyclerAdapter = new ColorPickerRecyclerAdapter(getContext());
             mDialogColorPickerRecyclerView.setAdapter(mColorPickerRecyclerAdapter);
+            mColorPickerRecyclerAdapter.setOnColorSelectedListener(new ColorPickerRecyclerAdapter.OnColorSelectedListener() {
+                @Override
+                public void onColorSelected(int color) {
+                    //Check is listener is attached, then send color back
+                    if (mListener != null) {
+                        mListener.onColorSelected(color);
+                    }
+
+                    //Close the dialog box
+                    dismiss();
+                }
+            });
         }
     }
 
@@ -67,5 +85,9 @@ public class ColorPickerDialog extends DialogFragment {
     public void onStart() {
         super.onStart();
         getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    }
+
+    public void setOnColorSelectedListener(OnColorSelectedListener listener) {
+        mListener = listener;
     }
 }
