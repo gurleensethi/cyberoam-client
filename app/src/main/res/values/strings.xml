@@ -93,4 +93,5 @@
     <string name="all_logs_cleared">All Logs cleared successfully</string>
     <string name="change_theme_color">Change Theme Color</string>
     <string name="theme">Theme</string>
+    <string name="pick_color">Pick Color</string>
 </resources>
