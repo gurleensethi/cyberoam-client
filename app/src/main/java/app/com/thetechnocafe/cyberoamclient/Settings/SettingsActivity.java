@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import app.com.thetechnocafe.cyberoamclient.Dialogs.ColorPickerDialog;
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import butterknife.BindView;
@@ -38,8 +37,6 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     Switch mContinuousLoginSwitch;
     @BindView(R.id.auto_login_switch)
     Switch mWifiAutoLoginSwitch;
-    @BindView(R.id.theme_color_change_button)
-    Button mThemeColorChangeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,23 +125,6 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
             @Override
             public void onClick(View view) {
                 showEditTextDialog(ValueUtils.PORT);
-            }
-        });
-
-        mThemeColorChangeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Launch the color picker dialog
-                ColorPickerDialog colorPickerDialog = ColorPickerDialog.getInstance();
-                colorPickerDialog.show(getSupportFragmentManager(), "");
-
-                //Add on color picked listener
-                colorPickerDialog.setOnColorSelectedListener(new ColorPickerDialog.OnColorSelectedListener() {
-                    @Override
-                    public void onColorSelected(int color) {
-                        mPresenter.changeThemeColor(color);
-                    }
-                });
             }
         });
     }

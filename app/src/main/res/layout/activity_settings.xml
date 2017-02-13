@@ -196,43 +196,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/theme"
-                android:textColor="@android:color/white" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:alpha="0.5"
-                android:background="@android:color/white" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/theme_color_change_button"
-                    style="@style/Base.Widget.AppCompat.Button.Borderless"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="@string/change_theme_color"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
-                    android:textStyle="normal" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif-light"
                 android:text="@string/activity_log"
                 android:textColor="@android:color/white" />
 
