@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_settings"
@@ -40,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/config"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white" />
 
             <View
                 android:layout_width="match_parent"
@@ -48,7 +47,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:alpha="0.5"
-                android:background="@android:color/white"/>
+                android:background="@android:color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,7 +62,7 @@
                     android:layout_weight="1"
                     android:text="@string/ip_address"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/text_ip_address"
@@ -74,7 +73,7 @@
                     android:gravity="right"
                     android:text="172.168.1.1"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -90,7 +89,7 @@
                     android:layout_weight="1"
                     android:text="@string/port"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/text_port_address"
@@ -101,7 +100,7 @@
                     android:gravity="right"
                     android:text="8090"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <TextView
@@ -110,7 +109,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/general"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white" />
 
             <View
                 android:layout_width="match_parent"
@@ -118,7 +117,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:alpha="0.5"
-                android:background="@android:color/white"/>
+                android:background="@android:color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,14 +132,14 @@
                     android:layout_weight="3"
                     android:text="@string/notifications"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <Switch
                     android:id="@+id/notifications_switch"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:theme="@style/SwitchColor"/>
+                    android:theme="@style/SwitchColor" />
 
             </LinearLayout>
 
@@ -157,14 +156,14 @@
                     android:layout_weight="3"
                     android:text="@string/continuous_login"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <Switch
                     android:id="@+id/continuous_login_switch"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:theme="@style/SwitchColor"/>
+                    android:theme="@style/SwitchColor" />
 
             </LinearLayout>
 
@@ -181,14 +180,51 @@
                     android:layout_weight="3"
                     android:text="@string/wifi_auto_login"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <Switch
                     android:id="@+id/auto_login_switch"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:theme="@style/SwitchColor"/>
+                    android:theme="@style/SwitchColor" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/theme"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:alpha="0.5"
+                android:background="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/theme_color_change_button"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/change_theme_color"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="normal" />
 
             </LinearLayout>
 
@@ -198,7 +234,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/activity_log"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white" />
 
             <View
                 android:layout_width="match_parent"
@@ -206,7 +242,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:alpha="0.5"
-                android:background="@android:color/white"/>
+                android:background="@android:color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -221,14 +257,14 @@
                     android:layout_weight="3"
                     android:text="@string/activity_log"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <Switch
                     android:id="@+id/activity_log_switch"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:theme="@style/SwitchColor"/>
+                    android:theme="@style/SwitchColor" />
 
             </LinearLayout>
 
@@ -244,7 +280,7 @@
                 android:text="@string/clear_logs"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

@@ -91,4 +91,6 @@
     <string name="unable_to_login_saved_accounts">Unable to login with saved accounts</string>
     <string name="data_not_accurate">(Data calculations might not match the actual consumption)</string>
     <string name="all_logs_cleared">All Logs cleared successfully</string>
+    <string name="change_theme_color">Change Theme Color</string>
+    <string name="theme">Theme</string>
 </resources>

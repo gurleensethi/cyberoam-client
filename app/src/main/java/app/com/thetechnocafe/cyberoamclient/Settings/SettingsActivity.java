@@ -37,6 +37,8 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     Switch mContinuousLoginSwitch;
     @BindView(R.id.auto_login_switch)
     Switch mWifiAutoLoginSwitch;
+    @BindView(R.id.theme_color_change_button)
+    Button mThemeColorChangeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +127,13 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
             @Override
             public void onClick(View view) {
                 showEditTextDialog(ValueUtils.PORT);
+            }
+        });
+
+        mThemeColorChangeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }
