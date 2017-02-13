@@ -43,7 +43,7 @@ public class ColorPickerRecyclerAdapter extends RecyclerView.Adapter<ColorPicker
             //Save the color
             colorCode = colorList[position];
             //Change the background
-            ((GradientDrawable) mCircleView.getBackground()).setColor(colorList[position]);
+            ((GradientDrawable) mCircleView.getBackground()).setColor(mContext.getResources().getColor(colorList[position]));
         }
     }
 

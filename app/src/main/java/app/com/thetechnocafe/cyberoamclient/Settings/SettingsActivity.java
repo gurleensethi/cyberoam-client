@@ -3,6 +3,7 @@ package app.com.thetechnocafe.cyberoamclient.Settings;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import app.com.thetechnocafe.cyberoamclient.Dialogs.ColorPickerDialog;
 import app.com.thetechnocafe.cyberoamclient.R;
 import app.com.thetechnocafe.cyberoamclient.Utils.ValueUtils;
 import butterknife.BindView;
@@ -133,7 +135,9 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
         mThemeColorChangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //Launch the color picker dialog
+                DialogFragment colorPickerDialog = ColorPickerDialog.getInstance();
+                colorPickerDialog.show(getSupportFragmentManager(), "");
             }
         });
     }

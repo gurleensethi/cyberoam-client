@@ -4,12 +4,14 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import app.com.thetechnocafe.cyberoamclient.Adapters.ColorPickerRecyclerAdapter;
 import app.com.thetechnocafe.cyberoamclient.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,10 +21,11 @@ import butterknife.ButterKnife;
  */
 
 public class ColorPickerDialog extends DialogFragment {
-    private static final String MESSAGE_TEXT_CODE = "message_text_code";
-    private static final String BACKGROUND_COLOR_CODE = "background_color_code";
-    @BindView(R.id.dialog_saved_accounts_recycler_view)
+    @BindView(R.id.dialog_color_picker_recycler_view)
     RecyclerView mDialogColorPickerRecyclerView;
+
+    private ColorPickerRecyclerAdapter mColorPickerRecyclerAdapter;
+    private static final int GRID_SIZE = 5;
 
     public static ColorPickerDialog getInstance() {
         return new ColorPickerDialog();
@@ -31,12 +34,14 @@ public class ColorPickerDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_custom_progress, container, false);
+        View view = inflater.inflate(R.layout.dialog_color_picker, container, false);
 
         //Bind butter knife
         ButterKnife.bind(this, view);
 
-        setCancelable(false);
+        //setCancelable(false);
+
+        mDialogColorPickerRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), GRID_SIZE));
 
         setUpData();
 
@@ -45,7 +50,10 @@ public class ColorPickerDialog extends DialogFragment {
 
     //Set the required data to views
     private void setUpData() {
-
+        if (mColorPickerRecyclerAdapter == null) {
+            mColorPickerRecyclerAdapter = new ColorPickerRecyclerAdapter(getContext());
+            mDialogColorPickerRecyclerView.setAdapter(mColorPickerRecyclerAdapter);
+        }
     }
 
     @Override
