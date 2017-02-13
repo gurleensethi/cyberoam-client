@@ -10,8 +10,6 @@
         android:id="@+id/color_circle_view"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/color_circle"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"/>
+        android:background="@drawable/color_circle"/>
 
 </LinearLayout>

@@ -42,11 +42,11 @@ public class ColorPickerRecyclerAdapter extends RecyclerView.Adapter<ColorPicker
 
         public ColorPickerViewHolder(View itemView) {
             super(itemView);
-
+            itemView.setOnClickListener(this);
             ButterKnife.bind(this, itemView);
         }
 
-        public void bindData(int position) {
+        void bindData(int position) {
             //Save the color
             colorCode = colorList[position];
             //Change the background
