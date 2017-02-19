@@ -14,6 +14,7 @@ import app.com.thetechnocafe.cyberoamclient.BroadcastReceivers.LoginBroadcastRec
 import app.com.thetechnocafe.cyberoamclient.Common.RealmDatabase;
 import app.com.thetechnocafe.cyberoamclient.Models.AccountsModel;
 import app.com.thetechnocafe.cyberoamclient.R;
+import app.com.thetechnocafe.cyberoamclient.Services.AutoWifiLoginService;
 import app.com.thetechnocafe.cyberoamclient.Utils.AlarmUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.ContinuousLoginUtils;
 import app.com.thetechnocafe.cyberoamclient.Utils.NetworkUtils;
@@ -62,6 +63,10 @@ public class LoginPresenter implements ILoginPresenter {
 
             mainView.completeFirstRunSetup();
         }
+
+        //Start the AutoWifiLogin Service
+        Intent intent = new Intent(mainView.getContext(), AutoWifiLoginService.class);
+        mainView.getContext().startService(intent);
     }
 
     /**

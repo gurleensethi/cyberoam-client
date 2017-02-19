@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="app.com.thetechnocafe.cyberoamclient">
+    package="app.com.thetechnocafe.cyberoamclient">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -17,40 +17,38 @@
             android:name=".Login.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <receiver
             android:name=".BroadcastReceivers.LoginBroadcastReceiver"
             android:enabled="true"
-            android:exported="true">
-        </receiver>
+            android:exported="true"></receiver>
         <receiver
             android:name=".BroadcastReceivers.AutoLoginBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
-                <action android:name="android.net.wifi.STATE_CHANGED"/>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.STATE_CHANGED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".SavedAccounts.SavedAccountsActivity">
-        </activity>
-        <activity android:name=".Settings.SettingsActivity">
-        </activity>
-        <activity android:name=".About.AboutActivity">
-        </activity>
-        <activity android:name=".Account.AccountActivity">
-        </activity>
-        <activity android:name=".SessionLog.SessionLogActivity">
-        </activity>
-        <activity android:name=".Info.InfoActivity">
-        </activity>
+        <activity android:name=".SavedAccounts.SavedAccountsActivity"></activity>
+        <activity android:name=".Settings.SettingsActivity"></activity>
+        <activity android:name=".About.AboutActivity"></activity>
+        <activity android:name=".Account.AccountActivity"></activity>
+        <activity android:name=".SessionLog.SessionLogActivity"></activity>
+        <activity android:name=".Info.InfoActivity"></activity>
+
+        <service
+            android:name=".Services.AutoWifiLoginService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
