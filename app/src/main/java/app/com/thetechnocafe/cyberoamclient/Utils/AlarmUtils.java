@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
 
@@ -33,8 +34,14 @@ public class AlarmUtils {
         long interval = SystemClock.elapsedRealtime() + ValueUtils.FIXED_INTERVAL;
         Log.d(TAG, String.valueOf(interval));
 
-        //Set alarm
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, interval, pendingIntent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, interval, pendingIntent);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, interval, pendingIntent);
+        } else {
+            //Set alarm
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, interval, pendingIntent);
+        }
     }
 
     /**
